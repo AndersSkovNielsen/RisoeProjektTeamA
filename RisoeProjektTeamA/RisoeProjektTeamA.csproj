@@ -109,6 +109,9 @@
     <Compile Include="View\Opgaver.xaml.cs">
       <DependentUpon>Opgaver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Oversigt.xaml.cs">
+      <DependentUpon>Oversigt.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Opgaver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Oversigt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
