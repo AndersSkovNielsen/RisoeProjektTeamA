@@ -110,6 +110,9 @@
     <Compile Include="View\Hovedmenu.xaml.cs">
       <DependentUpon>Hovedmenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Forside.xaml.cs">
+      <DependentUpon>Forside.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NytUdstyr.xaml.cs">
       <DependentUpon>NytUdstyr.xaml</DependentUpon>
     </Compile>
