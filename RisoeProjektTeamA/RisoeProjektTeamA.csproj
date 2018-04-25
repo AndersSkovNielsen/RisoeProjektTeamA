@@ -98,9 +98,6 @@
     <Compile Include="Handler\OpgaveHandler.cs" />
     <Compile Include="Model\FastOpgave.cs" />
     <Compile Include="Model\SærligOpgave.cs" />
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\Opgave.cs" />
     <Compile Include="Model\Udstyr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
