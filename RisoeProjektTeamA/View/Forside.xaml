@@ -8,11 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Left" Margin="396,65,0,0" Text="Stationslog Program" TextWrapping="Wrap" VerticalAlignment="Top" Height="142" Width="685" FontSize="72"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="530,721,0,0" VerticalAlignment="Top" Height="123" Width="354" FontSize="72" Click="Button_Click_Hovedmenu"/>
-        <TextBox HorizontalAlignment="Left" Margin="473,508,0,0" Text="Indtast kode" VerticalAlignment="Top" Height="134" Width="469" FontSize="72"/>
-        <ComboBox HorizontalAlignment="Left" Margin="473,343,0,0" VerticalAlignment="Top" Height="116" Width="468" FontSize="72"/>
-        <TextBlock HorizontalAlignment="Left" Margin="473,223,0,0" Text="Tekniker:" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="482" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="470,45,0,0" Text="Stationslog" TextWrapping="Wrap" VerticalAlignment="Top" Height="142" Width="355" FontSize="72"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="470,560,0,0" VerticalAlignment="Top" Height="123" Width="354" FontSize="72" Click="Button_Click_Hovedmenu"/>
+        <TextBox HorizontalAlignment="Left" Margin="432,421,0,0" Text="Indtast kode" VerticalAlignment="Top" Height="134" Width="469" FontSize="72"/>
+        <ComboBox HorizontalAlignment="Left" Margin="432,300,0,0" VerticalAlignment="Top" Height="116" Width="468" FontSize="72"/>
+        <TextBlock HorizontalAlignment="Left" Margin="432,197,0,0" Text="Tekniker:" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="482" FontSize="48"/>
 
 
     </Grid>
