@@ -96,6 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Handler\OpgaveHandler.cs" />
+    <Compile Include="Model\FastOpgave.cs" />
+    <Compile Include="Model\SærligOpgave.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

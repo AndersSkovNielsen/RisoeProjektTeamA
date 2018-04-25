@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace RisoeProjektTeamA.Model
 {
-    class Udstyr
+    class SærligOpgave:Opgave
     {
-        
+
     }
 }
