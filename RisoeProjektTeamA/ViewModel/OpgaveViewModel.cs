@@ -8,5 +8,7 @@ namespace RisoeProjektTeamA.ViewModel
 {
     class OpgaveViewModel
     {
+        //hey, virker det?
+        
     }
 }
