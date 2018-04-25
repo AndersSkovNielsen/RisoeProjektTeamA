@@ -8,17 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Logo/Hovedmenu (NYI)" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Height="131" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="550,10,0,0" Text="Stationslog Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Height="206" Width="404" FontSize="72"/>
-        <TextBlock HorizontalAlignment="Left" Margin="1265,10,0,0" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Height="124" Width="230" FontSize="48"/>
-        <StackPanel HorizontalAlignment="Left" Height="286" Margin="148,240,0,0" VerticalAlignment="Top" Width="484">
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Logo/Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Height="131" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="466,10,0,0" Text="Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Height="206" Width="404" FontSize="72"/>
+        <TextBlock HorizontalAlignment="Left" Margin="1046,0,0,0" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Height="124" Width="230" FontSize="48"/>
+        <StackPanel HorizontalAlignment="Left" Height="224" Margin="148,216,0,0" VerticalAlignment="Top" Width="424">
             <TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Height="77" FontSize="48"/>
-            <ListView Height="193" VerticalAlignment="Stretch"/>
+            <ListView Height="141" VerticalAlignment="Stretch"/>
 
         </StackPanel>
-        <Button Content="Opgaver" HorizontalAlignment="Left" Margin="892,240,0,0" VerticalAlignment="Top" Height="250" Width="402" FontSize="72" Click="Button_Click_Opgaver"/>
-        <Button Content="Admin" HorizontalAlignment="Left" Margin="193,568,0,0" VerticalAlignment="Top" Height="267" Width="366" FontSize="72" Click="Button_Click_Oversigt"/>
-        <Button Content="Nyt udstyr" HorizontalAlignment="Left" Margin="891,583,0,0" VerticalAlignment="Top" Height="252" Width="403" FontSize="72" Click="Button_Click_Udstyr"/>
+        <Button Content="Opgaver" HorizontalAlignment="Left" Margin="719,260,0,0" VerticalAlignment="Top" Height="190" Width="330" FontSize="72" Click="Button_Click_Opgaver"/>
+        <Button Content="Admin" HorizontalAlignment="Left" Margin="194,469,0,0" VerticalAlignment="Top" Height="241" Width="310" FontSize="72" Click="Button_Click_Oversigt"/>
+        <Button Content="Nyt udstyr" HorizontalAlignment="Left" Margin="682,494,0,0" VerticalAlignment="Top" Height="216" Width="367" FontSize="72" Click="Button_Click_Udstyr"/>
 
 
 

@@ -8,18 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Logo/Hovedmenu (NYI)" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Height="131" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="550,10,0,0" Text="Stationslog Opgaver" TextWrapping="Wrap" VerticalAlignment="Top" Height="206" Width="404" FontSize="72"/>
-        <TextBlock HorizontalAlignment="Left" Margin="1265,10,0,0" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Height="124" Width="230" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="71,243,0,0" Text="Stationsnavn (Binding?)" TextWrapping="Wrap" VerticalAlignment="Top" Height="149" Width="521" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Logo/Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Height="131" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="479,10,0,0" Text="Opgaver" TextWrapping="Wrap" VerticalAlignment="Top" Height="99" Width="404" FontSize="72"/>
+        <TextBlock HorizontalAlignment="Left" Margin="1046,10,0,0" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Height="73" Width="230" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,143,0,0" Text="Stationsnavn (Binding?)" TextWrapping="Wrap" VerticalAlignment="Top" Height="77" Width="521" FontSize="48"/>
 
-        <StackPanel HorizontalAlignment="Left" Height="260" Margin="71,349,0,0" VerticalAlignment="Top" Width="400">
+        <StackPanel HorizontalAlignment="Left" Height="260" Margin="10,212,0,0" VerticalAlignment="Top" Width="400">
             <TextBlock Text="Tjek gas tryk" TextWrapping="Wrap" Height="65" FontSize="36"/>
             <StackPanel Height="58" Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <RadioButton Content="Færdig" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="100" Margin="0,0,-216,0" FontSize="24" Width="216"/>
                 <RadioButton Content="Fejl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100" Margin="270,0,-397.6,0" FontSize="24"/>
             </StackPanel>
-            <StackPanel Height="43" Orientation="Horizontal">
+            <StackPanel Height="49" Orientation="Horizontal">
                 <TextBox Text="Indtast data" Height="100" Margin="0,0,-217.6,0" FontSize="24" HorizontalAlignment="Left"/>
                 <TextBlock Text="Bar" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Left" Height="100" Margin="264,0,-389.6,0" Width="188" FontSize="24"/>
 
@@ -29,13 +29,13 @@
 
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left" Height="260" Margin="550,349,0,0" VerticalAlignment="Top" Width="400">
+        <StackPanel HorizontalAlignment="Left" Height="260" Margin="433,212,0,0" VerticalAlignment="Top" Width="400">
             <TextBlock Text="Tjek måleudstyr" TextWrapping="Wrap" Height="65" FontSize="36"/>
             <StackPanel Height="58" Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <RadioButton Content="Færdig" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="100" Margin="0,0,-216,0" FontSize="24" Width="216"/>
                 <RadioButton Content="Fejl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100" Margin="270,0,-397.6,0" FontSize="24"/>
             </StackPanel>
-            <StackPanel Height="43" Orientation="Horizontal">
+            <StackPanel Height="51" Orientation="Horizontal">
                 <TextBox Text="Indtast data" Height="100" Margin="0,0,-217.6,0" FontSize="24" HorizontalAlignment="Left"/>
                 <TextBlock Text="(Eksempel)" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Left" Height="100" Margin="264,0,-389.6,0" Width="188" FontSize="24"/>
 
@@ -45,27 +45,11 @@
 
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left" Height="260" Margin="1013,349,0,0" VerticalAlignment="Top" Width="400">
-            <TextBlock Text="Aflæs temperatur" TextWrapping="Wrap" Height="65" FontSize="36"/>
-            <StackPanel Height="58" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <RadioButton Content="Færdig" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="100" Margin="0,0,-216,0" FontSize="24" Width="216"/>
-                <RadioButton Content="Fejl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100" Margin="270,0,-397.6,0" FontSize="24"/>
-            </StackPanel>
-            <StackPanel Height="43" Orientation="Horizontal">
-                <TextBox Text="Indtast data" Height="100" Margin="0,0,-217.6,0" FontSize="24" HorizontalAlignment="Left"/>
-                <TextBlock Text="Celsius" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Left" Height="100" Margin="264,0,-389.6,0" Width="188" FontSize="24"/>
-
-            </StackPanel>
-            <TextBlock Text="Note" TextWrapping="Wrap" FontSize="36"/>
-            <TextBox Text="Indtast note" FontSize="24"/>
-
-        </StackPanel>
-
-        <TextBlock HorizontalAlignment="Left" Margin="71,698,0,0" Text="Ekstra opgaver (listview nedenfor)" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="575" FontSize="36"/>
-        <ListView HorizontalAlignment="Left" Height="178" Margin="71,751,0,0" VerticalAlignment="Top" Width="736"/>
-        <Button Content="Færdig" HorizontalAlignment="Left" Margin="1309,875,0,0" VerticalAlignment="Top" Height="115" Width="181" FontSize="48" Click="Button_Click_Hovedmenu"/>
-        <TextBlock HorizontalAlignment="Left" Margin="875,751,0,0" Text="Bemærkninger:" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="318" FontSize="36"/>
-        <TextBox HorizontalAlignment="Left" Margin="875,804,0,0" Text="Indtast bemærkning" VerticalAlignment="Top" Height="64" Width="232" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,497,0,0" Text="Ekstra opgaver (listview nedenfor)" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="575" FontSize="36"/>
+        <ListView HorizontalAlignment="Left" Height="110" Margin="16,572,0,0" VerticalAlignment="Top" Width="736"/>
+        <Button Content="Færdig" HorizontalAlignment="Left" Margin="1099,605,0,0" VerticalAlignment="Top" Height="115" Width="181" FontSize="48" Click="Button_Click_Hovedmenu"/>
+        <TextBlock HorizontalAlignment="Left" Margin="1014,483,0,0" Text="Bemærkninger:" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="255" FontSize="36"/>
+        <TextBox HorizontalAlignment="Left" Margin="1038,536,0,0" Text="Indtast bemærkning" VerticalAlignment="Top" Height="64" Width="232" FontSize="24"/>
 
 
 
