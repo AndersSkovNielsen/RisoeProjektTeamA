@@ -97,11 +97,15 @@
     </Compile>
     <Compile Include="Handler\OpgaveHandler.cs" />
     <Compile Include="Model\FastOpgave.cs" />
+    <Compile Include="Model\Log.cs" />
+    <Compile Include="Model\LogbogSingleton.cs" />
     <Compile Include="Model\SærligOpgave.cs" />
     <Compile Include="Model\Opgave.cs" />
     <Compile Include="Model\Udstyr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\NytUdstyrViewModel.cs" />
     <Compile Include="ViewModel\OpgaveViewModel.cs" />
+    <Compile Include="ViewModel\OversigtViewModel.cs" />
     <Compile Include="View\Hovedmenu.xaml.cs">
       <DependentUpon>Hovedmenu.xaml</DependentUpon>
     </Compile>

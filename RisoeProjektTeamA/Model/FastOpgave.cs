@@ -8,6 +8,12 @@ namespace RisoeProjektTeamA.Model
 {
     class FastOpgave:Opgave
     {
-        
+        public int IntervalIDage { get; set; }
+
+
+        public FastOpgave(int intervalIDage)
+        {
+            IntervalIDage = intervalIDage;
+        }
     }
 }
