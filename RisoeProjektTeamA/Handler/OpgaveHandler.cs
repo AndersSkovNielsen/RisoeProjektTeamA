@@ -8,5 +8,13 @@ namespace RisoeProjektTeamA.Handler
 {
     class OpgaveHandler
     {
+        private string _beskrivelse;
+
+        public string Beskrivelse
+        {
+            get { return _beskrivelse; }
+            set { _beskrivelse = value; }
+        }
+
     }
 }
