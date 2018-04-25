@@ -96,8 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Handler\OpgaveHandler.cs" />
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\Forside.xaml.cs">
+      <DependentUpon>Forside.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Opgave.cs" />
     <Compile Include="Model\Udstyr.cs" />
@@ -134,7 +134,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\Forside.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -27,9 +27,24 @@ namespace RisoeProjektTeamA.View
             this.InitializeComponent();
         }
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private void Button_Click_Hovedmenu(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(Hovedmenu));
+        }
 
+        private void Button_Click_Oversigt(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Oversigt));
+        }
+
+        private void Button_Click_Opgaver(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Opgaver));
+        }
+
+        private void Button_Click_Udstyr(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
