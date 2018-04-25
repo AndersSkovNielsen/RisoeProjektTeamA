@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RisoeProjektTeamA.View;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,16 +14,16 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace RisoeProjektTeamA.View
+namespace RisoeProjektTeamA
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Hovedmenu : Page
+    public sealed partial class MainPage : Page
     {
-        public Hovedmenu()
+        public MainPage()
         {
             this.InitializeComponent();
         }
@@ -30,21 +31,6 @@ namespace RisoeProjektTeamA.View
         private void Button_Click_Hovedmenu(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Hovedmenu));
-        }
-
-        private void Button_Click_Oversigt(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Oversigt));
-        }
-
-        private void Button_Click_Opgaver(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Opgaver));
-        }
-
-        private void Button_Click_Udstyr(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
