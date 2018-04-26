@@ -11,7 +11,7 @@ namespace ModelLibrary.Model
         public int IntervalIDage { get; set; }
 
 
-        public FastOpgave(int intervalIDage)
+        public FastOpgave(Udstyr udstyr, bool løst, int ventetidIDage, string beskrivelse, int intervalIDage) : base(udstyr, løst, ventetidIDage, beskrivelse)
         {
             IntervalIDage = intervalIDage;
         }

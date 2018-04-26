@@ -38,5 +38,10 @@ namespace ModelLibrary.Model
                //if (typeof(OpgListe[i].Opgave.Prioritet.)>(OpgListe[i-1].Opgave.Prioritet)))// Hvorfor er denne sætning ulovlig?
             }
         }
+
+        public void UpdateOpgave(Opgave Selectedopgave)
+        {
+            
+        }
     }
 }

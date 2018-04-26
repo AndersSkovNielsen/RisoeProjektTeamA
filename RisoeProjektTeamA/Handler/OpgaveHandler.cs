@@ -23,7 +23,7 @@ namespace RisoeProjektTeamA.Handler
 
         public void UpdateSelectedOpgave()
         {
-            
+            opgaveViewModel.TheLogbogSingleton.UpdateOpgave(opgaveViewModel.SelectedOpgave);
         }
 
     }
