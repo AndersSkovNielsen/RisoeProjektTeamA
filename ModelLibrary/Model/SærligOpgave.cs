@@ -8,5 +8,8 @@ namespace ModelLibrary.Model
 {
     class SærligOpgave : Opgave
     {
+
+
+      
     }
 }

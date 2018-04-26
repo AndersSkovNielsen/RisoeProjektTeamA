@@ -13,7 +13,6 @@ namespace ModelLibrary.Model
         public Udstyr Udstyr { get; set; }
         public bool Løst { get; set; }
         public int VentetidIDage { get; set; }
-        private Timer Ventetid { get; set; }
         public string Beskrivelse { get; set; }
         public enum Type { Regulær, Særlig }
         public enum Prioritet { Lav, Mellem, Høj, Kritisk }
@@ -22,11 +21,11 @@ namespace ModelLibrary.Model
         {
             //hvordan skriver registrer vi datoskift?
 
-            await Task.WhenAll();
+            ;
 
         }
 
-        protected void StigPrioritet()
+        protected virtual void StigPrioritet()
         {
             ;
         }
