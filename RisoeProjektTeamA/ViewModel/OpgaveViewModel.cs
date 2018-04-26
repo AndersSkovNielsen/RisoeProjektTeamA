@@ -13,9 +13,16 @@ namespace RisoeProjektTeamA.ViewModel
     class OpgaveViewModel:INotifyPropertyChanged
     {
         //hey, virker det?
-        OpgaveHandler TheOpgaveHandler=new OpgaveHandler(this);
+
+        public OpgaveViewModel()
+        {
+            OpgaveHandler TheOpgaveHandler = new OpgaveHandler(this);
+        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

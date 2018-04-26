@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ModelLibrary.Model
@@ -19,11 +21,11 @@ namespace ModelLibrary.Model
         {
             //hvordan skriver registrer vi datoskift?
 
-            await Task.WhenAll();
+            ;
 
         }
 
-        protected void StigPrioritet()
+        protected virtual void StigPrioritet()
         {
             ;
         }
