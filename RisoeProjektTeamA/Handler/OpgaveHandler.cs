@@ -10,6 +10,8 @@ namespace RisoeProjektTeamA.Handler
 {
     class OpgaveHandler
     {
+        
+
         private OpgaveViewModel opgaveViewModel;
         private LogbogSingleton Logbog;
 
@@ -18,7 +20,11 @@ namespace RisoeProjektTeamA.Handler
             this.opgaveViewModel = opgaveViewModel;
             Logbog = LogbogSingleton.Instance(); // er dette det rigtige sted at contsruere vores LogbogSIngleton?
         }
-       
+
+        public void UpdateSelectedOpgave()
+        {
+            
+        }
 
     }
 }

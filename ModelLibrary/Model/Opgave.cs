@@ -17,13 +17,22 @@ namespace ModelLibrary.Model
         public enum Type { Regulær, Særlig }
         public enum Prioritet { Lav, Mellem, Høj, Kritisk }
 
-        private async void dagPasseret()
+
+        public Opgave(Udstyr udstyr, bool løst, int ventetidIDage, string beskrivelse)
         {
-            //hvordan skriver registrer vi datoskift?
-
-            ;
-
+            Udstyr = udstyr;
+            Løst = løst;
+            VentetidIDage = ventetidIDage;
+            Beskrivelse = beskrivelse;
         }
+
+        ////private async void dagPasseret()
+        //{
+        //    //hvordan skriver registrer vi datoskift?
+
+        //    ;
+
+        //}
 
         protected virtual void StigPrioritet()
         {

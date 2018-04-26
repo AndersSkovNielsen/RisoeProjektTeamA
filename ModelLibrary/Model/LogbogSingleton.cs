@@ -35,7 +35,7 @@ namespace ModelLibrary.Model
          
             for (int i=0; i<OpgListe.Count;i++ )
             {
-              // if (OpgListe[i].Prioritet>OpgListe[i-1].Prioritet) Hvorfor er denne sætning ulovlig?
+               //if (typeof(OpgListe[i].Opgave.Prioritet.)>(OpgListe[i-1].Opgave.Prioritet)))// Hvorfor er denne sætning ulovlig?
             }
         }
     }
