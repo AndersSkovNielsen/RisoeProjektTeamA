@@ -13,7 +13,6 @@ namespace ModelLibrary.Model
       public string Emne { get; set; }
         public DateTime Dato { get; set; }
         public string Tekniker { get; set; }
-        //public ObservableCollection<Bruger> Brugerliste {get; set;}
         public bool Status { get; set; }
         public string Note { get; set; }
     }

@@ -12,6 +12,9 @@ namespace ModelLibrary.Model
         public static LogbogSingleton _instance;
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         public ObservableCollection<Log> Logliste { get; set; }
+        public ObservableCollection<Bruger> Brugerliste { get; set; }
+        public ObservableCollection<Station> StationsListe { get; set; }
+        public bool Status { get; set; }
 
 
 
