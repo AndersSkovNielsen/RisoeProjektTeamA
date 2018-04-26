@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Store.Preview.InstallControl;
 
-namespace RisoeProjektTeamA.Model
+namespace ModelLibrary.Model
 {
-    class LogbogSingleton
+    public class LogbogSingleton
     {
         public static LogbogSingleton _instance;
         public ObservableCollection<Opgave> OpgaveListe { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RisoeProjektTeamA.Model
+namespace ModelLibrary.Model
 {
-    class FastOpgave:Opgave
+    public class FastOpgave : Opgave
     {
         public int IntervalIDage { get; set; }
 
