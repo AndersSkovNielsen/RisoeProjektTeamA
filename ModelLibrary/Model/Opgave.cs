@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ModelLibrary.Model
@@ -11,6 +13,7 @@ namespace ModelLibrary.Model
         public Udstyr Udstyr { get; set; }
         public bool Løst { get; set; }
         public int VentetidIDage { get; set; }
+        private Timer Ventetid { get; set; }
         public string Beskrivelse { get; set; }
         public enum Type { Regulær, Særlig }
         public enum Prioritet { Lav, Mellem, Høj, Kritisk }
