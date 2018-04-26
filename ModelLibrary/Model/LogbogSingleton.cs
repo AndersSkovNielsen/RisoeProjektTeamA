@@ -25,5 +25,15 @@ namespace ModelLibrary.Model
             OpgaveListe = new ObservableCollection<Opgave>();
             Logliste = new ObservableCollection<Log>();
         }
+
+        private void sorterOpgEfterPrio(ObservableCollection<Opgave> OpgListe)
+        {
+            OpgListe = OpgaveListe;
+         
+            for (int i=0; i<OpgListe.Count;i++ )
+            {
+              // if (OpgListe[i].Prioritet>OpgListe[i-1].Prioritet) Hvorfor er denne sætning ulovlig?
+            }
+        }
     }
 }
