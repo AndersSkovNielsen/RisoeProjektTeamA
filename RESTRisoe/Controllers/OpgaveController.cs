@@ -13,32 +13,34 @@ namespace RESTRisoe.Controllers
     {
         IManageOpgave manager = new ManageOpgave();
 
-        // GET: api/Opgaver
-        [Route("api/Opgaver")]
-        public IEnumerable<TestOpgave> Get()
+        // GET: api/Opgave
+        public IEnumerable<Opgave> Get()
         {
-            return manager.GetAllTestOpgave();
+            return manager.HentAlleOpgaver();
         }
 
         // GET: api/Opgave/5
-        public string Get(int id)
+        public Opgave Get(int id)
         {
-            return "value";
+            return manager.HentOpgaveFraId(id);
         }
 
         // POST: api/Opgave
-        public void Post([FromBody]string value)
+        public bool Post([FromBody] Opgave value)
         {
+            return manager.LavOpgave(value);
         }
 
         // PUT: api/Opgave/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, [FromBody] Opgave value)
         {
+            return manager.OpdaterOpgave(value, id);
         }
 
         // DELETE: api/Opgave/5
-        public void Delete(int id)
+        public Opgave Delete(int id)
         {
+            return manager.SletOpgave(id);
         }
     }
 }

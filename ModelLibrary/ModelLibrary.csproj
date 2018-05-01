@@ -39,13 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Bruger.cs" />
-    <Compile Include="Model\FastOpgave.cs" />
+    <Compile Include="Model\RegulærOpgave.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\LogbogSingleton.cs" />
     <Compile Include="Model\Opgave.cs" />
     <Compile Include="Model\Station.cs" />
     <Compile Include="Model\SærligOpgave.cs" />
-    <Compile Include="Model\TestOpgave.cs" />
     <Compile Include="Model\Udstyr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

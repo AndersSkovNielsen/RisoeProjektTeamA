@@ -8,12 +8,18 @@ namespace ModelLibrary.Model
 {
     class SærligOpgave : Opgave
     {
-        public SærligOpgave (Udstyr udstyr, bool løst, int ventetidIDage, string beskrivelse):base ( udstyr,  løst,  ventetidIDage,  beskrivelse)
+        public SærligOpgave() : base()
         {
-            Udstyr = udstyr;
-            Løst = løst;
-            VentetidIDage = ventetidIDage;
-            Beskrivelse = beskrivelse;
+
         }
+
+        //Constructor til senere brug ved udvidelse med arv
+        //public SærligOpgave (Udstyr udstyr, string status, int ventetidIDage, string beskrivelse):base ( udstyr,  status,  ventetidIDage,  beskrivelse)
+        //{
+        //    Udstyr = udstyr;
+        //    Status = status;
+        //    VentetidIDage = ventetidIDage;
+        //    Beskrivelse = beskrivelse;
+        //}
     }
 }

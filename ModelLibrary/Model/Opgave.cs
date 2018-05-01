@@ -10,21 +10,43 @@ namespace ModelLibrary.Model
 {
     public class Opgave
     {
-        public Udstyr Udstyr { get; set; }
-        public bool Løst { get; set; }
+        public int ID { get; set; }
+        public string Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
-        public enum Type { Regulær, Særlig }
-        public enum Prioritet { Lav, Mellem, Høj, Kritisk }
+        //public enum Type { Regulær, Særlig }
+        //public Udstyr Udstyr { get; set; }
+        //public enum Prioritet { Lav, Mellem, Høj, Kritisk }
 
-
-        public Opgave(Udstyr udstyr, bool løst, int ventetidIDage, string beskrivelse)
+        public Opgave()
         {
-            Udstyr = udstyr;
-            Løst = løst;
-            VentetidIDage = ventetidIDage;
-            Beskrivelse = beskrivelse;
+
         }
+
+        //Test constructor af simpel opgave til 1. iteration
+        public Opgave(int id, string beskrivelse, string status, int ventetid)
+        {
+            ID = id;
+            Beskrivelse = beskrivelse;
+            Status = status;
+            VentetidIDage = ventetid;
+        }
+
+        public Opgave(string beskrivelse, string status, int ventetid)
+        {
+            Beskrivelse = beskrivelse;
+            Status = status;
+            VentetidIDage = ventetid;
+        }
+
+        //Constructor til senere brug med Udstyr udvidelse
+        //public Opgave(Udstyr udstyr, string status, int ventetidIDage, string beskrivelse)
+        //{
+        //    Udstyr = udstyr;
+        //    Status = status;
+        //    VentetidIDage = ventetidIDage;
+        //    Beskrivelse = beskrivelse;
+        //}
 
         ////private async void dagPasseret()
         //{
