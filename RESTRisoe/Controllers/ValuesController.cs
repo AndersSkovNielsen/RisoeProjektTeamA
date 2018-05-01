@@ -1,41 +1,37 @@
-﻿using ModelLibrary.Model;
-using REST.DBUtil;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace REST.Controllers
+namespace RESTRisoe.Controllers
 {
-    public class OpgaveController : ApiController
+    public class ValuesController : ApiController
     {
-        IManageOpgave manager = new ManageOpgave();
-
-        // GET: api/Guest
-        public IEnumerable<TestOpgave> Get()
+        // GET api/values
+        public IEnumerable<string> Get()
         {
-            return manager.GetAllTestOpgave();
+            return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Opgave/5
+        // GET api/values/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Opgave
+        // POST api/values
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Opgave/5
+        // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Opgave/5
+        // DELETE api/values/5
         public void Delete(int id)
         {
         }
