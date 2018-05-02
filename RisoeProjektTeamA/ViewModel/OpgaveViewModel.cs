@@ -32,12 +32,12 @@ namespace RisoeProjektTeamA.ViewModel
             set { _nyOpgave = value; }
         }
         
-        public ModelLibrary.Model.Opgave SelectedOpgave
+        public Opgave SelectedOpgave
         {
             get { return _selectedOpgave; }
             set
             {
-                _selectedOpgave = new Opgave( value.Beskrivelse, value.Status, value.VentetidIDage);
+                _selectedOpgave = new Opgave( value.Beskrivelse, value.StatusStr, value.VentetidIDage);
                 OnPropertyChanged();
             }
         }
@@ -49,7 +49,7 @@ namespace RisoeProjektTeamA.ViewModel
         /// </summary>
         public OpgaveViewModel()
         {
-            OpgaveHandler = new Handler.OpgaveHandler(this);
+            OpgaveHandler = new OpgaveHandler(this);
             Logbog = Model.LogbogSingleton.Instance;
             
             

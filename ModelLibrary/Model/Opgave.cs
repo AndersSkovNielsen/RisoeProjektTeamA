@@ -12,6 +12,10 @@ namespace ModelLibrary.Model
     {
         public int ID { get; set; }
         public enum Status {Løst, IkkeLøst, Fejlet}
+
+        //Status som en String
+        public string StatusStr { get; set; }
+
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
         //public enum Type { Regulær, Særlig }
@@ -24,18 +28,45 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
+        //Constructor hvor Status er givet med en enum, som bliver tjekket og dernæst sat til en string
         public Opgave(int id, string beskrivelse, Status status, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
-            // "hvordan får vi enum til at virke i ctor?" Status = status ;
             VentetidIDage = ventetid;
+
+            if (status == Status.Fejlet) StatusStr = status.ToString();
+            else if (status == Status.IkkeLøst) StatusStr = status.ToString();
+            else if (status == Status.Løst) StatusStr = status.ToString();
+            else throw new Exception("WeaponType does not exist");
         }
 
+        //Constructor hvor Status er givet med en enum, som bliver tjekket og dernæst sat til en string
         public Opgave(string beskrivelse, Status status, int ventetid)
         {
             Beskrivelse = beskrivelse;
-           // "hvordan får vi enum til at virke i ctor?" Status = status;
+            VentetidIDage = ventetid;
+
+            if (status == Status.Fejlet) StatusStr = status.ToString();
+            else if (status == Status.IkkeLøst) StatusStr = status.ToString();
+            else if (status == Status.Løst) StatusStr = status.ToString();
+            else throw new Exception("WeaponType does not exist");
+        }
+
+        //Constructor hvor Status er givet med en string
+        public Opgave(int id, string beskrivelse, string status, int ventetid)
+        {
+            ID = id;
+            Beskrivelse = beskrivelse;
+            StatusStr = status;
+            VentetidIDage = ventetid;
+        }
+
+        //Constructor hvor Status er givet med en string
+        public Opgave(string beskrivelse, string status, int ventetid)
+        {
+            Beskrivelse = beskrivelse;
+            StatusStr = status;
             VentetidIDage = ventetid;
         }
 
@@ -63,7 +94,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"Opgave {ID}:\n{Beskrivelse} (Udføres hver {VentetidIDage}. dag)\nStatus: {Status}\n";
+            return $"Opgave {ID}:\n{Beskrivelse} (Udføres hver {VentetidIDage}. dag)\n"/* + "Status: {Status}\n"*/; //Status i ToString virker ikke med enum, måske
         }
     }
 }

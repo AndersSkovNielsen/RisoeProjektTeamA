@@ -57,7 +57,7 @@ namespace RisoeProjektTeamA.Model
 
         
 
-        private void sorterOpgEfterPrio(ObservableCollection<Opgave> OpgListe)
+        private void SorterOpgEfterPrio(ObservableCollection<Opgave> OpgListe)
         {
             OpgListe = OpgaveListe;
 

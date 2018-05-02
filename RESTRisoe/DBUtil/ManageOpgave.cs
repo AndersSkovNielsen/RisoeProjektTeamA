@@ -73,7 +73,7 @@ namespace RESTRisoe.DBUtil
                 SqlCommand command = new SqlCommand(insertSql, connection);
                 command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
                 command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status);
+                command.Parameters.AddWithValue("@Status", opgave.StatusStr);
                 command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
 
                 command.Connection.Open();
@@ -95,7 +95,7 @@ namespace RESTRisoe.DBUtil
                 SqlCommand command = new SqlCommand(updateSql, connection);
                 command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
                 command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status);
+                command.Parameters.AddWithValue("@Status", opgave.StatusStr);
                 command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
                 command.Parameters.AddWithValue("@ID", opgaveID);
 
