@@ -11,7 +11,7 @@ namespace ModelLibrary.Model
     public class Opgave
     {
         public int ID { get; set; }
-        public string Status { get; set; }
+        public enum Status {Løst, IkkeLøst, Fejlet}
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
         //public enum Type { Regulær, Særlig }
@@ -24,18 +24,18 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        public Opgave(int id, string beskrivelse, string status, int ventetid)
+        public Opgave(int id, string beskrivelse, Status status, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
-            Status = status;
+            // "hvordan får vi enum til at virke i ctor?" Status = status ;
             VentetidIDage = ventetid;
         }
 
-        public Opgave(string beskrivelse, string status, int ventetid)
+        public Opgave(string beskrivelse, Status status, int ventetid)
         {
             Beskrivelse = beskrivelse;
-            Status = status;
+           // "hvordan får vi enum til at virke i ctor?" Status = status;
             VentetidIDage = ventetid;
         }
 
@@ -48,7 +48,7 @@ namespace ModelLibrary.Model
         //    Beskrivelse = beskrivelse;
         //}
 
-        ////private async void dagPasseret()
+        //private async void dagPasseret()
         //{
         //    //hvordan skriver registrer vi datoskift?
 
@@ -56,10 +56,10 @@ namespace ModelLibrary.Model
 
         //}
 
-        protected virtual void StigPrioritet()
-        {
-            ;
-        }
+        //protected virtual void StigPrioritet()
+        //{
+        //    ;
+        //}
 
         public override string ToString()
         {
