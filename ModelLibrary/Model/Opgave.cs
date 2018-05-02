@@ -11,13 +11,12 @@ namespace ModelLibrary.Model
     public class Opgave
     {
         public int ID { get; set; }
-        public enum Status {Løst, IkkeLøst, Fejlet}
-
-        //Status som en String
-        public string StatusStr { get; set; }
-
+        public enum StatusType {Løst, IkkeLøst, Fejlet}
+        public StatusType Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
+
+        //Senere udvidelser
         //public enum Type { Regulær, Særlig }
         //public Udstyr Udstyr { get; set; }
         //public enum Prioritet { Lav, Mellem, Høj, Kritisk }
@@ -28,45 +27,18 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        //Constructor hvor Status er givet med en enum, som bliver tjekket og dernæst sat til en string
-        public Opgave(int id, string beskrivelse, Status status, int ventetid)
+        public Opgave(int id, string beskrivelse, StatusType status, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
-            VentetidIDage = ventetid;
-
-            if (status == Status.Fejlet) StatusStr = status.ToString();
-            else if (status == Status.IkkeLøst) StatusStr = status.ToString();
-            else if (status == Status.Løst) StatusStr = status.ToString();
-            else throw new Exception("WeaponType does not exist");
-        }
-
-        //Constructor hvor Status er givet med en enum, som bliver tjekket og dernæst sat til en string
-        public Opgave(string beskrivelse, Status status, int ventetid)
-        {
-            Beskrivelse = beskrivelse;
-            VentetidIDage = ventetid;
-
-            if (status == Status.Fejlet) StatusStr = status.ToString();
-            else if (status == Status.IkkeLøst) StatusStr = status.ToString();
-            else if (status == Status.Løst) StatusStr = status.ToString();
-            else throw new Exception("WeaponType does not exist");
-        }
-
-        //Constructor hvor Status er givet med en string
-        public Opgave(int id, string beskrivelse, string status, int ventetid)
-        {
-            ID = id;
-            Beskrivelse = beskrivelse;
-            StatusStr = status;
+            Status = status;
             VentetidIDage = ventetid;
         }
-
-        //Constructor hvor Status er givet med en string
-        public Opgave(string beskrivelse, string status, int ventetid)
+        
+        public Opgave(string beskrivelse, StatusType status, int ventetid)
         {
             Beskrivelse = beskrivelse;
-            StatusStr = status;
+            Status = status;
             VentetidIDage = ventetid;
         }
 

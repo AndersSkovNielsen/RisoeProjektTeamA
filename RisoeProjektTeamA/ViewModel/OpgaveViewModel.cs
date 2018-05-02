@@ -37,7 +37,7 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _selectedOpgave; }
             set
             {
-                _selectedOpgave = new Opgave( value.Beskrivelse, value.StatusStr, value.VentetidIDage);
+                _selectedOpgave = new Opgave( value.Beskrivelse, value.Status, value.VentetidIDage);
                 OnPropertyChanged();
             }
         }
