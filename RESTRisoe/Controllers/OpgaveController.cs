@@ -28,7 +28,7 @@ namespace RESTRisoe.Controllers
         // POST: api/Opgave
         public bool Post([FromBody] Opgave value)
         {
-            return manager.LavOpgave(value);
+            return manager.IndsætOpgave(value);
         }
 
         // PUT: api/Opgave/5

@@ -66,7 +66,7 @@ namespace RESTRisoe.DBUtil
             return null;
         }
 
-        public bool LavOpgave(Opgave opgave)
+        public bool IndsætOpgave(Opgave opgave)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

@@ -11,7 +11,7 @@ namespace RESTRisoe.DBUtil
     {
         List<Opgave> HentAlleOpgaver();
         Opgave HentOpgaveFraId(int id);
-        bool LavOpgave(Opgave opgave);
+        bool IndsætOpgave(Opgave opgave);
         bool OpdaterOpgave(Opgave opgave, int id);
         Opgave SletOpgave(int id);
     }
