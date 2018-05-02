@@ -23,9 +23,10 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="200" Orientation="Vertical">
                 <StackPanel Height="175">
-                    <TextBox Text="Logo" Style="{StaticResource TextBoxTitle}" Margin="6,6,6,6" Height="100"/>
+                    <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
+                    <!--<TextBox Text="Logo" Style="{StaticResource TextBoxTitle}" Margin="6,6,6,6" Height="100"/>
 
-                    <TextBox Text="Forside" Style="{StaticResource TextBoxDefault}" Margin="5,5,5,5"/>
+                    <TextBox Text="Forside" Style="{StaticResource TextBoxDefault}" Margin="5,5,5,5"/>-->
                 </StackPanel>
                 <StackPanel>
                     <Button Width="180" Height="80" Margin=" 10,10,10,10">

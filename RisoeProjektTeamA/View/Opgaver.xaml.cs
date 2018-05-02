@@ -32,5 +32,10 @@ namespace RisoeProjektTeamA.View
         {
             this.Frame.Navigate(typeof(Hovedmenu));
         }
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Hovedmenu));
+        }
     }
 }

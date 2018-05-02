@@ -45,7 +45,12 @@ namespace RisoeProjektTeamA.View
 
         private void Button_Click_Udstyr(object sender, RoutedEventArgs e)
         {
-            
+            this.Frame.Navigate(typeof(NytUdstyr));
+        }
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Hovedmenu));
         }
     }
 }
