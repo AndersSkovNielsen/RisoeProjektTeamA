@@ -9,22 +9,35 @@ using ModelLibrary.Model;
 using RisoeProjektTeamA.Annotations;
 using RisoeProjektTeamA.Common;
 using RisoeProjektTeamA.Handler;
+using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
 {
-    class OpgaveViewModel:INotifyPropertyChanged
+    public class OpgaveViewModel:INotifyPropertyChanged
     {
-        //hey, virker det?
-        public ModelLibrary.Model.LogbogSingleton TheLogbogSingleton { get; set; }
+        //Gem logbog til senere iteration
+        //public ModelLibrary.Model.LogbogSingleton TheLogbogSingleton { get; set; }
         public int SelectedIndex { get; set; }
         public static ModelLibrary.Model.Opgave _selectedOpgave;
 
+        
+        public Model.LogbogSingleton Logbog { get; set; }
+        public OpgaveHandler OpgaveHandler { get; set; }
+
+        private Opgave _nyOpgave;
+
+        public Opgave NyOpgave
+        {
+            get { return _nyOpgave; }
+            set { _nyOpgave = value; }
+        }
+        
         public ModelLibrary.Model.Opgave SelectedOpgave
         {
             get { return _selectedOpgave; }
             set
             {
-                _selectedOpgave=new Opgave( value.Beskrivelse, value.Status, value.VentetidIDage);
+                _selectedOpgave = new Opgave( value.Beskrivelse, value.Status, value.VentetidIDage);
                 OnPropertyChanged();
             }
         }
@@ -36,9 +49,16 @@ namespace RisoeProjektTeamA.ViewModel
         /// </summary>
         public OpgaveViewModel()
         {
-            OpgaveHandler TheOpgaveHandler = new OpgaveHandler(this);
-            ModelLibrary.Model.LogbogSingleton TheLogbogSingleton = ModelLibrary.Model.LogbogSingleton.Instance();
-            UpdateCommand=new RelayCommand(TheOpgaveHandler.UpdateSelectedOpgave);
+            OpgaveHandler = new Handler.OpgaveHandler(this);
+            Logbog = Model.LogbogSingleton.Instance;
+            
+            
+            _nyOpgave = new Opgave();
+            
+            UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
+
+            //Gem logbog til senere iteration
+            //ModelLibrary.Model.LogbogSingleton TheLogbogSingleton = ModelLibrary.Model.LogbogSingleton.Instance();
         } 
         
 

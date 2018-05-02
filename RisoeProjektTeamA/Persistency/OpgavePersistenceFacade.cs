@@ -14,7 +14,7 @@ namespace RisoeProjektTeamA.Persistency
     {
         public List<Opgave> HentAlleOpgaver()
         {
-            String OpgaveUri = "http://rest-ande-easj.azurewebsites.net/api/Opgave"; // din URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave"; // din URL til din REST
 
             using (HttpClient client = new HttpClient())
             {
@@ -26,7 +26,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave HentEnOpgave(int nr)
         {
-            String OpgaveUri = "http://rest-ande-easj.azurewebsites.net/api/Opgave/" + nr; // din URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // din URL til din REST
 
             using (HttpClient client = new HttpClient())
             {
@@ -40,7 +40,7 @@ namespace RisoeProjektTeamA.Persistency
         //rest-ande-easj.azurewebsites.net
         public bool IndsætOpgave(Opgave opgave)
         {
-            String OpgaveUri = "http://rest-ande-easj.azurewebsites.net/api/Opgave"; // din URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave"; // din URL til din REST
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -63,7 +63,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public bool OpdaterEnOpgave(int nr, Opgave opgave)
         {
-            String OpgaveUri = "http://rest-ande-easj.azurewebsites.net/api/Opgave/" + nr; // din URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // din URL til din REST
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -86,7 +86,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave SletOpgave(int nr)
         {
-            String OpgaveUri = "http://rest-ande-easj.azurewebsites.net/api/Opgave/" + nr; // din URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // din URL til din REST
 
             using (HttpClient client = new HttpClient())
             {

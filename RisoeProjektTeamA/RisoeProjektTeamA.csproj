@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\OpgaveHandler.cs" />
+    <Compile Include="Model\LogbogSingleton.cs" />
     <Compile Include="Persistency\OpgavePersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

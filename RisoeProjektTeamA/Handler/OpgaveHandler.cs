@@ -8,23 +8,68 @@ using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Handler
 {
-    class OpgaveHandler
+    public class OpgaveHandler
     {
-        
+        public OpgaveViewModel OpgaveViewModel { get; set; }
 
-        private OpgaveViewModel opgaveViewModel;
-        private LogbogSingleton Logbog;
+        //Gem logbog til senere iteration
+        //private LogbogSingleton Logbog;
 
         public OpgaveHandler(OpgaveViewModel opgaveViewModel)
         {
-            this.opgaveViewModel = opgaveViewModel;
-            Logbog = LogbogSingleton.Instance(); // er dette det rigtige sted at contsruere vores LogbogSIngleton?
+            OpgaveViewModel = opgaveViewModel;
+            //Logbog = LogbogSingleton.Instance(); // er dette det rigtige sted at contsruere vores LogbogSIngleton? (Bør være i den givne viewmodel)
         }
 
-        public void UpdateSelectedOpgave()
+        public void IndsætOpgave()
         {
-            opgaveViewModel.TheLogbogSingleton.UpdateOpgave(opgaveViewModel.SelectedOpgave);
+            Opgave opgave = OpgaveViewModel.NyOpgave;
+
+            OpgaveViewModel.Logbog.Facade.IndsætOpgave(opgave);
+
+            //ListView opdatering
+            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+
+            OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            foreach (var o in opgaver)
+            {
+                OpgaveViewModel.Logbog.Add(o);
+            }
         }
 
+        public void OpdaterOpgave()
+        {
+            Opgave opgave = OpgaveViewModel.NyOpgave;
+
+            OpgaveViewModel.Logbog.Facade.OpdaterEnOpgave(opgave.ID, opgave);
+
+            //ListView opdatering
+            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+
+            OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            foreach (var g in opgaver)
+            {
+                OpgaveViewModel.Logbog.Add(g);
+            }
+        }
+
+        public void SletOpgave()
+        {
+            Opgave opgave = OpgaveViewModel.NyOpgave;
+
+            OpgaveViewModel.Logbog.Facade.SletOpgave(opgave.ID);
+
+            //ListView opdatering
+            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+
+            OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            foreach (var g in opgaver)
+            {
+                OpgaveViewModel.Logbog.Add(g);
+            }
+        }
     }
 }

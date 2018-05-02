@@ -61,5 +61,9 @@ namespace ModelLibrary.Model
             ;
         }
 
+        public override string ToString()
+        {
+            return $"Opgave {ID}:\n{Beskrivelse} (Udføres hver {VentetidIDage}. dag)\nStatus: {Status}\n";
+        }
     }
 }
