@@ -17,7 +17,8 @@ namespace RisoeConsumeRest
             //Kopieres kode fra vores rest her ind.
             //
             //Rest kode bliver testet her, hvorefter den kan kopieres tilbage i vores rest Solution, hvis det virker som det skal.
-
+            ConsumeRest rest = new ConsumeRest();
+            rest.Main();
 
 
         }
