@@ -48,6 +48,7 @@ namespace RisoeConsumeRest
             //Opdater Opgave (test)
             Opgave NewOP = new Opgave(100, "Test", Opgave.StatusType.Løst, 5);
             OpdaterOpgave(NewOP, 100);
+            HentOpgaveFraId(100);
             //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             Console.ReadKey();
             Console.Clear();
