@@ -46,23 +46,17 @@ namespace RisoeProjektTeamA.ViewModel
             OpgaveHandler = new OpgaveHandler(this);
             Logbog = Model.LogbogSingleton.Instance;
             NyOpgave = new Opgave();
-            
-            UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
+
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
-            UpdateCommand = new RelayCommand(OpgaveHandler.SletOpgave);
+            UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
+            RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
 
             //Gem logbog til senere iteration
             //ModelLibrary.Model.LogbogSingleton TheLogbogSingleton = ModelLibrary.Model.LogbogSingleton.Instance();
-        } 
-        
-
-
-         
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-       
-
+        
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

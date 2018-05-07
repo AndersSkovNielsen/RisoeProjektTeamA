@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using static ModelLibrary.Model.Opgave;
 
 namespace RESTRisoe.DBUtil
 {
@@ -33,7 +34,8 @@ namespace RESTRisoe.DBUtil
                 {
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
-                    String status = reader.GetString(2);
+                    String statusStr = reader.GetString(2);
+                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
@@ -57,7 +59,8 @@ namespace RESTRisoe.DBUtil
                 {
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
-                    String status = reader.GetString(2);
+                    String statusStr = reader.GetString(2);
+                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     return new Opgave(id, beskrivelse, status, ventetid);
@@ -73,7 +76,7 @@ namespace RESTRisoe.DBUtil
                 SqlCommand command = new SqlCommand(insertSql, connection);
                 command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
                 command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status);
+                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
                 command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
 
                 command.Connection.Open();
@@ -95,7 +98,7 @@ namespace RESTRisoe.DBUtil
                 SqlCommand command = new SqlCommand(updateSql, connection);
                 command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
                 command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status);
+                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
                 command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
                 command.Parameters.AddWithValue("@ID", opgaveID);
 
