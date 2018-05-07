@@ -24,14 +24,8 @@ namespace RisoeProjektTeamA.ViewModel
         public Model.LogbogSingleton Logbog { get; set; }
         public OpgaveHandler OpgaveHandler { get; set; }
 
-        private Opgave _nyOpgave;
+        public Opgave NyOpgave { get; set; }
 
-        public Opgave NyOpgave
-        {
-            get { return _nyOpgave; }
-            set { _nyOpgave = value; }
-        }
-        
         public Opgave SelectedOpgave
         {
             get { return _selectedOpgave; }
@@ -51,14 +45,9 @@ namespace RisoeProjektTeamA.ViewModel
         {
             OpgaveHandler = new OpgaveHandler(this);
             Logbog = Model.LogbogSingleton.Instance;
-            
-            
-            _nyOpgave = new Opgave();
+            NyOpgave = new Opgave();
             
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
-
-            //Gem logbog til senere iteration
-            //ModelLibrary.Model.LogbogSingleton TheLogbogSingleton = ModelLibrary.Model.LogbogSingleton.Instance();
         } 
         
 
