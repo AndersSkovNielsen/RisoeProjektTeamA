@@ -29,7 +29,6 @@ namespace RisoeProjektTeamA.Handler
 
             //ListView opdatering
 
-            //
             var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
 
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
@@ -38,7 +37,7 @@ namespace RisoeProjektTeamA.Handler
             {
                 OpgaveViewModel.Logbog.Add(o);
             }
-            //kan måske nøjes med bare at tilføje.
+            //kan måske nøjes med bare at tilføje (Hvad menes der med denne kommentar?).
         }
 
         public void OpdaterOpgave()

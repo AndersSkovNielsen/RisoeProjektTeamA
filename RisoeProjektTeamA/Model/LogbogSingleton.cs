@@ -51,7 +51,7 @@ namespace RisoeProjektTeamA.Model
             Facade = new OpgavePersistenceFacade();
             //Slut tilføjelse
 
-            OpgaveListe = new ObservableCollection<Opgave>();
+            OpgaveListe = new ObservableCollection<Opgave>(Facade.HentAlleOpgaver());
             Logliste = new ObservableCollection<Log>();
         }
 

@@ -21,7 +21,7 @@ namespace RisoeProjektTeamA.ViewModel
         public static ModelLibrary.Model.Opgave _selectedOpgave;
 
         
-        public Model.LogbogSingleton Logbog { get; set; }
+        public LogbogSingleton Logbog { get; set; }
         public OpgaveHandler OpgaveHandler { get; set; }
 
         public Opgave NyOpgave { get; set; }
@@ -44,7 +44,7 @@ namespace RisoeProjektTeamA.ViewModel
         public OpgaveViewModel()
         {
             OpgaveHandler = new OpgaveHandler(this);
-            Logbog = Model.LogbogSingleton.Instance;
+            Logbog = LogbogSingleton.Instance;
             NyOpgave = new Opgave();
 
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);

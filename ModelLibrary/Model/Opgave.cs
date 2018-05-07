@@ -13,6 +13,7 @@ namespace ModelLibrary.Model
         public int ID { get; set; }
         public enum StatusType {Løst, IkkeLøst, Fejlet}
         public StatusType Status { get; set; }
+        public string StatusStr { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
 
@@ -33,6 +34,7 @@ namespace ModelLibrary.Model
             Beskrivelse = beskrivelse;
             Status = status;
             VentetidIDage = ventetid;
+            StatusStr = status.ToString();
         }
         
         public Opgave(string beskrivelse, StatusType status, int ventetid)
@@ -40,6 +42,7 @@ namespace ModelLibrary.Model
             Beskrivelse = beskrivelse;
             Status = status;
             VentetidIDage = ventetid;
+            StatusStr = status.ToString();
         }
 
         //Constructor til senere brug med Udstyr udvidelse
@@ -66,7 +69,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"Opgave {ID}:\n{Beskrivelse} (Udføres hver {VentetidIDage}. dag)\n"/* + "Status: {Status}\n"*/; //Status i ToString virker ikke med enum, måske
+            return $"Opgave {ID}:\n{Beskrivelse} (Udføres hver {VentetidIDage}. dag)\nStatus: {Status}";
         }
     }
 }
