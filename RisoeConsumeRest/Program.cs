@@ -19,7 +19,10 @@ namespace RisoeConsumeRest
             //Rest kode bliver testet her, hvorefter den kan kopieres tilbage i vores rest Solution, hvis det virker som det skal.
             ConsumeRest rest = new ConsumeRest();
             rest.Main();
-
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("End of Program. Press any key to close.");
+            Console.ReadKey();
 
         }
     }

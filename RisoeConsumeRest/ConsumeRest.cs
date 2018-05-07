@@ -19,10 +19,7 @@ namespace RisoeConsumeRest
 
 
             //Code above this line-----------------------------------------------------
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("End of Program. Press any key to close.");
-            Console.ReadKey();
+            
         }
         //Below is all the code that should be tested, before getting put in the main rest service.
 
