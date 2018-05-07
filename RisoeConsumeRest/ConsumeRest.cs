@@ -15,11 +15,49 @@ namespace RisoeConsumeRest
         public void Main()
         {
             //Code below this line-----------------------------------------------------
+            List<Opgave> mineOpgaver = HentAlleOpgaver();
 
+            //Hent Opgave (test)
+            
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            Console.ReadKey();
+            Console.Clear();
 
+            //Hent én Opgaave (test)
+            Console.WriteLine(HentOpgaveFraId(1));
+            Console.WriteLine(HentOpgaveFraId(2));
+            Console.WriteLine(HentOpgaveFraId(3));
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            Console.ReadKey();
+            Console.Clear();
+            //Indsæt en Opgave (test)
+            Opgave OP = new Opgave(100, "test", Opgave.StatusType.IkkeLøst, 5);
+            IndsætOpgave(OP);
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+            Console.ReadKey();
+            Console.Clear();
+            //Opdater Opgave (test)
+            Opgave NewOP = new Opgave(100, "Test", Opgave.StatusType.Løst, 5);
+            OpdaterOpgave(NewOP, 100);
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            Console.ReadKey();
+            Console.Clear();
+            //Slet Opgave (Test)
+            SletOpgave(100);
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
 
             //Code above this line-----------------------------------------------------
-            
         }
         //Below is all the code that should be tested, before getting put in the main rest service.
 
