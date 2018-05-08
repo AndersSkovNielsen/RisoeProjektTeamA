@@ -15,20 +15,25 @@ namespace RisoeProjektTeamA.ViewModel
 {
     public class OpgaveViewModel : INotifyPropertyChanged
     {
-        public int SelectedIndex { get; set; }
-        public static Opgave _selectedOpgave;
         public Opgave SelectedOpgave
         {
-            get { return _selectedOpgave; }
+            get { return SelectedOpgave; }
             set
             {
-                _selectedOpgave = new Opgave(value.Beskrivelse, value.Status, value.VentetidIDage);
+                if (value != null)
+                {
+                    SelectedOpgave = new Opgave(value);
+                }
+                else
+                {
+                    SelectedOpgave = null;
+                }
                 OnPropertyChanged();
             }
         }
-        
-        public LogbogSingleton Logbog { get; set; }
-        public OpgaveHandler OpgaveHandler { get; set; }
+
+        public int SelectedIndex { get; set; }
+
         public Opgave NyOpgave
         {
             get { return NyOpgave; }
@@ -44,6 +49,9 @@ namespace RisoeProjektTeamA.ViewModel
                 }
                 OnPropertyChanged(); }
         }
+
+        public LogbogSingleton Logbog { get; set; }
+        public OpgaveHandler OpgaveHandler { get; set; }
 
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
