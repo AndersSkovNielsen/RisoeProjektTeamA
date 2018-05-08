@@ -42,6 +42,14 @@ namespace ModelLibrary.Model
             VentetidIDage = ventetid;
         }
 
+        public Opgave(Opgave opgave)
+        {
+            ID = opgave.ID;
+            Beskrivelse = opgave.Beskrivelse;
+            Status = opgave.Status;
+            VentetidIDage = opgave.VentetidIDage;
+        }
+
         //Constructor til senere brug med Udstyr udvidelse
         //public Opgave(Udstyr udstyr, string status, int ventetidIDage, string beskrivelse)
         //{

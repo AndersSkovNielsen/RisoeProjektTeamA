@@ -13,28 +13,38 @@ using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
 {
-    public class OpgaveViewModel:INotifyPropertyChanged
+    public class OpgaveViewModel : INotifyPropertyChanged
     {
-        //Gem logbog til senere iteration
-        //public ModelLibrary.Model.LogbogSingleton TheLogbogSingleton { get; set; }
         public int SelectedIndex { get; set; }
-        public static ModelLibrary.Model.Opgave _selectedOpgave;
-
-        
-        public LogbogSingleton Logbog { get; set; }
-        public OpgaveHandler OpgaveHandler { get; set; }
-
-        public Opgave NyOpgave { get; set; }
-
+        public static Opgave _selectedOpgave;
         public Opgave SelectedOpgave
         {
             get { return _selectedOpgave; }
             set
             {
-                _selectedOpgave = new Opgave( value.Beskrivelse, value.Status, value.VentetidIDage);
+                _selectedOpgave = new Opgave(value.Beskrivelse, value.Status, value.VentetidIDage);
                 OnPropertyChanged();
             }
         }
+        
+        public LogbogSingleton Logbog { get; set; }
+        public OpgaveHandler OpgaveHandler { get; set; }
+        public Opgave NyOpgave
+        {
+            get { return NyOpgave; }
+            set
+            {
+                if (value != null)
+                {
+                    NyOpgave = new Opgave(value);
+                }
+                else
+                {
+                    NyOpgave = null;
+                }
+                OnPropertyChanged(); }
+        }
+
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public RelayCommand UpdateCommand { get; set; }
@@ -50,9 +60,6 @@ namespace RisoeProjektTeamA.ViewModel
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
-
-            //Gem logbog til senere iteration
-            //ModelLibrary.Model.LogbogSingleton TheLogbogSingleton = ModelLibrary.Model.LogbogSingleton.Instance();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
