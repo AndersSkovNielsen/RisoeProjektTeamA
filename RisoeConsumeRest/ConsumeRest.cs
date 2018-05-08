@@ -15,29 +15,41 @@ namespace RisoeConsumeRest
         //This is the main running program for testing the code
         public void Main()
         {
-            //Code below this line-----------------------------------------------------
+            //Code below this line-----------------------------------------------------------------------------------------------------
             List<Opgave> mineOpgaver = HentAlleOpgaver();
 
             //Hent Opgave (test)
-            
+            Console.WriteLine("Test af hentning af alle opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+
             foreach (var op in mineOpgaver)
             {
                 Console.WriteLine(op);
             }
-            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
             Console.ReadKey();
             Console.Clear();
 
             //Hent én Opgaave (test)
+            Console.WriteLine("Test af hentning af specifikke opgaver (1,3)");
+            Console.WriteLine("");
+            Console.WriteLine("");
             Console.WriteLine(HentOpgaveFraId(1));
-            Console.WriteLine(HentOpgaveFraId(2));
             Console.WriteLine(HentOpgaveFraId(3));
             //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
             Console.ReadKey();
             Console.Clear();
+
             //Indsæt en Opgave (test)
-            Opgave OP = new Opgave(100, "test", Opgave.StatusType.IkkeLøst, 5);
+            Console.WriteLine("Test af indsætning af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 5);
+
             IndsætOpgave(OP);
+            mineOpgaver = HentAlleOpgaver();
             foreach (var op in mineOpgaver)
             {
                 Console.WriteLine(op);
@@ -46,20 +58,31 @@ namespace RisoeConsumeRest
             Console.ReadKey();
             Console.Clear();
             //Opdater Opgave (test)
-            Opgave NewOP = new Opgave(100, "Test", Opgave.StatusType.Løst, 5);
-            OpdaterOpgave(NewOP, 100);
-            HentOpgaveFraId(100);
+            Console.WriteLine("Test af opdatering af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Opgave NewOP = new Opgave(10, "Test", Opgave.StatusType.Løst, 5);
+            OpdaterOpgave(NewOP, 10);
+            mineOpgaver = HentAlleOpgaver();
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
             //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             Console.ReadKey();
             Console.Clear();
             //Slet Opgave (Test)
-            SletOpgave(100);
+            Console.WriteLine("Test af sletning af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            SletOpgave(10);
+            mineOpgaver = HentAlleOpgaver();
             foreach (var op in mineOpgaver)
             {
                 Console.WriteLine(op);
             }
 
-            //Code above this line-----------------------------------------------------
+            //Code above this line---------------------------------------------------------------------------------------------------
         }
         //Below is all the code that should be tested, before getting put in the main rest service.
 
