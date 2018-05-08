@@ -18,7 +18,6 @@ namespace RisoeProjektTeamA.Handler
         public OpgaveHandler(OpgaveViewModel opgaveViewModel)
         {
             OpgaveViewModel = opgaveViewModel;
-            //Logbog = LogbogSingleton.Instance(); // er dette det rigtige sted at contsruere vores LogbogSIngleton? (Bør være i den givne viewmodel)
         }
 
         public void IndsætOpgave()
