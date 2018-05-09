@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using RESTRisoe.Exceptions;
 using static ModelLibrary.Model.Opgave;
 
 namespace RESTRisoe.DBUtil
@@ -43,6 +44,16 @@ namespace RESTRisoe.DBUtil
                 }
 
             }
+            foreach (var opgave in opgaver)
+            {
+                if (  !(opgave.Status == StatusType.Fejlet ||
+                        opgave.Status == StatusType.IkkeLøst || 
+                        opgave.Status== StatusType.Løst))
+                {
+                    throw new ParseToEnumException(opgave);
+                }
+            }
+
             return opgaver;
         }
 

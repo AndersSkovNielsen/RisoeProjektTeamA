@@ -16,7 +16,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public List<Opgave> HentAlleOpgaver()
         {
-            //Eksempel på DRY
+            //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/";
 
             using (HttpClient client = new HttpClient())
@@ -29,7 +29,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave HentEnOpgave(int nr)
         {
-            //Eksempel på DRY
+            //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             using (HttpClient client = new HttpClient())
@@ -42,7 +42,7 @@ namespace RisoeProjektTeamA.Persistency
         
         public bool IndsætOpgave(Opgave opgave)
         {
-            //Eksempel på DRY
+            //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/";
 
             String json = JsonConvert.SerializeObject(opgave);
@@ -66,7 +66,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public bool OpdaterEnOpgave(int nr, Opgave opgave)
         {
-            //Eksempel på DRY
+            //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             String json = JsonConvert.SerializeObject(opgave);
@@ -90,7 +90,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave SletOpgave(int nr)
         {
-            //Eksempel på DRY
+            //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             using (HttpClient client = new HttpClient())
