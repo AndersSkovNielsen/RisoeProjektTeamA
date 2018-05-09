@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RisoeConsumeRest")]
+[assembly: AssemblyTitle("RisoeConsumeDatabase")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RisoeConsumeRest")]
+[assembly: AssemblyProduct("RisoeConsumeDatabase")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b438c958-c92b-4ba2-80b4-1104109a978a")]
+[assembly: Guid("3dc8debb-4613-4d5a-b1e2-ca8430ed1b77")]
 
 // Version information for an assembly consists of the following four values:
 //

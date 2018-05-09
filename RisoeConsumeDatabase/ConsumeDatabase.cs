@@ -1,16 +1,89 @@
-﻿using ModelLibrary.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using RESTRisoe.Exceptions;
-using static ModelLibrary.Model.Opgave;
+using System.Text;
+using System.Threading.Tasks;
+using ModelLibrary.Model;
 
-namespace RESTRisoe.DBUtil
+namespace RisoeConsumeDatabase
 {
-    public class ManageOpgave : IManageOpgave
+    class ConsumeDatabase
     {
+        //This is the main running program for testing the code
+        public void Main()
+        {
+            //Code below this line-----------------------------------------------------------------------------------------------------
+            List<Opgave> mineOpgaver = HentAlleOpgaver();
+
+            //Hent Opgave (test)
+            Console.WriteLine("Test af hentning af alle opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+            Console.ReadKey();
+            Console.Clear();
+
+            //Hent én Opgaave (test)
+            Console.WriteLine("Test af hentning af specifikke opgaver (1 og 3)");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine(HentOpgaveFraId(1));
+            Console.WriteLine(HentOpgaveFraId(3));
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+            Console.ReadKey();
+            Console.Clear();
+
+            //Indsæt en Opgave (test)
+            Console.WriteLine("Test af indsætning af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 5);
+
+            IndsætOpgave(OP);
+            mineOpgaver = HentAlleOpgaver();
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+            Console.ReadKey();
+            Console.Clear();
+            //Opdater Opgave (test)
+            Console.WriteLine("Test af opdatering af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Opgave NewOP = new Opgave(10, "Test2", StatusType.Løst, 5);
+            OpdaterOpgave(NewOP, 10);
+            mineOpgaver = HentAlleOpgaver();
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            Console.ReadKey();
+            Console.Clear();
+            //Slet Opgave (Test)
+            Console.WriteLine("Test af sletning af opgave");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            SletOpgave(10);
+            mineOpgaver = HentAlleOpgaver();
+            foreach (var op in mineOpgaver)
+            {
+                Console.WriteLine(op);
+            }
+
+            //Code above this line---------------------------------------------------------------------------------------------------
+        }
+        //Below is all the code that should be tested, before getting put in the main rest service.
+
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private String queryString = "select * from RisoeOpgave";
@@ -33,7 +106,6 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
@@ -44,16 +116,6 @@ namespace RESTRisoe.DBUtil
                 }
 
             }
-            foreach (var opgave in opgaver)
-            {
-                if (  !(opgave.Status == StatusType.Fejlet ||
-                        opgave.Status == StatusType.IkkeLøst || 
-                        opgave.Status== StatusType.Løst))
-                {
-                    throw new ParseToEnumException(opgave);
-                }
-            }
-
             return opgaver;
         }
 
@@ -69,7 +131,6 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY  
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);

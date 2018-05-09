@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.Ajax.Utilities;
 using RESTRisoe.Exceptions;
 
 namespace RESTRisoe.Controllers
@@ -17,15 +18,15 @@ namespace RESTRisoe.Controllers
         // GET: api/Opgave/
         public IEnumerable<Opgave> Get()
         {
+            
             try
             {
                 return manager.HentAlleOpgaver();
             }
-            catch (ParseToEnumException e)
+            catch (ParseToEnumException ex)
             {
-                // hvordan udtrykker vi at vi leder efter Status strings der ikke kan konverteres til Enum?
-                Console.WriteLine(e);
-                throw e;
+                Console.WriteLine(ex.ToString());
+                throw ex; //ex  håndteres i MVVMRisoe
             }
             
         }
