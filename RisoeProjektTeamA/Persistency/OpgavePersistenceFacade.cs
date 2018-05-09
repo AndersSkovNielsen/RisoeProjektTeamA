@@ -12,13 +12,16 @@ namespace RisoeProjektTeamA.Persistency
 {
     public class OpgavePersistenceFacade
     {
+        private string Uri = "http://localhost:59327/api/Opgave/"; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
+
         public List<Opgave> HentAlleOpgaver()
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave"; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
+            //Eksempel på DRY
+            //String OpgaveUri = "http://localhost:59327/api/Opgave/";
 
             using (HttpClient client = new HttpClient())
             {
-                string jsonStr = client.GetStringAsync(OpgaveUri).Result; // info fra body
+                string jsonStr = client.GetStringAsync(Uri).Result; // info fra body
                 List<Opgave> opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
                 return opgaveListe;
             }
@@ -26,11 +29,12 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave HentEnOpgave(int nr)
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // URL til din REST
+            //Eksempel på DRY
+            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             using (HttpClient client = new HttpClient())
             {
-                string jsonStr = client.GetStringAsync(OpgaveUri).Result; // info fra body
+                string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
                 Opgave opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
                 return opgave;
             }
@@ -38,7 +42,8 @@ namespace RisoeProjektTeamA.Persistency
         
         public bool IndsætOpgave(Opgave opgave)
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave"; // URL til din REST
+            //Eksempel på DRY
+            //String OpgaveUri = "http://localhost:59327/api/Opgave/";
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -46,7 +51,7 @@ namespace RisoeProjektTeamA.Persistency
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage resultMessage = client.PostAsync(OpgaveUri, content).Result;
+                HttpResponseMessage resultMessage = client.PostAsync(Uri, content).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {
@@ -61,7 +66,8 @@ namespace RisoeProjektTeamA.Persistency
 
         public bool OpdaterEnOpgave(int nr, Opgave opgave)
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // URL til din REST
+            //Eksempel på DRY
+            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -69,7 +75,7 @@ namespace RisoeProjektTeamA.Persistency
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage resultMessage = client.PutAsync(OpgaveUri, content).Result;
+                HttpResponseMessage resultMessage = client.PutAsync(Uri + nr, content).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {
@@ -84,11 +90,12 @@ namespace RisoeProjektTeamA.Persistency
 
         public Opgave SletOpgave(int nr)
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr; // URL til din REST
+            //Eksempel på DRY
+            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage resultMessage = client.DeleteAsync(OpgaveUri).Result;
+                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + nr).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {

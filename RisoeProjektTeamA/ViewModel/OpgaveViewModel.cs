@@ -15,6 +15,7 @@ namespace RisoeProjektTeamA.ViewModel
 {
     public class OpgaveViewModel : INotifyPropertyChanged
     {
+        private Opgave _selectedOpgave = null;
         public Opgave SelectedOpgave
         {
             get { return SelectedOpgave; }
@@ -34,6 +35,7 @@ namespace RisoeProjektTeamA.ViewModel
 
         public int SelectedIndex { get; set; }
 
+        private Opgave _nyOpgave = null;
         public Opgave NyOpgave
         {
             get { return NyOpgave; }
