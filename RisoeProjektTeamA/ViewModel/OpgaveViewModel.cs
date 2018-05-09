@@ -45,6 +45,7 @@ namespace RisoeProjektTeamA.ViewModel
             Logbog = LogbogSingleton.Instance;
             NyOpgave = new Opgave();
 
+            //Ikke relavant for 1. iteration. Måske senere
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
