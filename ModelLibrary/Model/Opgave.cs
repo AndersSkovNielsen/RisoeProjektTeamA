@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace ModelLibrary.Model
 {
+    public enum StatusType { Løst, IkkeLøst, Fejlet }
+
     public class Opgave
     {
         public int ID { get; set; }
-        public enum StatusType {Løst, IkkeLøst, Fejlet}
         public StatusType Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }

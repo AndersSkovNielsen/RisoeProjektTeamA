@@ -15,49 +15,27 @@ namespace RisoeProjektTeamA.ViewModel
 {
     public class OpgaveViewModel : INotifyPropertyChanged
     {
-        private Opgave _selectedOpgave = null;
-        public Opgave SelectedOpgave
+        private Opgave _nyOpgave = null;
+        public Opgave NyOpgave
         {
-            get { return SelectedOpgave; }
+            get { return _nyOpgave; }
             set
             {
                 if (value != null)
                 {
-                    SelectedOpgave = new Opgave(value);
+                    _nyOpgave = new Opgave(value);
                 }
                 else
                 {
-                    SelectedOpgave = null;
+                    _nyOpgave = null;
                 }
                 OnPropertyChanged();
             }
         }
 
-        public int SelectedIndex { get; set; }
-
-        private Opgave _nyOpgave = null;
-        public Opgave NyOpgave
-        {
-            get { return NyOpgave; }
-            set
-            {
-                if (value != null)
-                {
-                    NyOpgave = new Opgave(value);
-                }
-                else
-                {
-                    NyOpgave = null;
-                }
-                OnPropertyChanged(); }
-        }
-
         public LogbogSingleton Logbog { get; set; }
         public OpgaveHandler OpgaveHandler { get; set; }
 
-        public RelayCommand AddCommand { get; set; }
-        public RelayCommand RemoveCommand { get; set; }
-        public RelayCommand UpdateCommand { get; set; }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -72,8 +50,33 @@ namespace RisoeProjektTeamA.ViewModel
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //Ikke relavant for 1. iteration, måske senere
+        private Opgave _selectedOpgave = null;
+        public Opgave SelectedOpgave
+        {
+            get { return _selectedOpgave; }
+            set
+            {
+                if (value != null)
+                {
+                    _selectedOpgave = new Opgave(value);
+                }
+                else
+                {
+                    _selectedOpgave = null;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        public int SelectedIndex { get; set; }
         
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand RemoveCommand { get; set; }
+        public RelayCommand UpdateCommand { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
