@@ -32,7 +32,7 @@ namespace RisoeConsumeRest
             Console.Clear();
 
             //Hent én Opgaave (test)
-            Console.WriteLine("Test af hentning af specifikke opgaver (1,3)");
+            Console.WriteLine("Test af hentning af specifikke opgaver (1 og 3)");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(HentOpgaveFraId(1));
@@ -61,7 +61,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
             Console.WriteLine("");
-            Opgave NewOP = new Opgave(10, "Test", Opgave.StatusType.Løst, 5);
+            Opgave NewOP = new Opgave(10, "Test2", Opgave.StatusType.Løst, 5);
             OpdaterOpgave(NewOP, 10);
             mineOpgaver = HentAlleOpgaver();
             foreach (var op in mineOpgaver)
