@@ -23,7 +23,17 @@ namespace RisoeProjektTeamA.Persistency
             {
                 string jsonStr = client.GetStringAsync(Uri).Result; // info fra body
                 List<Opgave> opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
-                return opgaveListe;
+                
+
+                try
+                {
+                    return opgaveListe;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return opgaveListe;
+                }
             }
         }
 
