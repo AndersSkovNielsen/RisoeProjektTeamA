@@ -44,7 +44,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
             Console.WriteLine("");
-            Opgave OP = new Opgave(10, "test", Opgave.StatusType.IkkeLøst, 5);
+            Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 5);
 
             IndsætOpgave(OP);
             mineOpgaver = HentAlleOpgaver();
@@ -59,7 +59,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
             Console.WriteLine("");
-            Opgave NewOP = new Opgave(10, "Test2", Opgave.StatusType.Løst, 5);
+            Opgave NewOP = new Opgave(10, "Test2", StatusType.Løst, 5);
             OpdaterOpgave(NewOP, 10);
             mineOpgaver = HentAlleOpgaver();
             foreach (var op in mineOpgaver)
@@ -109,7 +109,7 @@ namespace RisoeConsumeDatabase
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
-                    Opgave.StatusType status = (Opgave.StatusType)Enum.Parse(typeof(Opgave.StatusType), statusStr);
+                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
@@ -134,7 +134,7 @@ namespace RisoeConsumeDatabase
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
-                    Opgave.StatusType status = (Opgave.StatusType)Enum.Parse(typeof(Opgave.StatusType), statusStr);
+                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     return new Opgave(id, beskrivelse, status, ventetid);
