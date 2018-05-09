@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Model;
-using static ModelLibrary.Model.Opgave;
 
-namespace RisoeConsumeRest
+namespace RisoeConsumeDatabase
 {
-    public  class ConsumeDatabase
+    class ConsumeDatabase
     {
         //This is the main running program for testing the code
         public void Main()
@@ -46,7 +44,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
             Console.WriteLine("");
-            Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 5);
+            Opgave OP = new Opgave(10, "test", Opgave.StatusType.IkkeLøst, 5);
 
             IndsætOpgave(OP);
             mineOpgaver = HentAlleOpgaver();
@@ -111,7 +109,7 @@ namespace RisoeConsumeRest
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    Opgave.StatusType status = (Opgave.StatusType)Enum.Parse(typeof(Opgave.StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
@@ -136,7 +134,7 @@ namespace RisoeConsumeRest
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    Opgave.StatusType status = (Opgave.StatusType)Enum.Parse(typeof(Opgave.StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
                     return new Opgave(id, beskrivelse, status, ventetid);
@@ -214,6 +212,5 @@ namespace RisoeConsumeRest
                 return null;
             }
         }
-
     }
 }
