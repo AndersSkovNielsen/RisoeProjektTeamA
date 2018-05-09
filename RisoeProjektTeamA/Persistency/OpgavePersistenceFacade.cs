@@ -18,22 +18,24 @@ namespace RisoeProjektTeamA.Persistency
         {
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/";
+            //slut på eksempel 
 
             using (HttpClient client = new HttpClient())
             {
-                string jsonStr = client.GetStringAsync(Uri).Result; // info fra body
-                List<Opgave> opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
-                
-
+                List<Opgave> opgaveListe = new List<Opgave>();
                 try
                 {
-                    return opgaveListe;
+                    string jsonStr = client.GetStringAsync(Uri).Result;
+                    // info fra body
+
+                   opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex.ToString()); //hvordan får vi denne besked ud i View?
                     return opgaveListe;
                 }
+                return opgaveListe;
             }
         }
 
@@ -41,6 +43,7 @@ namespace RisoeProjektTeamA.Persistency
         {
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
+            //slut på eksempel
 
             using (HttpClient client = new HttpClient())
             {
@@ -54,6 +57,7 @@ namespace RisoeProjektTeamA.Persistency
         {
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/";
+            //slut på eksempel
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -78,6 +82,7 @@ namespace RisoeProjektTeamA.Persistency
         {
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
+            //slut på eksempel
 
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
@@ -102,6 +107,7 @@ namespace RisoeProjektTeamA.Persistency
         {
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
+            //slut på eksempel
 
             using (HttpClient client = new HttpClient())
             {

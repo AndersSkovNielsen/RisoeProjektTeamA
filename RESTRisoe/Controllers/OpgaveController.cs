@@ -26,7 +26,7 @@ namespace RESTRisoe.Controllers
             catch (ParseToEnumException ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw ex; //ex skal håndteres i MVVMRisoe
+                throw ex; //ex  håndteres i MVVMRisoe
             }
             
         }
