@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using ModelLibrary.Model;
 using static ModelLibrary.Model.Opgave;
 
-namespace RisoeConsumeRest
+namespace RisoeConsumeDatabase
 {
-    public  class ConsumeRest
+    public  class ConsumeDatabase
     {
         //This is the main running program for testing the code
         public void Main()
