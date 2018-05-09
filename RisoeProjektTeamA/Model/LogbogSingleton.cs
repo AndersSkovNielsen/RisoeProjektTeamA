@@ -13,12 +13,13 @@ namespace RisoeProjektTeamA.Model
     {
         private static LogbogSingleton _instance = null;
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
-        public ObservableCollection<Log> Logliste { get; set; }
-        public ObservableCollection<Bruger> Brugerliste { get; set; }
-        public ObservableCollection<Station> StationsListe { get; set; }
-        public bool Status { get; set; }
 
-        //Anders' tilføjelser
+        //Gem til senere
+        //public ObservableCollection<Log> Logliste { get; set; }
+        //public ObservableCollection<Bruger> Brugerliste { get; set; }
+        //public ObservableCollection<Station> StationsListe { get; set; }
+        //public bool Status { get; set; }
+        
         public OpgavePersistenceFacade Facade { get; set; }
 
         public void Add(Opgave opgave)
@@ -26,6 +27,7 @@ namespace RisoeProjektTeamA.Model
             OpgaveListe.Add(opgave);
         }
 
+        //Anders' Instance
         public static LogbogSingleton Instance
         {
             get
@@ -37,7 +39,6 @@ namespace RisoeProjektTeamA.Model
                 return _instance;
             }
         }
-        //Slut tilføjelser
 
         //Frederik's Instance
         //public static LogbogSingleton Instance()
@@ -47,16 +48,15 @@ namespace RisoeProjektTeamA.Model
 
         private LogbogSingleton()
         {
-            //Anders' tilføjelse
             Facade = new OpgavePersistenceFacade();
-            //Slut tilføjelse
-
             OpgaveListe = new ObservableCollection<Opgave>(Facade.HentAlleOpgaver());
-            Logliste = new ObservableCollection<Log>();
+
+            //Gem til senere
+            //Logliste = new ObservableCollection<Log>();
         }
 
         
-
+        //Senere iteration
         private void SorterOpgEfterPrio(ObservableCollection<Opgave> OpgListe)
         {
             OpgListe = OpgaveListe;
@@ -65,11 +65,6 @@ namespace RisoeProjektTeamA.Model
             {
                 //if (typeof(OpgListe[i].Opgave.Prioritet.)>(OpgListe[i-1].Opgave.Prioritet)))// Hvorfor er denne sætning ulovlig?
             }
-        }
-
-        public void UpdateOpgave(Opgave Selectedopgave)
-        {
-
         }
     }
 }
