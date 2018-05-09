@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ParseToEnumException.cs" />
     <Compile Include="Model\Bruger.cs" />
     <Compile Include="Model\RegulærOpgave.cs" />
     <Compile Include="Model\Log.cs" />

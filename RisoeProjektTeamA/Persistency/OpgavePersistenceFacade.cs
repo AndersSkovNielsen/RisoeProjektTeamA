@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ModelLibrary.Exceptions;
 
 namespace RisoeProjektTeamA.Persistency
 {
@@ -30,7 +31,7 @@ namespace RisoeProjektTeamA.Persistency
 
                    opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
                 }
-                catch (Exception ex)
+                catch (ParseToEnumException ex)
                 {
                     Console.WriteLine(ex.ToString()); //hvordan får vi denne besked ud i View? 
                 }

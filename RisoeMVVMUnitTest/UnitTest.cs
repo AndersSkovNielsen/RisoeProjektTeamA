@@ -1,6 +1,8 @@
 ﻿
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RisoeProjektTeamA.Persistency;
+
 
 namespace RisoeMVVMUnitTest
 {
@@ -10,6 +12,17 @@ namespace RisoeMVVMUnitTest
         [TestMethod]
         public void TestMethod1()
         {
+        }
+
+      //Opgave Exception Tests
+        public bool SuccesfulparsefromDB()
+        {
+            OpgavePersistenceFacade testface=new OpgavePersistenceFacade();
+
+            testface.HentAlleOpgaver();
+
+
+           return true ;
         }
     }
 }

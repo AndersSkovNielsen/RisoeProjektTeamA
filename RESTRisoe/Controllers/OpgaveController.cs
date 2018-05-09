@@ -1,4 +1,5 @@
 ﻿using ModelLibrary.Model;
+using ModelLibrary.Exceptions;
 using RESTRisoe.DBUtil;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Ajax.Utilities;
-using RESTRisoe.Exceptions;
+
 
 namespace RESTRisoe.Controllers
 {

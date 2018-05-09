@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
-using RESTRisoe.Exceptions;
+using ModelLibrary.Exceptions;
 using static ModelLibrary.Model.Opgave;
 
 namespace RESTRisoe.DBUtil
@@ -39,16 +39,14 @@ namespace RESTRisoe.DBUtil
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
                     StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    checkEnumParse(status,id);
                     int ventetid = reader.GetInt32(3);
 
                     opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
                 }
 
             }
-            foreach (var opgave in opgaver)
-            {
-                CheckEnumParse(opgave);
-            }
+          
 
             return opgaver;
         }
@@ -70,11 +68,9 @@ namespace RESTRisoe.DBUtil
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
                     StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    checkEnumParse(status,id);
                     int ventetid = reader.GetInt32(3);
-
-                    Opgave hentetOpgave=new Opgave(id, beskrivelse, status, ventetid);
-                    CheckEnumParse(hentetOpgave);
-                    return hentetOpgave;
+                    return new Opgave(id, beskrivelse, status, ventetid);
                 }
             }
             return null;
@@ -151,14 +147,15 @@ namespace RESTRisoe.DBUtil
             
             
         }
-        //ny metode skal opdateres i dokumentation 09/05
-        public void CheckEnumParse(Opgave opg)
+        //ny metode skal opdateret i dokumentation 09/05
+        private void checkEnumParse(StatusType checkStatus,int checkId)
         {
-            if (!(opg.Status == StatusType.Fejlet ||
-                  opg.Status == StatusType.IkkeLøst ||
-                  opg.Status == StatusType.Løst))
+            if (!(checkStatus == StatusType.Fejlet ||
+                  checkStatus == StatusType.IkkeLøst ||
+                  checkStatus == StatusType.Løst))
             {
-                throw new ParseToEnumException(opg);
+                int exId = checkId;
+                throw new ParseToEnumException (exId);
             }
         }
     }
