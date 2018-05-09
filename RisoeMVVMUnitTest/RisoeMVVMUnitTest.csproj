@@ -138,6 +138,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
+      <Project>{bfad4260-e0ca-4ff1-a6c0-95ddb5160e4b}</Project>
+      <Name>ModelLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RisoeProjektTeamA\MVVMRisoe.csproj">
       <Project>{3d0ea8c0-98d2-4e0a-986d-800fd1697bd8}</Project>
       <Name>MVVMRisoe</Name>
