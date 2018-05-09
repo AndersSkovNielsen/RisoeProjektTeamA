@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLibrary", "ModelLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RESTRisoe", "RESTRisoe\RESTRisoe.csproj", "{43B6E4E9-336D-4667-B851-1D81F728ED4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisoeConsumeRest", "RisoeConsumeRest\RisoeConsumeRest.csproj", "{33E1C329-5918-4C67-BDA2-3B5AF0D94F39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisoeConsumeDatabase", "RisoeConsumeRest\RisoeConsumeDatabase.csproj", "{33E1C329-5918-4C67-BDA2-3B5AF0D94F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
