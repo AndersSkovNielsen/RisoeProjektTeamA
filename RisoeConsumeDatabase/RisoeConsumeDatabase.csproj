@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{33E1C329-5918-4C67-BDA2-3B5AF0D94F39}</ProjectGuid>
+    <ProjectGuid>{3DC8DEBB-4613-4D5A-B1E2-CA8430ED1B77}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RisoeConsumeRest</RootNamespace>
-    <AssemblyName>RisoeConsumeRest</AssemblyName>
+    <RootNamespace>RisoeConsumeDatabase</RootNamespace>
+    <AssemblyName>RisoeConsumeDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumeDatabase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
