@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DBUtil\IManageOpgave.cs" />
     <Compile Include="DBUtil\ManageOpgave.cs" />
+    <Compile Include="Exceptions\ParseToEnumException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

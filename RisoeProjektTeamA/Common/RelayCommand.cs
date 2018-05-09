@@ -25,7 +25,7 @@ namespace RisoeProjektTeamA.Common
             : this(execute, null)
         {
         }
-
+        
         /// <summary>
         /// Creates a new command.
         /// </summary>
