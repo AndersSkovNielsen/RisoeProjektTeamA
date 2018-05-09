@@ -11,14 +11,8 @@ namespace RisoeProjektTeamA.Model
 {
     public class LogbogSingleton
     {
-        private static LogbogSingleton _instance = null;
+        private static LogbogSingleton _instance = null; //Eager initialization: _instance = new LogbogSingleton();
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
-
-        //Gem til senere
-        //public ObservableCollection<Log> Logliste { get; set; }
-        //public ObservableCollection<Bruger> Brugerliste { get; set; }
-        //public ObservableCollection<Station> StationsListe { get; set; }
-        //public bool Status { get; set; }
         
         public OpgavePersistenceFacade Facade { get; set; }
 
@@ -50,13 +44,13 @@ namespace RisoeProjektTeamA.Model
         {
             Facade = new OpgavePersistenceFacade();
             OpgaveListe = new ObservableCollection<Opgave>(Facade.HentAlleOpgaver());
-
-            //Gem til senere
-            //Logliste = new ObservableCollection<Log>();
         }
 
-        
-        //Senere iteration
+
+        //Ikke relavant for 1. iteration. Måske senere
+        public ObservableCollection<Log> Logliste { get; set; }
+        public ObservableCollection<Bruger> Brugerliste { get; set; }
+        public ObservableCollection<Station> StationsListe { get; set; }
         private void SorterOpgEfterPrio(ObservableCollection<Opgave> OpgListe)
         {
             OpgListe = OpgaveListe;

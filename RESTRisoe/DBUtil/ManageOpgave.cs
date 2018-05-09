@@ -33,6 +33,7 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);
@@ -68,6 +69,7 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
+                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY
                     int id = reader.GetInt32(0);
                     String beskrivelse = reader.GetString(1);
                     String statusStr = reader.GetString(2);

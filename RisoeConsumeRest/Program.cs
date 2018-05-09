@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RisoeConsumeRest
+namespace RisoeConsumeDatabase
 {
     class Program
     {
@@ -17,8 +17,8 @@ namespace RisoeConsumeRest
             //Kopieres kode fra vores rest her ind.
             //
             //Rest kode bliver testet her, hvorefter den kan kopieres tilbage i vores rest Solution, hvis det virker som det skal.
-            ConsumeRest rest = new ConsumeRest();
-            rest.Main();
+            ConsumeDatabase Database = new ConsumeDatabase();
+            Database.Main();
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("End of Program. Press any key to close.");
