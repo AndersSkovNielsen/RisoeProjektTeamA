@@ -15,7 +15,7 @@ namespace RESTRisoe.Controllers
     {
         IManageOpgave manager = new ManageOpgave();
 
-        // GET: api/Opgave
+        // GET: api/Opgave/
         public IEnumerable<Opgave> Get()
         {
             
@@ -37,7 +37,7 @@ namespace RESTRisoe.Controllers
             return manager.HentOpgaveFraId(id);
         }
 
-        // POST: api/Opgave
+        // POST: api/Opgave/
         public bool Post([FromBody] Opgave value)
         {
             return manager.IndsætOpgave(value);
