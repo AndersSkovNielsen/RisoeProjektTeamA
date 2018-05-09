@@ -32,8 +32,7 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString()); //hvordan får vi denne besked ud i View?
-                    return opgaveListe;
+                    Console.WriteLine(ex.ToString()); //hvordan får vi denne besked ud i View? 
                 }
                 return opgaveListe;
             }
@@ -48,7 +47,15 @@ namespace RisoeProjektTeamA.Persistency
             using (HttpClient client = new HttpClient())
             {
                 string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
-                Opgave opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
+                Opgave opgave=new Opgave();
+                try
+                {
+                  opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString()); //samme problem som hentalleopgaver  
+                }
                 return opgave;
             }
         }

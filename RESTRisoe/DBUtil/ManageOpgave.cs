@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using RESTRisoe.Exceptions;
 using static ModelLibrary.Model.Opgave;
@@ -46,12 +47,7 @@ namespace RESTRisoe.DBUtil
             }
             foreach (var opgave in opgaver)
             {
-                if (  !(opgave.Status == StatusType.Fejlet ||
-                        opgave.Status == StatusType.IkkeLøst || 
-                        opgave.Status== StatusType.Løst))
-                {
-                    throw new ParseToEnumException(opgave);
-                }
+                CheckEnumParse(opgave);
             }
 
             return opgaver;
@@ -76,7 +72,9 @@ namespace RESTRisoe.DBUtil
                     StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
                     int ventetid = reader.GetInt32(3);
 
-                    return new Opgave(id, beskrivelse, status, ventetid);
+                    Opgave hentetOpgave=new Opgave(id, beskrivelse, status, ventetid);
+                    CheckEnumParse(hentetOpgave);
+                    return hentetOpgave;
                 }
             }
             return null;
@@ -149,6 +147,18 @@ namespace RESTRisoe.DBUtil
                     return opgave;
                 }
                 return null;
+            }
+            
+            
+        }
+        //ny metode skal opdateres i dokumentation 09/05
+        public void CheckEnumParse(Opgave opg)
+        {
+            if (!(opg.Status == StatusType.Fejlet ||
+                  opg.Status == StatusType.IkkeLøst ||
+                  opg.Status == StatusType.Løst))
+            {
+                throw new ParseToEnumException(opg);
             }
         }
     }
