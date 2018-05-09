@@ -14,7 +14,7 @@ namespace RisoeProjektTeamA.Persistency
     {
         public List<Opgave> HentAlleOpgaver()
         {
-            String OpgaveUri = "http://localhost:59327/api/Opgave"; // URL til din REST
+            String OpgaveUri = "http://localhost:59327/api/Opgave"; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
 
             using (HttpClient client = new HttpClient())
             {
@@ -36,7 +36,6 @@ namespace RisoeProjektTeamA.Persistency
             }
         }
         
-        //rest-ande-easj.azurewebsites.net
         public bool IndsætOpgave(Opgave opgave)
         {
             String OpgaveUri = "http://localhost:59327/api/Opgave"; // URL til din REST

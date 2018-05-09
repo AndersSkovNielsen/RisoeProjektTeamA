@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisoeProjektTeamA", "RisoeProjektTeamA\RisoeProjektTeamA.csproj", "{3D0EA8C0-98D2-4E0A-986D-800FD1697BD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMRisoe", "RisoeProjektTeamA\MVVMRisoe.csproj", "{3D0EA8C0-98D2-4E0A-986D-800FD1697BD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLibrary", "ModelLibrary\ModelLibrary.csproj", "{BFAD4260-E0CA-4FF1-A6C0-95DDB5160E4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RESTRisoe", "RESTRisoe\RESTRisoe.csproj", "{43B6E4E9-336D-4667-B851-1D81F728ED4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisoeConsumeRest", "RisoeConsumeRest\RisoeConsumeRest.csproj", "{33E1C329-5918-4C67-BDA2-3B5AF0D94F39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisoeConsumeDatabase", "RisoeConsumeRest\RisoeConsumeDatabase.csproj", "{33E1C329-5918-4C67-BDA2-3B5AF0D94F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

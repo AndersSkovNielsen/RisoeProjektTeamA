@@ -27,7 +27,7 @@
             <TextBlock Text="Data:" TextWrapping="Wrap" Height="65" FontSize="36"/>
 
             <StackPanel Height="52" Orientation="Horizontal">
-                <TextBox Text="Indtast data" Height="49" Margin="0,0,-146,0" FontSize="24" HorizontalAlignment="Left"/>
+                <TextBox Text="Indtast data" Height="49" Margin="0,0,-146,0" FontSize="24" HorizontalAlignment="Left" />
                 <TextBlock Text="(Enhed)" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Left" Height="51" Margin="152,0,-334.6,0" Width="245" FontSize="24"/>
 
             </StackPanel>
