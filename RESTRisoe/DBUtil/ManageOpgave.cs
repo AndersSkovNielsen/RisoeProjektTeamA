@@ -34,20 +34,19 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY
-                    int id = reader.GetInt32(0);
-                    String beskrivelse = reader.GetString(1);
-                    String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    checkEnumParse(status,id);
-                    int ventetid = reader.GetInt32(3);
+                    //int id = reader.GetInt32(0);
+                    //String beskrivelse = reader.GetString(1);
+                    //String statusStr = reader.GetString(2);
+                    //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    //checkEnumParse(status,id);
+                    //int ventetid = reader.GetInt32(3);
 
-                    opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
+                    //opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
+
+                    //Brug af ReadOpgave metode (DRY)
+                    opgaver.Add(ReadOpgave(reader));
                 }
-
             }
-          
-
             return opgaver;
         }
 
@@ -63,14 +62,17 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    //Kunne laves som en privat metode ReadOpgave for at undgå DRY  
-                    int id = reader.GetInt32(0);
-                    String beskrivelse = reader.GetString(1);
-                    String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    checkEnumParse(status,id);
-                    int ventetid = reader.GetInt32(3);
-                    return new Opgave(id, beskrivelse, status, ventetid);
+                    //int id = reader.GetInt32(0);
+                    //String beskrivelse = reader.GetString(1);
+                    //String statusStr = reader.GetString(2);
+                    //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                    //checkEnumParse(status,id);
+                    //int ventetid = reader.GetInt32(3);
+
+                    //return new Opgave(id, beskrivelse, status, ventetid);
+
+                    //Brug af ReadOpgave metode:
+                    ReadOpgave(reader);
                 }
             }
             return null;
@@ -81,10 +83,13 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(insertSql, connection);
-                command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
-                command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
-                command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+                //command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
+                //command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
+                //command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
+                //command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+
+                //Brug af TilføjVærdiOpgave metode (DRY)
+                TilføjVærdiOpgave(opgave, command);
 
                 command.Connection.Open();
 
@@ -103,10 +108,13 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(updateSql, connection);
-                command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
-                command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
-                command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+                //command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
+                //command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
+                //command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
+                //command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+
+                //Brug af TilføjVærdiOpgave metode (DRY)
+                TilføjVærdiOpgave(opgave, command);
                 command.Parameters.AddWithValue("@ID", opgaveID);
 
                 command.Connection.Open();
@@ -144,8 +152,6 @@ namespace RESTRisoe.DBUtil
                 }
                 return null;
             }
-            
-            
         }
         //ny metode skal opdateret i dokumentation 09/05
         private void checkEnumParse(StatusType checkStatus,int checkId)
@@ -157,6 +163,28 @@ namespace RESTRisoe.DBUtil
                 int exId = checkId;
                 throw new ParseToEnumException (exId);
             }
+        }
+
+        //HentAlle og HentFraID (DRY)
+        private Opgave ReadOpgave(SqlDataReader reader)
+        {
+            int id = reader.GetInt32(0);
+            String beskrivelse = reader.GetString(1);
+            String statusStr = reader.GetString(2);
+            StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+            checkEnumParse(status, id);
+            int ventetid = reader.GetInt32(3);
+
+            return new Opgave(id, beskrivelse, status, ventetid);
+        }
+
+        //Indsæt og Opdater (DRY)
+        private void TilføjVærdiOpgave(Opgave opgave, SqlCommand command)
+        {
+            command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
+            command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
+            command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
+            command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
         }
     }
 }
