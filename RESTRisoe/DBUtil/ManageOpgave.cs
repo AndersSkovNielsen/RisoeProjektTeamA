@@ -153,6 +153,7 @@ namespace RESTRisoe.DBUtil
                 return null;
             }
         }
+
         //ny metode skal opdateret i dokumentation 09/05
         private void checkEnumParse(StatusType checkStatus,int checkId)
         {
