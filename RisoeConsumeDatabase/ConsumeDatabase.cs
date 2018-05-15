@@ -14,76 +14,77 @@ namespace RisoeConsumeDatabase
         public void Main()
         {
             //Code below this line-----------------------------------------------------------------------------------------------------
-            List<Opgave> mineOpgaver = HentAlleOpgaver();
-
             //Hent Opgave (test)
             Console.WriteLine("Test af hentning af alle opgave");
             Console.WriteLine("");
-            Console.WriteLine("");
+
+            List<Opgave> mineOpgaver = HentAlleOpgaver();
 
             foreach (var op in mineOpgaver)
             {
                 Console.WriteLine(op);
             }
-            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
             Console.ReadKey();
             Console.Clear();
 
-            //Hent én Opgaave (test)
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+            //Hent en Opgave (test)
             Console.WriteLine("Test af hentning af specifikke opgaver (1 og 3)");
             Console.WriteLine("");
-            Console.WriteLine("");
+
             Console.WriteLine(HentOpgaveFraId(1));
             Console.WriteLine(HentOpgaveFraId(3));
-            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
             Console.ReadKey();
             Console.Clear();
 
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             //Indsæt en Opgave (test)
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
-            Console.WriteLine("");
+
             Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 5);
 
             IndsætOpgave(OP);
-            mineOpgaver = HentAlleOpgaver();
-            foreach (var op in mineOpgaver)
-            {
-                Console.WriteLine(op);
-            }
-            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
+            Console.WriteLine(HentOpgaveFraId(10));
+
             Console.ReadKey();
             Console.Clear();
+
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
             //Opdater Opgave (test)
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
-            Console.WriteLine("");
+
             Opgave NewOP = new Opgave(10, "Test2", StatusType.Løst, 5);
+
             OpdaterOpgave(NewOP, 10);
-            mineOpgaver = HentAlleOpgaver();
-            foreach (var op in mineOpgaver)
-            {
-                Console.WriteLine(op);
-            }
-            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+            Console.WriteLine(HentOpgaveFraId(10));
+
             Console.ReadKey();
             Console.Clear();
+
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             //Slet Opgave (Test)
             Console.WriteLine("Test af sletning af opgave");
             Console.WriteLine("");
-            Console.WriteLine("");
+
             SletOpgave(10);
-            mineOpgaver = HentAlleOpgaver();
-            foreach (var op in mineOpgaver)
+
+            List<Opgave> mineOpgaverNy = HentAlleOpgaver();
+
+            foreach (var op in mineOpgaverNy)
             {
                 Console.WriteLine(op);
             }
 
             //Code above this line---------------------------------------------------------------------------------------------------
         }
-        //Below is all the code that should be tested, before getting put in the main rest service.
 
+        //Below is all the code that should be tested, before getting put in the main rest service.
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private String queryString = "select * from RisoeOpgave";
@@ -106,15 +107,9 @@ namespace RisoeConsumeDatabase
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    int id = reader.GetInt32(0);
-                    String beskrivelse = reader.GetString(1);
-                    String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    int ventetid = reader.GetInt32(3);
-
-                    opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
+                    //Brug af ReadOpgave metode (DRY)
+                    opgaver.Add(ReadOpgave(reader));
                 }
-
             }
             return opgaver;
         }
@@ -131,13 +126,8 @@ namespace RisoeConsumeDatabase
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    int id = reader.GetInt32(0);
-                    String beskrivelse = reader.GetString(1);
-                    String statusStr = reader.GetString(2);
-                    StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    int ventetid = reader.GetInt32(3);
-
-                    return new Opgave(id, beskrivelse, status, ventetid);
+                    //Brug af ReadOpgave metode:
+                    return ReadOpgave(reader);
                 }
             }
             return null;
@@ -148,10 +138,9 @@ namespace RisoeConsumeDatabase
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(insertSql, connection);
-                command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
-                command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
-                command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+                
+                //Brug af TilføjVærdiOpgave metode (DRY)
+                TilføjVærdiOpgave(opgave, command);
 
                 command.Connection.Open();
 
@@ -170,10 +159,9 @@ namespace RisoeConsumeDatabase
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(updateSql, connection);
-                command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
-                command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
-                command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+                
+                //Brug af TilføjVærdiOpgave metode (DRY)
+                TilføjVærdiOpgave(opgave, command);
                 command.Parameters.AddWithValue("@ID", opgaveID);
 
                 command.Connection.Open();
@@ -211,6 +199,27 @@ namespace RisoeConsumeDatabase
                 }
                 return null;
             }
+        }
+
+        //HentAlle og HentFraID (DRY)
+        private Opgave ReadOpgave(SqlDataReader reader)
+        {
+            int id = reader.GetInt32(0);
+            String beskrivelse = reader.GetString(1);
+            String statusStr = reader.GetString(2);
+            StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+            int ventetid = reader.GetInt32(3);
+
+            return new Opgave(id, beskrivelse, status, ventetid);
+        }
+
+        //Indsæt og Opdater (DRY)
+        private void TilføjVærdiOpgave(Opgave opgave, SqlCommand command)
+        {
+            command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
+            command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
+            command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
+            command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
         }
     }
 }
