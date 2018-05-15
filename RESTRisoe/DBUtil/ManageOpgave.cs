@@ -172,7 +172,7 @@ namespace RESTRisoe.DBUtil
         {
             int id = reader.GetInt32(0);
             String beskrivelse = reader.GetString(1);
-            StatusType status;
+            StatusType status=StatusType.IkkeLøst;
             try
             {
                 String statusStr = reader.GetString(2);
@@ -183,7 +183,7 @@ namespace RESTRisoe.DBUtil
             {
                ParseToEnumException parseFailEx= new ParseToEnumException(id);
                 string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
-                throw parseFailEx;
+                
             }
 
             //String statusStr = reader.GetString(2);

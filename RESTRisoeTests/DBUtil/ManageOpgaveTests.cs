@@ -13,25 +13,8 @@ namespace RESTRisoe.DBUtil.Tests
     public class ManageOpgaveTests        
     {
         ManageOpgave opgaveTester = new ManageOpgave();
-        List<ModelLibrary.Model.Opgave> testListe = new List<Opgave>(null);
-
-        [TestMethod()]
-        public void HentAlleOpgaverTest()
-        {
-            //arrange
-            
-            //act
-            
-          
-            testListe = opgaveTester.HentAlleOpgaver();
-
-            //assert
-            foreach (var opg in testListe)
-            {
-             Assert.IsNotNull(opg);   
-            }
-            ;
-        }
+        List<ModelLibrary.Model.Opgave> testListe = new List<Opgave>();
+       
 
         [TestMethod()]
         public void HentOpgaveFraIdTest()
@@ -44,14 +27,21 @@ namespace RESTRisoe.DBUtil.Tests
         }
 
         [TestMethod()]
-        public void IndsætOpgaveTest()
-        {
-            int listelængde= testListe.Count;
-            Opgave testOpgave = new Opgave("testopgave", StatusType.IkkeLøst, 1);
-            
-                opgaveTester.IndsætOpgave(testOpgave);
-            testListe=opgaveTester..
-            Assert.Fail();
+        public void IndsætOgHentOpgaverTest()
+        {//arrange
+            int listelængde1;
+            int listelængde2;
+         //act
+            Opgave testOpgave = new Opgave(99,"testopgave", StatusType.IkkeLøst, 1);
+            testListe = opgaveTester.HentAlleOpgaver();
+            listelængde1 = testListe.Count;
+            opgaveTester.IndsætOpgave(testOpgave);
+            testListe = opgaveTester.HentAlleOpgaver();
+            listelængde2 = testListe.Count;
+            opgaveTester.SletOpgave(99);
+
+            //assert
+            Assert.AreEqual(listelængde1 + 1, listelængde2);
         }
 
         [TestMethod()]
