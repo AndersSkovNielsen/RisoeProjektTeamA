@@ -49,7 +49,13 @@ namespace RisoeProjektTeamA.ViewModel
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
+
+            //Pop up test, experiment
+            PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }
+
+        //Pop up test, experiment
+        public RelayCommand PopUpTestCommand { get; set; }
 
         //Ikke relavant for 1. iteration, måske senere
         private Opgave _selectedOpgave = null;
