@@ -72,7 +72,7 @@ namespace RESTRisoe.DBUtil
                     //return new Opgave(id, beskrivelse, status, ventetid);
 
                     //Brug af ReadOpgave metode:
-                    ReadOpgave(reader);
+                    return ReadOpgave(reader);
                 }
             }
             return null;
