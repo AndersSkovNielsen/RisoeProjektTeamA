@@ -156,7 +156,7 @@ namespace RESTRisoe.DBUtil
         }
 
         //ny metode skal opdateret i dokumentation 09/05
-        private void checkEnumParse(StatusType checkStatus,int checkId)
+        private void CheckEnumParse(StatusType checkStatus,int checkId)
         {
             if (!(checkStatus == StatusType.Fejlet ||
                   checkStatus == StatusType.IkkeLøst ||
@@ -177,7 +177,7 @@ namespace RESTRisoe.DBUtil
             {
                 String statusStr = reader.GetString(2);
                 status = (StatusType) Enum.Parse(typeof(StatusType), statusStr);
-                checkEnumParse(status, id);
+                CheckEnumParse(status, id);
             }
             catch (ParseToEnumException)
             {
