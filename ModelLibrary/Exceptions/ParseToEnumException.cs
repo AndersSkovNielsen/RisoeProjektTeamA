@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelLibrary.Exceptions
 {
-    public class ParseToEnumException:Exception
+    public class ParseToEnumException : Exception
     {
         private static int _exId;
         public string MessageParse =

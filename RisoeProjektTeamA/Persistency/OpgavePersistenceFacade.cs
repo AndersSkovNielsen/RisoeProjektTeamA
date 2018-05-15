@@ -56,7 +56,7 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString()); //samme problem som hentalleopgaver  
+                    MessageDialogHandler.Show(ex.ToString(), "Status kan ikke hentes fra database.");
                 }
                 return opgave;
             }
