@@ -16,22 +16,19 @@ namespace RisoeConsumeRest
 
         public void Test()
         {
-            Console.WriteLine("test af rest service");
-            //---------------------------------------(test af HentAlleOpgaver())
-            Console.WriteLine("test af HentalleOpgaver");
-            Console.WriteLine("her bør være en komplet liste af alle nuværene opgaver");
+            Console.WriteLine("Test af REST service");
+            //---------------------------------------(Test af HentAlleOpgaver())
+            Console.WriteLine("Test af HentAlleOpgaver");
+            Console.WriteLine("Her bør være en komplet liste af alle nuværende opgaver");
             Console.WriteLine("");
-            using (HttpClient client = new HttpClient())
-            {
-                string jsonStr = client.GetStringAsync(Uri).Result; // info fra body
-                List<Opgave> opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr); //<=== convertere fra json sprog
 
-                foreach (var o in opgaveListe) //<=== udskriver opgaven hentet fra Databasen.
-                {
-                    Console.WriteLine(o);
-                }
-                 
+            List<Opgave> opgaveListe = HentAlleOpgaver();
+
+            foreach (var o in opgaveListe) //<=== udskriver opgaven hentet fra Databasen.
+            {
+                Console.WriteLine(o);
             }
+
             Console.WriteLine("");
             Console.ReadKey();
 
@@ -41,12 +38,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Her bør være en enkelt opgave. Den første.");
             Console.WriteLine("");
 
-            using (HttpClient client = new HttpClient())
-            {
-                string jsonStr = client.GetStringAsync(Uri + 1).Result; // info fra body
-                Opgave opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr); //<=== converter fra json sprog
-                Console.WriteLine(opgave); //<=== Skriver opgaven ud der er hentet fra databasen
-            }
+            Console.WriteLine(HentEnOpgave(1));
 
             Console.WriteLine("");
             Console.ReadKey();
@@ -55,26 +47,11 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af Indsætopgave");
             Console.WriteLine("Her indsættets en ny opgave, opgave 10, som så bliver vist bagefter.");
             Console.WriteLine("");
-            Opgave testOpgave10 = new Opgave(10, "En test Opagve", StatusType.IkkeLøst , 2);
-            String json = JsonConvert.SerializeObject(testOpgave10);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            Opgave testOpgave10 = new Opgave(10, "En test Opagve", StatusType.IkkeLøst, 2);
 
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage resultMessage = client.PostAsync(Uri, content).Result;
+            IndsætOpgave(testOpgave10);
 
-                if (resultMessage.IsSuccessStatusCode)
-                {
-                    string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
-                    bool res = JsonConvert.DeserializeObject<bool>(resultStr);
-                    foreach (var o in HentAlleOpgaver())
-                    {
-                        Console.WriteLine(o);
-                    }
-                }
-
-            }
+            Console.WriteLine(HentEnOpgave(10));
 
             Console.WriteLine("");
             Console.ReadKey();
@@ -85,57 +62,35 @@ namespace RisoeConsumeRest
             Console.WriteLine("Her opdateres opgave 10, og bliver så skrevet ud.");
             Console.WriteLine("");
             testOpgave10 = new Opgave(10, "Test af Opdatering", StatusType.Løst, 5);
-            json = JsonConvert.SerializeObject(testOpgave10);
-            content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage resultMessage = client.PutAsync(Uri + 10, content).Result;
+            OpdaterEnOpgave(10, testOpgave10);
 
-                if (resultMessage.IsSuccessStatusCode)
-                {
-                    string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
-                    bool res = JsonConvert.DeserializeObject<bool>(resultStr);
-                    foreach (var o in HentAlleOpgaver())
-                    {
-                        Console.WriteLine(o);
-                    }
-                }
-            }
+            Console.WriteLine(HentEnOpgave(10));
+
             Console.WriteLine("");
             Console.ReadKey();
+
             //---------------------------------------(test af SletOpgave())
             Console.Clear();
             Console.WriteLine("Test af Sletning af en opgave.(Opgave 10)");
             Console.WriteLine("Her slettes opgave 10, hele listen bliver så vist bagefter");
             Console.WriteLine("");
 
-            using (HttpClient client = new HttpClient())
+            SletOpgave(10);
+
+            foreach (var o in HentAlleOpgaver())
             {
-                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + 10).Result;
-
-                if (resultMessage.IsSuccessStatusCode)
-                {
-                    string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
-                    Opgave opgave = JsonConvert.DeserializeObject<Opgave>(resultStr);
-                   
-                    
-                }
-                foreach (var o in HentAlleOpgaver())
-                {
-                    Console.WriteLine(o);
-                }
+                Console.WriteLine(o);
             }
-
 
             Console.WriteLine("");
             Console.ReadKey();
-            //---------------------------------------
 
+            //---------------------------------------
 
         }
 
+        //Metoder brugt til test
         public List<Opgave> HentAlleOpgaver()
         {
             using (HttpClient client = new HttpClient())
@@ -147,9 +102,6 @@ namespace RisoeConsumeRest
         }
         public Opgave HentEnOpgave(int nr)
         {
-            //Eksempel på DRY
-            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
-
             using (HttpClient client = new HttpClient())
             {
                 string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
@@ -160,9 +112,6 @@ namespace RisoeConsumeRest
 
         public bool IndsætOpgave(Opgave opgave)
         {
-            //Eksempel på DRY
-            //String OpgaveUri = "http://localhost:59327/api/Opgave/";
-
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -178,15 +127,11 @@ namespace RisoeConsumeRest
                     return res;
                 }
             }
-
             return false;
         }
 
         public bool OpdaterEnOpgave(int nr, Opgave opgave)
         {
-            //Eksempel på DRY
-            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
-
             String json = JsonConvert.SerializeObject(opgave);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -202,15 +147,11 @@ namespace RisoeConsumeRest
                     return res;
                 }
             }
-
             return false;
         }
 
         public Opgave SletOpgave(int nr)
         {
-            //Eksempel på DRY
-            //String OpgaveUri = "http://localhost:59327/api/Opgave/" + nr;
-
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage resultMessage = client.DeleteAsync(Uri + nr).Result;
@@ -222,7 +163,6 @@ namespace RisoeConsumeRest
                     return opgave;
                 }
             }
-
             return null;
         }
     }

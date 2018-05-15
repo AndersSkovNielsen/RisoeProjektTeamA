@@ -72,7 +72,7 @@ namespace RESTRisoe.DBUtil
                     //return new Opgave(id, beskrivelse, status, ventetid);
 
                     //Brug af ReadOpgave metode:
-                    ReadOpgave(reader);
+                    return ReadOpgave(reader);
                 }
             }
             return null;
@@ -153,6 +153,7 @@ namespace RESTRisoe.DBUtil
                 return null;
             }
         }
+
         //ny metode skal opdateret i dokumentation 09/05
         private void checkEnumParse(StatusType checkStatus,int checkId)
         {
