@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Exceptions;
+using RisoeProjektTeamA.View;
 
 namespace RisoeProjektTeamA.Persistency
 {
@@ -33,7 +34,7 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 catch (ParseToEnumException ex)
                 {
-                    Console.WriteLine(ex.ToString()); //hvordan får vi denne besked ud i View? 
+                    MessageDialogHandler.Show(ex.ToString(), "Status kan ikke hentes fra database.");
                 }
                 return opgaveListe;
             }
