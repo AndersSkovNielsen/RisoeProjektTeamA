@@ -13,14 +13,15 @@ namespace RESTRisoe.DBUtil.Tests
     public class ManageOpgaveTests        
     {
         ManageOpgave opgaveTester = new ManageOpgave();
+        List<ModelLibrary.Model.Opgave> testListe = new List<Opgave>(null);
 
         [TestMethod()]
         public void HentAlleOpgaverTest()
         {
             //arrange
-            ManageOpgave opgaveTester = new ManageOpgave();
+            
             //act
-            List<ModelLibrary.Model.Opgave> testListe=new List<Opgave>(null);
+            
           
             testListe = opgaveTester.HentAlleOpgaver();
 
@@ -45,6 +46,11 @@ namespace RESTRisoe.DBUtil.Tests
         [TestMethod()]
         public void IndsætOpgaveTest()
         {
+            int listelængde= testListe.Count;
+            Opgave testOpgave = new Opgave("testopgave", StatusType.IkkeLøst, 1);
+            
+                opgaveTester.IndsætOpgave(testOpgave);
+            testListe=opgaveTester..
             Assert.Fail();
         }
 

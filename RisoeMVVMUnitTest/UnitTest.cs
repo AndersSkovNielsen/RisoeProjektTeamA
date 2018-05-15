@@ -17,10 +17,10 @@ namespace RisoeMVVMUnitTest
         }
 
         //Opgave Exception Tests
-        public void SuccesfulparsefromDB()
+        public bool SuccesfulparsefromDB()
         {
             OpgavePersistenceFacade testface = new OpgavePersistenceFacade();
-            bool exceptionThrown = false;
+            bool exceptionThrown=false;
 
             try
             {
@@ -32,7 +32,13 @@ namespace RisoeMVVMUnitTest
                 exceptionThrown = true;
                 
             }
-            Assert.IsFalse(exceptionThrown == true);
+
+            Assert.IsFalse(exceptionThrown==true);
+
+            return exceptionThrown;
+
+
+
 
         }
     }

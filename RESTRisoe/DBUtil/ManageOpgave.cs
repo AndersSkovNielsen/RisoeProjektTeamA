@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
+using System.Web.UI.WebControls;
 using ModelLibrary.Exceptions;
 using static ModelLibrary.Model.Opgave;
 
@@ -171,9 +172,23 @@ namespace RESTRisoe.DBUtil
         {
             int id = reader.GetInt32(0);
             String beskrivelse = reader.GetString(1);
-            String statusStr = reader.GetString(2);
-            StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-            checkEnumParse(status, id);
+            StatusType status;
+            try
+            {
+                String statusStr = reader.GetString(2);
+                status = (StatusType) Enum.Parse(typeof(StatusType), statusStr);
+                checkEnumParse(status, id);
+            }
+            catch (ParseToEnumException)
+            {
+               ParseToEnumException parseFailEx= new ParseToEnumException(id);
+                string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
+                throw parseFailEx;
+            }
+
+            //String statusStr = reader.GetString(2);
+            //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+            //checkEnumParse(status, id);
             int ventetid = reader.GetInt32(3);
 
             return new Opgave(id, beskrivelse, status, ventetid);
