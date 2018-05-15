@@ -18,8 +18,8 @@ namespace RisoeConsumeRest
         {
             Console.WriteLine("Test af REST service");
             //---------------------------------------(Test af HentAlleOpgaver())
-            Console.WriteLine("Test af HentAlleOpgaver");
-            Console.WriteLine("Her bør være en komplet liste af alle nuværende opgaver");
+            Console.WriteLine("Test af hentning af alle opgaver");
+            Console.WriteLine("Her bør være en komplet liste af alle nuværende opgaver.");
             Console.WriteLine("");
 
             List<Opgave> opgaveListe = HentAlleOpgaver();
@@ -34,8 +34,8 @@ namespace RisoeConsumeRest
 
             //---------------------------------------(test af HentEnOpgave())
             Console.Clear();
-            Console.WriteLine("Test af HentEnOpgave");
-            Console.WriteLine("Her bør være en enkelt opgave. Den første.");
+            Console.WriteLine("Test af hentning af en enkelt opgave (Opgave 1).");
+            Console.WriteLine("Her bør være opgave 1.");
             Console.WriteLine("");
 
             Console.WriteLine(HentEnOpgave(1));
@@ -44,10 +44,10 @@ namespace RisoeConsumeRest
             Console.ReadKey();
             //---------------------------------------(test af IndsætOpgave())
             Console.Clear();
-            Console.WriteLine("Test af Indsætopgave");
+            Console.WriteLine("Test af indsætning af en opgave (Opgave 10).");
             Console.WriteLine("Her indsættets en ny opgave, opgave 10, som så bliver vist bagefter.");
             Console.WriteLine("");
-            Opgave testOpgave10 = new Opgave(10, "En test Opagve", StatusType.IkkeLøst, 2);
+            Opgave testOpgave10 = new Opgave(10, "En test Opgave", StatusType.IkkeLøst, 2);
 
             IndsætOpgave(testOpgave10);
 
@@ -58,22 +58,24 @@ namespace RisoeConsumeRest
 
             //---------------------------------------(Test af OpdaterOpgave())
             Console.Clear();
-            Console.WriteLine("Test af opdatering af en opgave (opgave 10 lavet tidligere)");
-            Console.WriteLine("Her opdateres opgave 10, og bliver så skrevet ud.");
+            Console.WriteLine("Test af opdatering af en opgave (Opgave 10).");
+            Console.WriteLine("Her ser vi den nuværende opgave 10, som så bliver opdateret og skrevet ud igen.");
             Console.WriteLine("");
             testOpgave10 = new Opgave(10, "Test af Opdatering", StatusType.Løst, 5);
 
+            Console.WriteLine("Nuværende:\n" + HentEnOpgave(10));
+
             OpdaterEnOpgave(10, testOpgave10);
 
-            Console.WriteLine(HentEnOpgave(10));
+            Console.WriteLine("Opdateret:\n" + HentEnOpgave(10));
 
             Console.WriteLine("");
             Console.ReadKey();
 
             //---------------------------------------(test af SletOpgave())
             Console.Clear();
-            Console.WriteLine("Test af Sletning af en opgave.(Opgave 10)");
-            Console.WriteLine("Her slettes opgave 10, hele listen bliver så vist bagefter");
+            Console.WriteLine("Test af sletning af en opgave (Opgave 10).");
+            Console.WriteLine("Her slettes opgave 10 og hele listen bliver så vist bagefter.");
             Console.WriteLine("");
 
             SletOpgave(10);
