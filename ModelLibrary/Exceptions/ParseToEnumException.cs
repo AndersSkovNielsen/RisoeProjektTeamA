@@ -10,7 +10,7 @@ namespace ModelLibrary.Exceptions
     {
         private static int _exId;
         public string MessageParse =
-            $"Fejl under hentning af OpgaveStatus ved hentningning fra database for opgave nr {_exId}";
+            $"Fejl under ved OpgaveStatus ved hentning fra database for opgave nr {_exId}";
 
 
         public override string ToString()
