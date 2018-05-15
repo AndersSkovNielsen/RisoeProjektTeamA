@@ -1,6 +1,8 @@
 ﻿
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ModelLibrary.Exceptions;
 using RisoeProjektTeamA.Persistency;
 
 
@@ -14,15 +16,24 @@ namespace RisoeMVVMUnitTest
         {
         }
 
-      //Opgave Exception Tests
-        public bool SuccesfulparsefromDB()
+        //Opgave Exception Tests
+        public void SuccesfulparsefromDB()
         {
-            OpgavePersistenceFacade testface=new OpgavePersistenceFacade();
+            OpgavePersistenceFacade testface = new OpgavePersistenceFacade();
+            bool exceptionThrown = false;
 
-            testface.HentAlleOpgaver();
+            try
+            {
+                testface.HentAlleOpgaver();
+            }
+            catch (ParseToEnumException e)
+            {
+                Console.WriteLine(e);
+                exceptionThrown = true;
+                
+            }
+            Assert.IsFalse(exceptionThrown == true);
 
-
-           return true ;
         }
     }
 }
