@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Model;
+using RisoeProjektTeamA.View;
 using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Handler
@@ -71,6 +72,12 @@ namespace RisoeProjektTeamA.Handler
             {
                 OpgaveViewModel.Logbog.Add(g);
             }
+        }
+
+        //Pop Up Test, experiment
+        public void TestPopUp()
+        {
+            MessageDialogHandler.Show("Test", "Dette er en test!");
         }
     }
 }

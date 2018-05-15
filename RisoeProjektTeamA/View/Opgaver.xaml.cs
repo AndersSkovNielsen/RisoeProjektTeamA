@@ -37,5 +37,10 @@ namespace RisoeProjektTeamA.View
         {
             this.Frame.Navigate(typeof(Hovedmenu));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

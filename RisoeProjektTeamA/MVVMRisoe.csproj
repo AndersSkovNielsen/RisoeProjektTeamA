@@ -110,6 +110,7 @@
     <Compile Include="View\Forside.xaml.cs">
       <DependentUpon>Forside.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MessageDialogHandler.cs" />
     <Compile Include="View\NySærligOpgave.xaml.cs">
       <DependentUpon>NySærligOpgave.xaml</DependentUpon>
     </Compile>
