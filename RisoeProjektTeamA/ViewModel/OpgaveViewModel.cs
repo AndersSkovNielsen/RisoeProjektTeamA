@@ -50,6 +50,8 @@ namespace RisoeProjektTeamA.ViewModel
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
 
+            StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
+
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }
@@ -57,30 +59,45 @@ namespace RisoeProjektTeamA.ViewModel
         //Pop up test, experiment
         public RelayCommand PopUpTestCommand { get; set; }
 
-        //Ikke relavant for 1. iteration, måske senere
-        private Opgave _selectedOpgave = null;
-        public Opgave SelectedOpgave
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand RemoveCommand { get; set; }
+        public RelayCommand UpdateCommand { get; set; }
+
+        private bool _opgaveErValgt;
+        public bool OpgaveErValgt
         {
-            get { return _selectedOpgave; }
+            get { return _opgaveErValgt; }
+            set
+            {
+                _opgaveErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //Ikke relavant for 1. iteration, måske senere
+        private Opgave _valgtOpgave;
+        public Opgave ValgtOpgave
+        {
+            get { return _valgtOpgave; }
             set
             {
                 if (value != null)
                 {
-                    _selectedOpgave = new Opgave(value);
+                    _valgtOpgave = new Opgave(value);
+                    NyOpgave = value;
+                    OpgaveErValgt = true;
                 }
                 else
                 {
-                    _selectedOpgave = null;
+                    _valgtOpgave = null;
                 }
                 OnPropertyChanged();
             }
         }
 
-        public int SelectedIndex { get; set; }
-        
-        public RelayCommand AddCommand { get; set; }
-        public RelayCommand RemoveCommand { get; set; }
-        public RelayCommand UpdateCommand { get; set; }
+        public List<StatusType> StatusListe { get; set; }
+
+        public int ValgtIndex { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

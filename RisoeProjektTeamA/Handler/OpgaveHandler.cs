@@ -37,14 +37,16 @@ namespace RisoeProjektTeamA.Handler
             {
                 OpgaveViewModel.Logbog.Add(o);
             }
-            //kan måske nøjes med bare at tilføje (Hvad menes der med denne kommentar?).
+
+            OpgaveViewModel.OpgaveErValgt = false;
         }
 
         public void OpdaterOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
+            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
 
-            OpgaveViewModel.Logbog.Facade.OpdaterEnOpgave(opgave.ID, opgave);
+            OpgaveViewModel.Logbog.Facade.OpdaterEnOpgave(opgaveID, opgave);
 
             //ListView opdatering
             var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
@@ -55,13 +57,15 @@ namespace RisoeProjektTeamA.Handler
             {
                 OpgaveViewModel.Logbog.Add(g);
             }
+
+            OpgaveViewModel.OpgaveErValgt = false;
         }
 
         public void SletOpgave()
         {
-            Opgave opgave = OpgaveViewModel.NyOpgave;
+            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
 
-            OpgaveViewModel.Logbog.Facade.SletOpgave(opgave.ID);
+            OpgaveViewModel.Logbog.Facade.SletOpgave(opgaveID);
 
             //ListView opdatering
             var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
@@ -72,6 +76,8 @@ namespace RisoeProjektTeamA.Handler
             {
                 OpgaveViewModel.Logbog.Add(g);
             }
+
+            OpgaveViewModel.OpgaveErValgt = false;
         }
 
         //Pop Up Test, experiment
