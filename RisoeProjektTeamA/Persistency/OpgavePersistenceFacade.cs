@@ -52,7 +52,7 @@ namespace RisoeProjektTeamA.Persistency
                 Opgave opgave=new Opgave();
                 try
                 {
-                  opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
+                    opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
                 }
                 catch (Exception ex)
                 {
