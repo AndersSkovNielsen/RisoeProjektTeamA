@@ -15,24 +15,6 @@ namespace RisoeProjektTeamA.ViewModel
 {
     public class OpgaveViewModel : INotifyPropertyChanged
     {
-        private Opgave _nyOpgave = null;
-        public Opgave NyOpgave
-        {
-            get { return _nyOpgave; }
-            set
-            {
-                if (value != null)
-                {
-                    _nyOpgave = new Opgave(value);
-                }
-                else
-                {
-                    _nyOpgave = null;
-                }
-                OnPropertyChanged();
-            }
-        }
-
         public LogbogSingleton Logbog { get; set; }
         public OpgaveHandler OpgaveHandler { get; set; }
 
@@ -62,6 +44,25 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public RelayCommand UpdateCommand { get; set; }
+        
+        //Ikke relavant for 1. iteration, måske senere
+        private Opgave _nyOpgave = null;
+        public Opgave NyOpgave
+        {
+            get { return _nyOpgave; }
+            set
+            {
+                if (value != null)
+                {
+                    _nyOpgave = new Opgave(value);
+                }
+                else
+                {
+                    _nyOpgave = null;
+                }
+                OnPropertyChanged();
+            }
+        }
 
         private bool _opgaveErValgt;
         public bool OpgaveErValgt
@@ -74,7 +75,6 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
-        //Ikke relavant for 1. iteration, måske senere
         private Opgave _valgtOpgave;
         public Opgave ValgtOpgave
         {
