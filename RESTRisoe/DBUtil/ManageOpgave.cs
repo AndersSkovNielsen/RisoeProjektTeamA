@@ -20,7 +20,7 @@ namespace RESTRisoe.DBUtil
         private String queryString = "select * from RisoeOpgave";
         private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId= @udstyrId";
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
-        private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid)";
+        private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid, @UdstyrID)";
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
         private String updateSql = "update RisoeOpgave " +
                                    "set ID = @OpgaveID, Beskrivelse = @Beskrivelse, Status = @Status, VentetidIDage = @Ventetid " +
@@ -218,7 +218,7 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, udstyrId,ventetid);
+            return new Opgave(id, beskrivelse, status, udstyrId, ventetid);
         }
 
         //Indsæt og Opdater (DRY)
@@ -228,6 +228,7 @@ namespace RESTRisoe.DBUtil
             command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
             command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
             command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+            command.Parameters.AddWithValue("@UdstyrID", opgave.UdstyrId);
         }
     }
 }
