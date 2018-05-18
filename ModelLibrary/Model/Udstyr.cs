@@ -14,5 +14,20 @@ namespace ModelLibrary.Model
         public DateTime TidtilNæsteTjek { get; set; }
         public string Beskrivelse { get; set; }
 
+
+        public Udstyr( DateTime installationsdato, DateTime næsteTjekDato, DateTime tidtilNæsteTjek, string beskrivelse)
+        {
+            Installationsdato = installationsdato;
+            NæsteTjekDato = næsteTjekDato;
+            TidtilNæsteTjek = tidtilNæsteTjek;
+            Beskrivelse = beskrivelse;
+
+        }
+
+        public Udstyr()
+        {
+            
+        }
+
     }
 }

@@ -14,7 +14,8 @@ namespace RisoeProjektTeamA.Model
         private static LogbogSingleton _instance = null; //Eager initialization: _instance = new LogbogSingleton();
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         
-        public OpgavePersistenceFacade Facade { get; set; }
+        public OpgavePersistenceFacade OFacade { get; set; }
+        //Public UdstyrPersistanceFacade UFacade {get; set;}
 
         public void Add(Opgave opgave)
         {
