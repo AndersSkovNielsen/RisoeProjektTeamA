@@ -94,13 +94,7 @@ namespace RisoeProjektTeamA.ViewModel
         }
 
         public List<StatusType> StatusListe { get; set; }
-
-        //Pop up test, experiment
-        public RelayCommand PopUpTestCommand { get; set; }
-
-        //Ikke brugt i 2. iteration
-        public int ValgtIndex { get; set; }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -108,5 +102,13 @@ namespace RisoeProjektTeamA.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        //Pop up test, experiment
+        public RelayCommand PopUpTestCommand { get; set; }
+
+        //Ikke brugt i 2. iteration
+        public int ValgtIndex { get; set; }
+
+        
     }
 }
