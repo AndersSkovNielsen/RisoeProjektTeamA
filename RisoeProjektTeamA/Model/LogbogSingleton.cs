@@ -13,13 +13,18 @@ namespace RisoeProjektTeamA.Model
     {
         private static LogbogSingleton _instance = null; //Eager initialization: _instance = new LogbogSingleton();
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
+        public ObservableCollection<Udstyr> UdstyrsListe { get; set; }
         
         public OpgavePersistenceFacade OFacade { get; set; }
-        //Public UdstyrPersistanceFacade UFacade {get; set;}
+        public UdstyrPersistanceFacade UFacade {get; set;}
 
-        public void Add(Opgave opgave)
+        public void AddO(Opgave opgave)
         {
             OpgaveListe.Add(opgave);
+        }
+        public void AddU(Udstyr udstyr)
+        {
+            UdstyrsListe.Add(udstyr);
         }
 
         //Anders' Instance
@@ -43,8 +48,8 @@ namespace RisoeProjektTeamA.Model
 
         private LogbogSingleton()
         {
-            Facade = new OpgavePersistenceFacade();
-            OpgaveListe = new ObservableCollection<Opgave>(Facade.HentAlleOpgaver());
+            OFacade = new OpgavePersistenceFacade();
+            OpgaveListe = new ObservableCollection<Opgave>(OFacade.HentAlleOpgaver());
         }
 
 

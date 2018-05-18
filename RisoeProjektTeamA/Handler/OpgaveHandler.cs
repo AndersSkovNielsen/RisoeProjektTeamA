@@ -25,17 +25,17 @@ namespace RisoeProjektTeamA.Handler
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
 
-            OpgaveViewModel.Logbog.Facade.IndsætOpgave(opgave);
+            OpgaveViewModel.Logbog.OFacade.IndsætOpgave(opgave);
 
             //ListView opdatering
 
-            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
 
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
             foreach (var o in opgaver)
             {
-                OpgaveViewModel.Logbog.Add(o);
+                OpgaveViewModel.Logbog.AddO(o);
             }
 
             OpgaveViewModel.OpgaveErValgt = false;
@@ -46,16 +46,16 @@ namespace RisoeProjektTeamA.Handler
             Opgave opgave = OpgaveViewModel.NyOpgave;
             int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
 
-            OpgaveViewModel.Logbog.Facade.OpdaterEnOpgave(opgaveID, opgave);
+            OpgaveViewModel.Logbog.OFacade.OpdaterEnOpgave(opgaveID, opgave);
 
             //ListView opdatering
-            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
 
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
-            foreach (var g in opgaver)
+            foreach (var o in opgaver)
             {
-                OpgaveViewModel.Logbog.Add(g);
+                OpgaveViewModel.Logbog.AddO(o);
             }
 
             OpgaveViewModel.OpgaveErValgt = false;
@@ -65,16 +65,16 @@ namespace RisoeProjektTeamA.Handler
         {
             int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
 
-            OpgaveViewModel.Logbog.Facade.SletOpgave(opgaveID);
+            OpgaveViewModel.Logbog.OFacade.SletOpgave(opgaveID);
 
             //ListView opdatering
-            var opgaver = OpgaveViewModel.Logbog.Facade.HentAlleOpgaver();
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
 
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
-            foreach (var g in opgaver)
+            foreach (var o in opgaver)
             {
-                OpgaveViewModel.Logbog.Add(g);
+                OpgaveViewModel.Logbog.AddO(o);
             }
 
             OpgaveViewModel.OpgaveErValgt = false;

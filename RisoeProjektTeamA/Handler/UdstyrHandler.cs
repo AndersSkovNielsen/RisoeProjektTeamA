@@ -24,17 +24,17 @@ namespace RisoeProjektTeamA.Handler
         {
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
 
-            UdstyrViewModel.Logbog.Facade.IndsætUdstyr(udstyr);
+            UdstyrViewModel.Logbog.UFacade.IndsætUdstyr(udstyr);
 
             //ListView opdatering
 
-            var Udstyr = OpgaveViewModel.Logbog.Facade.HentAltUdstyr();
+            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
 
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
             foreach (var u in Udstyr)
             {
-                UdstyrViewModel.Logbog.Add(u);
+                UdstyrViewModel.Logbog.AddU(u);
             }
 
             UdstyrViewModel.UdstyrErValgt = false;
@@ -45,16 +45,16 @@ namespace RisoeProjektTeamA.Handler
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
             int UdstyrID = UdstyrViewModel.ValgtUdstyr.ID;
 
-            UdstyrViewModel.Logbog.Facade.OpdaterEtUdstyr(UdstyrID, Udstyr);
+            UdstyrViewModel.Logbog.UFacade.OpdaterEtUdstyr(UdstyrID, Udstyr);
 
             //ListView opdatering
-            var Udstyr = UdstyrViewModel.Logbog.Facade.HentAltUdstyr();
+            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
 
             UdstyrViewModel.Logbog.OpgaveListe.Clear();
 
             foreach (var u in Udstyr)
             {
-                UdstyrViewModel.Logbog.Add(u);
+                UdstyrViewModel.Logbog.AddU(u);
             }
 
             UdstyrViewModel.UdstyrErValgt = false;
@@ -64,16 +64,16 @@ namespace RisoeProjektTeamA.Handler
         {
             int UdstyrID = UdstyrViewModel.ValgtUdstyr.ID;
 
-            UdstyrViewModel.Logbog.Facade.SletUdstyr(UdstyrID);
+            UdstyrViewModel.Logbog.UFacade.SletUdstyr(UdstyrID);
 
             //ListView opdatering
-            var Udstyr = UdstyrViewModel.Logbog.Facade.HentAltUdstyr();
+            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
 
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
             foreach (var u in Udstyr)
             {
-                UdstyrViewModel.Logbog.Add(u);
+                UdstyrViewModel.Logbog.AddU(u);
             }
 
             UdstyrViewModel.UdstyrErValgt = false;
