@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
+using System.Web.Http;
+using System.Web.Routing;
 using System.Web.UI.WebControls;
 using ModelLibrary.Exceptions;
 using static ModelLibrary.Model.Opgave;
@@ -16,6 +18,7 @@ namespace RESTRisoe.DBUtil
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private String queryString = "select * from RisoeOpgave";
+        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId= @udstyrId";
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
         private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid)";
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
@@ -50,6 +53,29 @@ namespace RESTRisoe.DBUtil
             }
             return opgaver;
         }
+        //3. iterationsmetode
+        
+        public List<Opgave> HentAlleOpgaverForUdstyr(int udstyrId)
+        
+        {
+            List<Opgave> opgaver = new List<Opgave>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryFromUdstyrString, connection);
+                command.Parameters.AddWithValue("@UdstyrId", udstyrId);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    opgaver.Add(ReadOpgave(reader));
+                }
+            }
+            return opgaver;
+        }
+        //slut på 3. iterationsmetode
 
         public Opgave HentOpgaveFraId(int opgaveId)
         {
@@ -190,8 +216,9 @@ namespace RESTRisoe.DBUtil
             //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
             //checkEnumParse(status, id);
             int ventetid = reader.GetInt32(3);
+            int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, ventetid);
+            return new Opgave(id, beskrivelse, status, udstyrId,ventetid);
         }
 
         //Indsæt og Opdater (DRY)

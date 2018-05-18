@@ -19,7 +19,6 @@ namespace RESTRisoe.Controllers
         // GET: api/Opgave/
         public IEnumerable<Opgave> Get()
         {
-            
             try
             {
                 return manager.HentAlleOpgaver();
@@ -28,14 +27,37 @@ namespace RESTRisoe.Controllers
             {
                 Console.WriteLine(ex.ToString());
                 throw ex; //ex  håndteres i MVVMRisoe
+            }  
+        }
+
+        //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
+        [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
+        public IEnumerable<Opgave> GetFromUdstyr(int udstyrId)
+        {
+            try
+            {
+                return manager.HentAlleOpgaverForUdstyr(udstyrId);
             }
-            
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex; //ex  håndteres i MVVMRisoe 
+            }
         }
 
         // GET: api/Opgave/5
         public Opgave Get(int id)
         {
-            return manager.HentOpgaveFraId(id);
+            try
+            {
+                return manager.HentOpgaveFraId(id);
+            }
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+           
         }
 
         // POST: api/Opgave/

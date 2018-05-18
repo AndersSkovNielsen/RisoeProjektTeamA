@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Exceptions;
@@ -38,6 +39,30 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 return opgaveListe;
             }
+        }
+
+        public List<Opgave> HentAlleOpgaverFraUdstyr(int udstyrId)
+        {
+            using (HttpClient client=new HttpClient())
+            {
+                List<Opgave> opgaveListe = new List<Opgave>();
+                string jsonStr = client.GetStringAsync(Uri+ "HentAlleOpgaverForUdstyr/" + udstyrId).Result;
+                try
+                {
+                    opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
+                }
+
+                catch (ParseToEnumException e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                return opgaveListe;
+            }
+            
+               
+            
+            
         }
 
         public Opgave HentEnOpgave(int nr)

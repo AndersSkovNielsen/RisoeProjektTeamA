@@ -16,6 +16,9 @@ namespace ModelLibrary.Model
         public StatusType Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
+        public int UdstyrId { get; set; }
+        //3. iterations property
+        public Udstyr Udstyr { get; set; }
 
         //Senere udvidelser
         //public enum Type { Regulær, Særlig }
@@ -24,16 +27,18 @@ namespace ModelLibrary.Model
 
         public Opgave()
         {
-
+             
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        public Opgave(int id, string beskrivelse, StatusType status, int ventetid)
+        public Opgave(int id, string beskrivelse, StatusType status,int udstyrId, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
             Status = status;
+            UdstyrId = udstyrId;
             VentetidIDage = ventetid;
+            
         }
         
         public Opgave(string beskrivelse, StatusType status, int ventetid)
