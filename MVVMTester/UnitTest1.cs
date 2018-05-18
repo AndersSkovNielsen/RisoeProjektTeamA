@@ -8,8 +8,8 @@ namespace MVVMTester
     [TestClass]
     public class UnitTest1
     {
-        //OpgavePersistenceFacade
-        //public OpgavePersistenceFacade TestFacade = new OpgavePersistenceFacade();
+        OpgavePersistenceFacade
+        public OpgavePersistenceFacade TestFacade = new OpgavePersistenceFacade();
         [TestMethod]
         public void Hentenopgave()
         {
