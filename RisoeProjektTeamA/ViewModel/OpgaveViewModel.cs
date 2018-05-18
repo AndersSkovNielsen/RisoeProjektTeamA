@@ -25,28 +25,26 @@ namespace RisoeProjektTeamA.ViewModel
         {
             OpgaveHandler = new OpgaveHandler(this);
             Logbog = LogbogSingleton.Instance;
-            NyOpgave = new Opgave();
-
+            
             //Ikke relavant for 1. iteration. Måske senere
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
+
+            NyOpgave = new Opgave();
 
             StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
 
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }
-
-        //Pop up test, experiment
-        public RelayCommand PopUpTestCommand { get; set; }
-
-        public RelayCommand AddCommand { get; set; }
-        public RelayCommand RemoveCommand { get; set; }
-        public RelayCommand UpdateCommand { get; set; }
         
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand UpdateCommand { get; set; }
+        public RelayCommand RemoveCommand { get; set; }
+
         //Ikke relavant for 1. iteration, måske senere
-        private Opgave _nyOpgave = null;
+        private Opgave _nyOpgave;
         public Opgave NyOpgave
         {
             get { return _nyOpgave; }
@@ -60,17 +58,6 @@ namespace RisoeProjektTeamA.ViewModel
                 {
                     _nyOpgave = null;
                 }
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _opgaveErValgt;
-        public bool OpgaveErValgt
-        {
-            get { return _opgaveErValgt; }
-            set
-            {
-                _opgaveErValgt = value;
                 OnPropertyChanged();
             }
         }
@@ -95,10 +82,19 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
+        private bool _opgaveErValgt;
+        public bool OpgaveErValgt
+        {
+            get { return _opgaveErValgt; }
+            set
+            {
+                _opgaveErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<StatusType> StatusListe { get; set; }
-
-        public int ValgtIndex { get; set; }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -106,5 +102,13 @@ namespace RisoeProjektTeamA.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        //Pop up test, experiment
+        public RelayCommand PopUpTestCommand { get; set; }
+
+        //Ikke brugt i 2. iteration
+        public int ValgtIndex { get; set; }
+
+        
     }
 }
