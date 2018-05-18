@@ -37,11 +37,10 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,174,0,0" Text="Opgaveliste" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="550" FontSize="36" FontFamily="Segoe UI"/>
         <ListView Name="OpgaveListView" HorizontalAlignment="Left" SelectedItem="{Binding ValgtOpgave, Mode=TwoWay}" Height="260" Margin="10,227,0,0" VerticalAlignment="Top" Width="537" ItemsSource="{Binding Logbog.OpgaveListe}" FontFamily="Segoe UI"/>
         
-        <Button Content="Færdig" HorizontalAlignment="Left" Margin="995,382,0,0" VerticalAlignment="Top" Height="74" Width="181" FontSize="48" Click="Button_Click_Hovedmenu" FontFamily="Segoe UI"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,418,0,0" Text="Bemærkninger:" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="299" FontSize="36" FontFamily="Segoe UI"/>
-        <TextBox HorizontalAlignment="Left" Margin="674,471,0,0" Text="Indtast bemærkning" VerticalAlignment="Top" Height="118" Width="299" FontSize="24"/>
-        <Button Content="Gem opgave" HorizontalAlignment="Left" Margin="994,254,0,0" VerticalAlignment="Top" Height="99" Width="228" FontSize="36"/>
-        <Button Content="Pop Up Test" Command="{Binding PopUpTestCommand}" HorizontalAlignment="Left" Margin="994,136,0,0" VerticalAlignment="Top" Height="87" Width="277" Click="Button_Click" FontSize="48"/>
+        <Button Content="Færdig" HorizontalAlignment="Left" Margin="995,290,0,0" VerticalAlignment="Top" Height="74" Width="181" FontSize="48" Click="Button_Click_Hovedmenu" FontFamily="Segoe UI"/>
+        <TextBlock HorizontalAlignment="Left" Margin="982,394,-1,0" Text="Bemærkninger:" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="299" FontSize="36" FontFamily="Segoe UI"/>
+        <TextBox HorizontalAlignment="Left" Margin="971,460,0,0" Text="Indtast bemærkning" VerticalAlignment="Top" Height="118" Width="299" FontSize="24"/>
+        <Button Content="Gem opgave" HorizontalAlignment="Left" Margin="995,148,0,0" VerticalAlignment="Top" Height="99" Width="228" FontSize="36"/>
 
         <Button Content="Indsæt" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="654,613,0,0" VerticalAlignment="Top" Height="100" Width="200" FontSize="48"/>
         <Button Content="Opdater" Command="{Binding UpdateCommand}" IsEnabled="{Binding OpgaveErValgt}" HorizontalAlignment="Left" Margin="854,613,0,0" VerticalAlignment="Top" Height="100" Width="200" FontSize="48"/>
@@ -58,6 +57,9 @@
         
         <TextBlock HorizontalAlignment="Left" Margin="320,583,0,0" Text="Interval:" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="300" FontSize="24"/>
         <TextBox HorizontalAlignment="Left" Margin="320,632,0,0" Text="{Binding NyOpgave.VentetidIDage, Mode=TwoWay}" VerticalAlignment="Top" Height="50" Width="300" FontSize="24" PlaceholderText="Indtast interval"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="630,492,0,0" Text="Udstyr ID:" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="300" FontSize="24"/>
+        <TextBox HorizontalAlignment="Left" Margin="630,529,0,0" Text="{Binding NyOpgave.UdstyrId, Mode=TwoWay}" VerticalAlignment="Top" Height="50" Width="300" FontSize="24" PlaceholderText="Indtast ID"/>
 
     </Grid>
 </Page>

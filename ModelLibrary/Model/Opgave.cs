@@ -31,14 +31,13 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        public Opgave(int id, string beskrivelse, StatusType status,int udstyrId, int ventetid)
+        public Opgave(int id, string beskrivelse, StatusType status, int udstyrId, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
             Status = status;
             UdstyrId = udstyrId;
             VentetidIDage = ventetid;
-            
         }
         
         public Opgave(string beskrivelse, StatusType status, int ventetid)
@@ -54,6 +53,7 @@ namespace ModelLibrary.Model
             Beskrivelse = opgave.Beskrivelse;
             Status = opgave.Status;
             VentetidIDage = opgave.VentetidIDage;
+            UdstyrId = opgave.UdstyrId;
         }
 
         //Constructor til senere brug med Udstyr udvidelse
