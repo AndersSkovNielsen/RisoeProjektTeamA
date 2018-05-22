@@ -43,9 +43,9 @@ namespace RisoeProjektTeamA.Handler
         public void OpdaterUdstyr()
         {
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
-            int UdstyrID = UdstyrViewModel.ValgtUdstyr.ID;
+            int UdstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
 
-            UdstyrViewModel.Logbog.UFacade.OpdaterEtUdstyr(UdstyrID, Udstyr);
+            UdstyrViewModel.Logbog.UFacade.OpdaterEtUdstyr(UdstyrID, udstyr);
 
             //ListView opdatering
             var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
@@ -62,7 +62,7 @@ namespace RisoeProjektTeamA.Handler
 
         public void SletUdstyr()
         {
-            int UdstyrID = UdstyrViewModel.ValgtUdstyr.ID;
+            int UdstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
 
             UdstyrViewModel.Logbog.UFacade.SletUdstyr(UdstyrID);
 

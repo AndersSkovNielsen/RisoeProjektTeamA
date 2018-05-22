@@ -17,11 +17,11 @@
         <StackPanel Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
-                <TextBox Text="Nyt Udstyr" FontSize="50"/>
+                <TextBlock Text="Nyt Udstyr" FontSize="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <TextBox Text="Udstyrs Type" Width="150"/>
+                    <TextBlock Text="Udstyrs Type" Width="150"/>
                     <ComboBox Width="150">
                         
                     </ComboBox>
@@ -29,7 +29,7 @@
                 <StackPanel Width="200"/>
                 
                 <StackPanel>
-                    <TextBox Text="Station" Width="150"/>
+                    <TextBlock Text="Station" Width="150"/>
                     <ComboBox Width="150">
                         
                     </ComboBox>
@@ -44,7 +44,7 @@
                 <StackPanel Width="300">
                     <StackPanel Height="400" Width="300"/>
                     <Button Width="300" Height="100">
-                        <TextBox Text="Opret Udstyr" FontSize="30"/>
+                        <TextBlock Text="Opret Udstyr" FontSize="30"/>
                     </Button>
                 </StackPanel>
             </StackPanel>

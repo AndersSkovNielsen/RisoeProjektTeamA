@@ -31,12 +31,12 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        public Opgave(int id, string beskrivelse, StatusType status, int udstyrId, int ventetid)
+        public Opgave(int id, string beskrivelse, StatusType status, int opgaveId, int ventetid)
         {
             ID = id;
             Beskrivelse = beskrivelse;
             Status = status;
-            UdstyrId = udstyrId;
+            UdstyrId = Udstyr.UdstyrId;
             VentetidIDage = ventetid;
         }
         

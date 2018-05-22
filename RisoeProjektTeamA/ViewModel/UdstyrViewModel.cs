@@ -70,15 +70,15 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
-        private Opgave _valgtUdstyr;
-        public Opgave ValgtUdstyr
+        private Udstyr _valgtUdstyr;
+        public Udstyr ValgtUdstyr
         {
             get { return _valgtUdstyr; }
             set
             {
                 if (value != null)
                 {
-                    _valgtUdstyr = new Opgave(value);
+                    _valgtUdstyr = new Udstyr(value);
                     NytUdstyr = value;
                     UdstyrErValgt = true;
                 }
