@@ -20,15 +20,15 @@ namespace ModelLibrary.Model
         //slut på ny prop
         public DateTime Installationsdato { get; set; }
         public DateTime NæsteTjekDato { get; set; }
-        public DateTime TidtilNæsteTjek { get; set; }
+        public DateTime SidsteTjekDato { get; set; }
         public string Beskrivelse { get; set; }
 
 
-        public Udstyr(int udstyrId, DateTime installationsdato, DateTime næsteTjekDato, DateTime tidtilNæsteTjek, string beskrivelse)
+        public Udstyr(int udstyrId, DateTime installationsdato, DateTime næsteTjekDato, DateTime sidsteTjek, string beskrivelse)
         {
             Installationsdato = installationsdato;
             NæsteTjekDato = næsteTjekDato;
-            TidtilNæsteTjek = tidtilNæsteTjek;
+            SidsteTjekDato = sidsteTjek;
             Beskrivelse = beskrivelse;
 
         }
@@ -42,7 +42,7 @@ namespace ModelLibrary.Model
         {
             Installationsdato = udstyr.Installationsdato;
             NæsteTjekDato = udstyr.NæsteTjekDato;
-            TidtilNæsteTjek = udstyr.TidtilNæsteTjek;
+            SidsteTjekDato = udstyr.SidsteTjekDato;
             Beskrivelse = udstyr.Beskrivelse;
         }
     }

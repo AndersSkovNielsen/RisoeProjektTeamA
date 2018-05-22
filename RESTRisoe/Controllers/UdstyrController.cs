@@ -31,15 +31,16 @@ namespace RESTRisoe.Controllers
         [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
         public IEnumerable<Opgave> GetFromUdstyr(int udstyrId)
         {
-            try
-            {
-                return manager.HentAlleOpgaverForUdstyr(udstyrId);
-            }
-            catch (ParseToEnumException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw ex; //ex  håndteres i MVVMRisoe 
-            }
+            //try
+            //{
+            //    return manager.HentAlleOpgaverForUdstyr(udstyrId);
+            //}
+            //catch (ParseToEnumException ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //    throw ex; //ex  håndteres i MVVMRisoe 
+            //}
+            return null;
         }
 
         // GET: api/Udstyr/5
@@ -69,10 +70,10 @@ namespace RESTRisoe.Controllers
             return manager.OpdaterUdstyr(value, id);
         }
 
-        // DELETE: api/OUdstyr/5
+        // DELETE: api/Udstyr/5
         public Udstyr Delete(int id)
         {
-            return manager.SletUdstyr(id);
+            return null; /*manager.SletUdstyr(id);*/
         }
     }
 }
