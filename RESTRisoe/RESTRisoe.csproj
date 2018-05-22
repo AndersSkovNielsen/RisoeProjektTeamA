@@ -179,9 +179,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OpgaveController.cs" />
+    <Compile Include="Controllers\UdstyrController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DBUtil\IManageOpgave.cs" />
+    <Compile Include="DBUtil\IManageUdstyr.cs" />
     <Compile Include="DBUtil\ManageOpgave.cs" />
+    <Compile Include="DBUtil\ManageUdstyr.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -182,7 +182,7 @@ namespace RESTRisoe.DBUtil
         }
 
         //ny metode skal opdateret i dokumentation 09/05
-        private void CheckEnumParse(StatusType checkStatus,int checkId)
+        private void CheckEnumParseO(StatusType checkStatus,int checkId)
         {
             if (!(checkStatus == StatusType.Fejlet ||
                   checkStatus == StatusType.IkkeLøst ||
