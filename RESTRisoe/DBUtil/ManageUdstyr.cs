@@ -54,15 +54,30 @@ namespace RESTRisoe.DBUtil
                     //opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
 
                     //Brug af ReadOpgave metode (DRY)
-                    /*udstyr.Add(ReadUdstyr(reader));*/
+                    udstyr.Add(ReadUdstyr(reader));
                 }
             }
             return udstyr;
         }
 
-        public List<Udstyr> HentAlleOpgaverForUdstyr(int udstyrId)
+        public List<Opgave> HentAltUdstyrForStation(int udstyrId)
         {
-            throw new NotImplementedException();
+            List<Opgave> opgaver = new List<Opgave>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryFromUdstyrString, connection);
+                command.Parameters.AddWithValue("@UdstyrId", udstyrId);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    //opgaver.Add(ReadOpgave(reader));
+                }
+            }
+            return opgaver;
         }
 
         public Udstyr HentUdstyrFraId(int id)
@@ -91,81 +106,119 @@ namespace RESTRisoe.DBUtil
                 }
                 return null; //Kan vi skrive dette?
             }
+        }
 
-            /*public*/ bool IndsætUdstyr(Udstyr udstyr)
+        
+
+        
+
+
+
+        private void CheckEnumParseU(Udstyr.uType checkType, int checkId)
+        {
+            if (!(checkType == Udstyr.uType.type1 ||
+                  checkType == Udstyr.uType.type2 ||
+                  checkType == Udstyr.uType.type3 ||
+                  checkType == Udstyr.uType.type4))
             {
-                return true;
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
             }
+        }
 
-           /* public*/ bool OpdaterUdstyr(Udstyr udstyr, int udsid)
+        private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
+        {
+            int udstyrId = reader.GetInt32(0);
+            String beskrivelse = reader.GetString(4);
+            Udstyr.uType type = Udstyr.uType.type1;
+            try
             {
-                return true;
-            }
+                String TypeStr = reader.GetString(2);
+                type = (Udstyr.uType) Enum.Parse(typeof(Udstyr.uType), TypeStr);
 
-           /* public*/ Udstyr SletUdstyr(int uid)
-            {
-                Udstyr udstyr = HentUdstyrFraId(id);
-                if (udstyr == null)
-                {
-                    return null;
-                }
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(deleteSql, connection);
-                    command.Parameters.AddWithValue("@ID", id);
-
-                    command.Connection.Open();
-
-                    int noOfRows = command.ExecuteNonQuery();
-
-                    if (noOfRows == 1)
-                    {
-                        return udstyr;
-                    }
-                    return null;
-                }
-            }
-
-           /* private*/ void CheckEnumParseU(Udstyr.Type checkType, int checkId)
-            {
-                if (!(checkType == Udstyr.Type.type1 ||
-                      checkType == Udstyr.Type.type2 ||
-                      checkType == Udstyr.Type.type3 || 
-                      checkType == Udstyr.Type.type4))
-                {
-                    int exId = checkId;
-                    throw new ParseToEnumException(exId);
-                }
-            }
-            /*private*/ Udstyr ReadUdstyr(SqlDataReader reader)
-            {
-                int UdstyrId = reader.GetInt32(0);
-                String beskrivelse = reader.GetString(6);
-                Udstyr.Type type = Udstyr.Type.type1;
-                try
-                {
-                    String TypeStr = reader.GetString(2);
-                    type = (Udstyr.Type)Enum.Parse(typeof(Udstyr.Type), TypeStr);
-                    CheckEnumParseU(type, id);
-                }
-                catch (ParseToEnumException)
-                {
-                    ParseToEnumException parseFailEx = new ParseToEnumException(id);
-                    string log = parseFailEx.ToString(); 
-
-                }
-
-                //String statusStr = reader.GetString(2);
-                //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                //checkEnumParse(status, id);
                
-                int statId= reader.GetInt32(1);
-                DateTime instDato = reader.GetDateTime(3);
-                DateTime sidstDato = reader.GetDateTime(4);
-                DateTime næstDato = reader.GetDateTime(5);
-                return new Udstyr(UdstyrId,instDato,næstDato,sidstDato,beskrivelse);
+                CheckEnumParseU(type, udstyrId);
             }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(udstyrId);
+                string log = parseFailEx.ToString();
+
+            }
+
+            //String statusStr = reader.GetString(2);
+            //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+            //checkEnumParse(status, id);
+
+            int statId = reader.GetInt32(1);
+            DateTime instDato = reader.GetDateTime(3);
+            //Sidstetjek og næstetjek skal slettes fra udstyrklassen
+            return new Udstyr(udstyrId, instDato, new DateTime(2018, 2,1), new DateTime(2018, 3, 3), beskrivelse, type);
+        }
+
+
+        public bool IndsætUdstyr(Udstyr udstyr)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(insertSql, connection);
+                //command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
+                //command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
+                //command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
+                //command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+
+                //Brug af TilføjVærdiOpgave metode (DRY)
+                TilføjVærdiUdstyr(udstyr, command);
+
+                command.Connection.Open();
+
+                int noOfRows = command.ExecuteNonQuery();
+
+                if (noOfRows == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool OpdaterUdstyr(Udstyr udstyr, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Udstyr SletUdstyr(int id)
+        {
+            Udstyr udstyr = HentUdstyrFraId(id);
+            if (udstyr == null)
+            {
+                return null;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(deleteSql, connection);
+                command.Parameters.AddWithValue("@ID", id);
+
+                command.Connection.Open();
+
+                int noOfRows = command.ExecuteNonQuery();
+
+                if (noOfRows == 1)
+                {
+                    return udstyr;
+                }
+                return null;
+            }
+        }
+        private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
+        {
+            command.Parameters.AddWithValue("@UdstyrID", udstyr.UdstyrId);
+            command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
+            command.Parameters.AddWithValue("@Status", udstyr.Type.ToString());
+            command.Parameters.AddWithValue("@Installationsdato", udstyr.Installationsdato);
+            command.Parameters.AddWithValue("@SidsteTjekDato", udstyr.SidsteTjekDato);
+            command.Parameters.AddWithValue("@NæsteTjekDato", udstyr.NæsteTjekDato);
         }
     }
 }

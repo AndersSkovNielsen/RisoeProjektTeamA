@@ -218,7 +218,7 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, udstyrId, ventetid);
+            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyrId); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)

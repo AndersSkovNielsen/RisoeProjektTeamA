@@ -42,7 +42,7 @@ namespace RisoeProjektTeamA.ViewModel
 
             NytUdstyr = new Udstyr();
 
-            TypeListe = new List<Udstyr.Type>() { Udstyr.Type.type1, Udstyr.Type.type2, Udstyr.Type.type3, Udstyr.Type.type4 };
+            TypeListe = new List<Udstyr.uType>() { Udstyr.uType.type1, Udstyr.uType.type2, Udstyr.uType.type3, Udstyr.uType.type4 };
 
             
         }
@@ -101,7 +101,7 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
-        public List<Udstyr.Type> TypeListe { get; set; }
+        public List<Udstyr.uType> TypeListe { get; set; }
 
         
     
