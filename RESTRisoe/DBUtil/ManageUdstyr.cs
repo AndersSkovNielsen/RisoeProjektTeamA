@@ -89,20 +89,21 @@ namespace RESTRisoe.DBUtil
                 }
             }
 
-            public bool IndsætUdstyr(Udstyr udstyr)
-            {
-                throw new NotImplementedException();
-            }
+            
+        }
+        public bool IndsætUdstyr(Udstyr udstyr)
+        {
+            throw new NotImplementedException();
+        }
 
-            public bool OpdaterUdstyr(Udstyr udstyr, int id)
-            {
-                throw new NotImplementedException();
-            }
+        public bool OpdaterUdstyr(Udstyr udstyr, int id)
+        {
+            throw new NotImplementedException();
+        }
 
-            public Udstyr SletUdstyr(int id)
-            {
-                throw new NotImplementedException();
-            }
+        public Udstyr SletUdstyr(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
