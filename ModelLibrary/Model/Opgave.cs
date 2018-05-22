@@ -16,7 +16,7 @@ namespace ModelLibrary.Model
         public StatusType Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
-        public int UdstyrId { get; set; }
+        public int UdstyrId { get; set; } //slettes måske, hvis den er overflødig?
         //3. iterations property
         public Udstyr Udstyr { get; set; }
 

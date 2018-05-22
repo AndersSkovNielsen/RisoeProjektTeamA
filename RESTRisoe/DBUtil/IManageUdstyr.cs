@@ -14,7 +14,7 @@ namespace RESTRisoe.DBUtil
         Udstyr HentUdstyrFraId(int id);
         bool IndsætUdstyr(Udstyr udstyr);
         bool OpdaterUdstyr(Udstyr udstyr, int id);
-        Udstyr SletUdstyr(int id);
+        Udstyr SletOpgave(int id);
     }
 }
-}
+

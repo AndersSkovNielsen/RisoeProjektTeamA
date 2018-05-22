@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
+using ModelLibrary.Exceptions;
 using ModelLibrary.Model;
 
 namespace RESTRisoe.DBUtil
@@ -52,7 +54,7 @@ namespace RESTRisoe.DBUtil
                     //opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
 
                     //Brug af ReadOpgave metode (DRY)
-                    udstyr.Add(ReadUdstyr(reader));
+                    /*udstyr.Add(ReadUdstyr(reader));*/
                 }
             }
             return udstyr;
@@ -68,7 +70,7 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryStringFromID, connection);
-                command.Parameters.AddWithValue("@ID", UdstyrId);
+                command.Parameters.AddWithValue("@ID", id);
 
                 command.Connection.Open();
 
@@ -87,21 +89,82 @@ namespace RESTRisoe.DBUtil
                     //Brug af ReadOpgave metode:
                     return ReadUdstyr(reader);
                 }
+                return null; //Kan vi skrive dette?
             }
 
-            public bool IndsætUdstyr(Udstyr udstyr)
+            /*public*/ bool IndsætUdstyr(Udstyr udstyr)
             {
-                throw new NotImplementedException();
+                return true;
             }
 
-            public bool OpdaterUdstyr(Udstyr udstyr, int id)
+           /* public*/ bool OpdaterUdstyr(Udstyr udstyr, int udsid)
             {
-                throw new NotImplementedException();
+                return true;
             }
 
-            public Udstyr SletUdstyr(int id)
+           /* public*/ Udstyr SletUdstyr(int uid)
             {
-                throw new NotImplementedException();
+                Udstyr udstyr = HentUdstyrFraId(id);
+                if (udstyr == null)
+                {
+                    return null;
+                }
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(deleteSql, connection);
+                    command.Parameters.AddWithValue("@ID", id);
+
+                    command.Connection.Open();
+
+                    int noOfRows = command.ExecuteNonQuery();
+
+                    if (noOfRows == 1)
+                    {
+                        return udstyr;
+                    }
+                    return null;
+                }
+            }
+
+           /* private*/ void CheckEnumParseU(Udstyr.Type checkType, int checkId)
+            {
+                if (!(checkType == Udstyr.Type.type1 ||
+                      checkType == Udstyr.Type.type2 ||
+                      checkType == Udstyr.Type.type3 || 
+                      checkType == Udstyr.Type.type4))
+                {
+                    int exId = checkId;
+                    throw new ParseToEnumException(exId);
+                }
+            }
+            /*private*/ Udstyr ReadUdstyr(SqlDataReader reader)
+            {
+                int UdstyrId = reader.GetInt32(0);
+                String beskrivelse = reader.GetString(6);
+                Udstyr.Type type = Udstyr.Type.type1;
+                try
+                {
+                    String TypeStr = reader.GetString(2);
+                    type = (Udstyr.Type)Enum.Parse(typeof(Udstyr.Type), TypeStr);
+                    CheckEnumParseU(type, id);
+                }
+                catch (ParseToEnumException)
+                {
+                    ParseToEnumException parseFailEx = new ParseToEnumException(id);
+                    string log = parseFailEx.ToString(); 
+
+                }
+
+                //String statusStr = reader.GetString(2);
+                //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                //checkEnumParse(status, id);
+               
+                int statId= reader.GetInt32(1);
+                DateTime instDato = reader.GetDateTime(3);
+                DateTime sidstDato = reader.GetDateTime(4);
+                DateTime næstDato = reader.GetDateTime(5);
+                return new Udstyr(UdstyrId,instDato,næstDato,sidstDato,beskrivelse);
             }
         }
     }

@@ -203,7 +203,7 @@ namespace RESTRisoe.DBUtil
             {
                 String statusStr = reader.GetString(2);
                 status = (StatusType) Enum.Parse(typeof(StatusType), statusStr);
-                CheckEnumParse(status, id);
+                CheckEnumParseO(status, id);
             }
             catch (ParseToEnumException)
             {
