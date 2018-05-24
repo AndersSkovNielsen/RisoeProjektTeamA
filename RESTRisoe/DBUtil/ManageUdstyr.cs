@@ -18,7 +18,8 @@ namespace RESTRisoe.DBUtil
         //Sql strings skal tjekkes pga. manglende adgang til DB 22/05
         private String queryString = "select * from RisoeUdstyr";
 
-        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId= @udstyrId";
+        private string queryFromStationString = "select * from RisoeUdstyr where StationId = @StationId";
+
         private String queryStringFromID = "select * from RisoeUdstyr where ID = @ID";
 
         private String insertSql =
@@ -50,24 +51,24 @@ namespace RESTRisoe.DBUtil
             return udstyr;
         }
 
-        public List<Opgave> HentAltUdstyrForStation(int udstyrId)
+        public List<Udstyr> HentAltUdstyrForStation(int stationId)
         {
-            List<Opgave> opgaver = new List<Opgave>();
+            List<Udstyr> udstyr = new List<Udstyr>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(queryFromUdstyrString, connection);
-                command.Parameters.AddWithValue("@UdstyrId", udstyrId);
+                SqlCommand command = new SqlCommand(queryFromStationString, connection);
+                command.Parameters.AddWithValue("@StationId", stationId);
 
                 command.Connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //opgaver.Add(ReadOpgave(reader));
+                    udstyr.Add(ReadUdstyr(reader));
                 }
             }
-            return opgaver;
+            return udstyr;
         }
 
         public Udstyr HentUdstyrFraId(int id)

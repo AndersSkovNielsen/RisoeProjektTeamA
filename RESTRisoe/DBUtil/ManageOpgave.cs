@@ -18,7 +18,7 @@ namespace RESTRisoe.DBUtil
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private String queryString = "select * from RisoeOpgave";
-        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId= @udstyrId";
+        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId = @UdstyrId";
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
         private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid, @UdstyrID)";
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
@@ -56,7 +56,6 @@ namespace RESTRisoe.DBUtil
         //3. iterationsmetode
         
         public List<Opgave> HentAlleOpgaverForUdstyr(int udstyrId)
-        
         {
             List<Opgave> opgaver = new List<Opgave>();
 

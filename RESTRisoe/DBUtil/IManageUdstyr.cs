@@ -10,7 +10,7 @@ namespace RESTRisoe.DBUtil
     public interface IManageUdstyr
     {
         List<Udstyr> HentAltUdstyr();
-        List<Opgave> HentAltUdstyrForStation(int udstyrId);
+        List<Udstyr> HentAltUdstyrForStation(int stationId);
         Udstyr HentUdstyrFraId(int id);
         bool IndsætUdstyr(Udstyr udstyr);
         bool OpdaterUdstyr(Udstyr udstyr, int id);
