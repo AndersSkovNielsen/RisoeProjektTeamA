@@ -160,17 +160,6 @@ namespace RESTRisoe.DBUtil
             }
         }
 
-        private void CheckEnumParseU(uType checkType, int checkId)
-        {
-            if (!(checkType == uType.Filter ||
-                  checkType == uType.Termometer ||
-                  checkType == uType.Lufttrykmåler))
-            {
-                int exId = checkId;
-                throw new ParseToEnumException(exId);
-            }
-        }
-
         //Hjælpemetoder
         private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
         {
@@ -204,6 +193,17 @@ namespace RESTRisoe.DBUtil
             command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
             command.Parameters.AddWithValue("@Status", udstyr.Type.ToString());
             command.Parameters.AddWithValue("@Installationsdato", udstyr.Installationsdato);
+        }
+
+        private void CheckEnumParseU(uType checkType, int checkId)
+        {
+            if (!(checkType == uType.Filter ||
+                  checkType == uType.Termometer ||
+                  checkType == uType.Lufttrykmåler))
+            {
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
+            }
         }
     }
 }

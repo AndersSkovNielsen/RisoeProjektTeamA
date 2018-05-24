@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Model;
+using ModelLibrary.Exceptions;
 
 namespace RisoeConsumeDatabase
 {
@@ -44,7 +45,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
 
-            Opgave OP = new Opgave(10,"test",StatusType.IkkeLøst,1,2,3);
+            Opgave OP = new Opgave(10,"test",StatusType.IkkeLøst,1,2, HentUdstyrFraId(3));
 
             IndsætOpgave(OP);
 
@@ -58,7 +59,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
 
-            Opgave NewOP = new Opgave(10,"test2",StatusType.Løst,2,3,1);
+            Opgave NewOP = new Opgave(10,"test2",StatusType.Løst,2,3, HentUdstyrFraId(1));
 
             OpdaterOpgave(NewOP, 10);
 
@@ -89,7 +90,7 @@ namespace RisoeConsumeDatabase
 
         private String queryString = "select * from RisoeOpgave";
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
-        private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid)";
+        private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid, @UdstyrID)";
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
         private String updateSql = "update RisoeOpgave " +
                                    "set ID = @OpgaveID, Beskrivelse = @Beskrivelse, Status = @Status, VentetidIDage = @Ventetid " +
@@ -107,7 +108,6 @@ namespace RisoeConsumeDatabase
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //Brug af ReadOpgave metode (DRY)
                     opgaver.Add(ReadOpgave(reader));
                 }
             }
@@ -126,7 +126,6 @@ namespace RisoeConsumeDatabase
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    //Brug af ReadOpgave metode:
                     return ReadOpgave(reader);
                 }
             }
@@ -138,8 +137,7 @@ namespace RisoeConsumeDatabase
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(insertSql, connection);
-                
-                //Brug af TilføjVærdiOpgave metode (DRY)
+
                 TilføjVærdiOpgave(opgave, command);
 
                 command.Connection.Open();
@@ -160,7 +158,6 @@ namespace RisoeConsumeDatabase
             {
                 SqlCommand command = new SqlCommand(updateSql, connection);
                 
-                //Brug af TilføjVærdiOpgave metode (DRY)
                 TilføjVærdiOpgave(opgave, command);
                 command.Parameters.AddWithValue("@ID", opgaveID);
 
@@ -201,17 +198,43 @@ namespace RisoeConsumeDatabase
             }
         }
 
+        private void CheckEnumParseO(StatusType checkStatus, int checkId)
+        {
+            if (!(checkStatus == StatusType.Fejlet ||
+                  checkStatus == StatusType.IkkeLøst ||
+                  checkStatus == StatusType.Løst))
+            {
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
+            }
+        }
+
         //HentAlle og HentFraID (DRY)
         private Opgave ReadOpgave(SqlDataReader reader)
         {
             int id = reader.GetInt32(0);
             String beskrivelse = reader.GetString(1);
-            String statusStr = reader.GetString(2);
-            StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+
+            StatusType status = StatusType.IkkeLøst;
+            try
+            {
+                String statusStr = reader.GetString(2);
+                status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                CheckEnumParseO(status, id);
+            }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(id);
+                string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
+
+            }
+
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id,beskrivelse,status,id,ventetid,udstyrId);
+            Udstyr udstyr = HentUdstyrFraId(udstyrId);
+
+            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)
@@ -221,6 +244,65 @@ namespace RisoeConsumeDatabase
             command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
             command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
             command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
+            command.Parameters.AddWithValue("@UdstyrID", opgave.Udstyr.UdstyrId);
+        }
+
+        //Extra hjælp for at hente udstyr
+        private String queryStringFromIDUdstyr = "select * from RisoeUdstyr where UdstyrId = @UdstyrId";
+
+        public Udstyr HentUdstyrFraId(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryStringFromIDUdstyr, connection);
+                command.Parameters.AddWithValue("@UdstyrId", id);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return ReadUdstyr(reader);
+                }
+            }
+            return null; //Kan vi skrive dette?
+        }
+
+        private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
+        {
+            int udstyrId = reader.GetInt32(0);
+            int stationId = reader.GetInt32(1);
+
+            uType type = uType.Filter;
+            try
+            {
+                string typeStr = reader.GetString(2);
+                type = (uType)Enum.Parse(typeof(uType), typeStr);
+
+                CheckEnumParseU(type, udstyrId);
+            }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(udstyrId);
+                string log = parseFailEx.ToString();
+
+            }
+
+            DateTime instDato = reader.GetDateTime(3);
+            string beskrivelse = reader.GetString(4);
+
+            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+        }
+
+        private void CheckEnumParseU(uType checkType, int checkId)
+        {
+            if (!(checkType == uType.Filter ||
+                  checkType == uType.Termometer ||
+                  checkType == uType.Lufttrykmåler))
+            {
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
+            }
         }
     }
 }

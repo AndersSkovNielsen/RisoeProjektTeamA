@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ModelLibrary.Exceptions;
 using ModelLibrary.Model;
 using Newtonsoft.Json;
 
@@ -47,7 +49,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af indsætning af en opgave (Opgave 10).");
             Console.WriteLine("Her indsættets en ny opgave, opgave 10, som så bliver vist bagefter.");
             Console.WriteLine("");
-            Opgave testOpgave10 = new Opgave(10,"en testopgave",StatusType.IkkeLøst,2,4,2);
+            Opgave testOpgave10 = new Opgave(10,"en testopgave",StatusType.IkkeLøst,2,4,HentUdstyrFraId(2));
 
             IndsætOpgave(testOpgave10);
 
@@ -61,7 +63,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af opdatering af en opgave (Opgave 10).");
             Console.WriteLine("Her ser vi den nuværende opgave 10, som så bliver opdateret og skrevet ud igen.");
             Console.WriteLine("");
-            testOpgave10 = new Opgave(10,"Test af opdatering",StatusType.IkkeLøst,5,7,3);
+            testOpgave10 = new Opgave(10,"Test af opdatering",StatusType.IkkeLøst,5,7,HentUdstyrFraId(3));
 
             Console.WriteLine("Nuværende:\n" + HentEnOpgave(10));
 
@@ -97,17 +99,23 @@ namespace RisoeConsumeRest
         {
             using (HttpClient client = new HttpClient())
             {
-                string jsonStr = client.GetStringAsync(Uri).Result; // info fra body
-                List<Opgave> opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
+                List<Opgave> opgaveListe = new List<Opgave>();
+                string jsonStr = client.GetStringAsync(Uri).Result;
+                opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
+                
                 return opgaveListe;
             }
         }
+        
         public Opgave HentEnOpgave(int nr)
         {
             using (HttpClient client = new HttpClient())
             {
                 string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
-                Opgave opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
+                Opgave opgave = new Opgave();
+
+                opgave = JsonConvert.DeserializeObject<Opgave>(jsonStr);
+
                 return opgave;
             }
         }
@@ -129,6 +137,7 @@ namespace RisoeConsumeRest
                     return res;
                 }
             }
+
             return false;
         }
 
@@ -149,6 +158,7 @@ namespace RisoeConsumeRest
                     return res;
                 }
             }
+
             return false;
         }
 
@@ -165,7 +175,71 @@ namespace RisoeConsumeRest
                     return opgave;
                 }
             }
+
             return null;
+        }
+
+        //Hjælp til at hente udstyr
+        private String connectionString =
+            @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        ;
+
+        private String queryStringFromID = "select * from RisoeUdstyr where UdstyrId = @UdstyrId";
+
+
+        public Udstyr HentUdstyrFraId(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryStringFromID, connection);
+                command.Parameters.AddWithValue("@UdstyrId", id);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return ReadUdstyr(reader);
+                }
+            }
+            return null; //Kan vi skrive dette?
+        }
+
+        private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
+        {
+            int udstyrId = reader.GetInt32(0);
+            int stationId = reader.GetInt32(1);
+
+            uType type = uType.Filter;
+            try
+            {
+                string typeStr = reader.GetString(2);
+                type = (uType)Enum.Parse(typeof(uType), typeStr);
+
+                CheckEnumParseU(type, udstyrId);
+            }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(udstyrId);
+                string log = parseFailEx.ToString();
+
+            }
+
+            DateTime instDato = reader.GetDateTime(3);
+            string beskrivelse = reader.GetString(4);
+
+            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+        }
+
+        private void CheckEnumParseU(uType checkType, int checkId)
+        {
+            if (!(checkType == uType.Filter ||
+                  checkType == uType.Termometer ||
+                  checkType == uType.Lufttrykmåler))
+            {
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
+            }
         }
     }
 }
