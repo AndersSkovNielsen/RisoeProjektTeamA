@@ -27,19 +27,19 @@ namespace RESTRisoe.Controllers
             }
         }
 
-        //Get: api/Udstyr/HentAlleOpgaverForUdstyr/1
-        [Route("api/Opgave/HentAltUdstyrForStation/{stationNr:int}")]
-        public IEnumerable<Opgave> GetFromUdstyr(int stationNr)
+        //Get: api/Udstyr/HentAltUdstyrForStation/1
+        [Route("api/Opgave/HentAltUdstyrForStation/{stationId:int}")]
+        public IEnumerable<Udstyr> GetFromStation(int stationId)
         {
-            //try
-            //{
-            //    return manager.HentAlleOpgaverForUdstyr(udstyrId);
-            //}
-            //catch (ParseToEnumException ex)
-            //{
-            //    Console.WriteLine(ex.ToString());
-            //    throw ex; //ex  håndteres i MVVMRisoe 
-            //}
+            try
+            {
+                return manager.HentAltUdstyrForStation(stationId);
+            }
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex; //ex  håndteres i MVVMRisoe 
+            }
             return null;
         }
 
