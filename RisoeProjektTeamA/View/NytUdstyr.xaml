@@ -13,6 +13,12 @@
 
         </Style>
 
+        <Style x:Key="TextBlockDefault" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Width" Value="150"/>
+
+        </Style>
+
         <Style x:Key="ComboBoxDefault" TargetType="ComboBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Width" Value="150"/>
@@ -30,38 +36,39 @@
         <StackPanel Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
-                <TextBlock Text="Nyt Udstyr" FontSize="50"/>
+                <TextBlock Text="Nyt Udstyr" Style="{StaticResource TextBlockTitle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <TextBlock Text="Udstyrs Type" Width="150"/>
+                    <TextBlock Text="Udstyrs Type" Style="{StaticResource TextBlockDefault}"/>
                     <ComboBox Width="150">
-                        
+
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Width="200"/>
-                
+
                 <StackPanel>
-                    <TextBlock Text="Station" Width="150"/>
+                    <TextBlock Text="Station" Style="{StaticResource TextBlockDefault}"/>
                     <ComboBox Width="150">
-                        
+
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Width="500" Height="500">
-                    <TextBlock Text="properties til" Style="{StaticResource TextBlock}" Margin="5,5,5,5"/>
-                    <TextBlock Text="udfyldning af de " Style="{StaticResource TextBlock}" Margin="5,5,5,5"/>
-                    <TextBlock Text="forskellige udstyrs typer" Style="{StaticResource TextBlock}" Margin="5,5,5,5"/>
+                    <TextBlock Text="properties til" Style="{StaticResource TextBlockDefault}" Margin="5,5,5,5"/>
+                    <TextBlock Text="udfyldning af de " Style="{StaticResource TextBlockDefault}" Margin="5,5,5,5"/>
+                    <TextBlock Text="forskellige udstyrs typer" Style="{StaticResource TextBlockDefault}" Margin="5,5,5,5"/>
                 </StackPanel>
                 <StackPanel Width="300">
                     <StackPanel Height="400" Width="300"/>
                     <Button Width="300" Height="100">
-                        <TextBlock Text="Opret Udstyr" FontSize="30"/>
+                        <TextBlock Text="Opret Udstyr" Style="{StaticResource TextBlockTitle}"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        
+
+
     </Grid>
 </Page>
