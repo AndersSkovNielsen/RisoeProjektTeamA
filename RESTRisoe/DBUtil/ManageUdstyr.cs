@@ -18,18 +18,18 @@ namespace RESTRisoe.DBUtil
         //Sql strings skal tjekkes pga. manglende adgang til DB 22/05
         private String queryString = "select * from RisoeUdstyr";
 
-        private string queryFromStationString = "select * from RisoeUdstyr where StationId = @StationId";
+        private string queryFromStationString = "select * from RisoeUdstyr where StationNr = @StationNr";
 
-        private String queryStringFromID = "select * from RisoeUdstyr where ID = @ID";
+        private String queryStringFromID = "select * from RisoeUdstyr where UdstyrId = @UdstyrId";
 
         private String insertSql =
-                "insert into RisoeUdstyr Values (@UdstyrID, @StationNr, @Type, @Installationsdato, @SidsteTjekDato, @NæsteTjekDato, @Beskrivelse)"
+                "insert into RisoeUdstyr Values (@UdstyrID, @StationNr, @Type, @Installationsdato, @Beskrivelse)"
             ;
 
         private String deleteSql = "delete from RisoeOpgave where UdstyrID = @UdstyrID";
 
         private String updateSql = "update RisoeUdstyr " +
-                                   "set UdstyrID = @UdstyrID, StationNr= @StationNr, Type= @Type, Installationsdato= @Installationsdato, SidsteTjekDato= @SidsteTjekDato, NæsteTjekDato= @NæsteTjekDato, Beskrivelse= @Beskrivelse"
+                                   "set UdstyrID = @UdstyrID, StationNr= @StationNr, Type= @Type, Installationsdato= @Installationsdato, Beskrivelse= @Beskrivelse"
             ;
         //slut på Sql Strings
 
@@ -58,7 +58,7 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryFromStationString, connection);
-                command.Parameters.AddWithValue("@StationId", stationId);
+                command.Parameters.AddWithValue("@StationNr", stationId);
 
                 command.Connection.Open();
 
@@ -76,7 +76,7 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryStringFromID, connection);
-                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@UdstyrId", id);
 
                 command.Connection.Open();
 
@@ -124,7 +124,7 @@ namespace RESTRisoe.DBUtil
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
             //Sidstetjek og næstetjek skal slettes fra udstyrklassen
-            return new Udstyr(udstyrId, instDato, /*new DateTime(2018, 2,1), new DateTime(2018, 3, 3),*/ beskrivelse, type);
+            return new Udstyr(udstyrId,  instDato, /*new DateTime(2018, 2,1), new DateTime(2018, 3, 3),*/ beskrivelse, type);
         }
 
 

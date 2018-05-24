@@ -28,8 +28,8 @@ namespace RESTRisoe.Controllers
         }
 
         //Get: api/Udstyr/HentAlleOpgaverForUdstyr/1
-        [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
-        public IEnumerable<Opgave> GetFromUdstyr(int udstyrId)
+        [Route("api/Opgave/HentAltUdstyrForStation/{stationNr:int}")]
+        public IEnumerable<Opgave> GetFromUdstyr(int stationNr)
         {
             //try
             //{

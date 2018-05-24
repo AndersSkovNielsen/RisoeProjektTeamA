@@ -13,7 +13,9 @@ namespace ModelLibrary.Model
         type3,
         type4,
         Filter,//tilføjet til test. skal slettes
-        filter//tilføjet til test. skal slettes
+        filter,//tilføjet til test. skal slettes
+        Termometer,
+        Lufttrykmåler,
     }
 
     public class Udstyr
@@ -30,12 +32,12 @@ namespace ModelLibrary.Model
 
         public Udstyr(int udstyrId, DateTime installationsdato, /*DateTime næsteTjekDato, DateTime sidsteTjek,*/ string beskrivelse, uType type)
         {
+            UdstyrId = udstyrId;
             Installationsdato = installationsdato;
             //NæsteTjekDato = næsteTjekDato;
             //SidsteTjekDato = sidsteTjek;
             Beskrivelse = beskrivelse;
             Type = type;
-
         }
 
         public Udstyr()
@@ -45,10 +47,12 @@ namespace ModelLibrary.Model
 
         public Udstyr(Udstyr udstyr)
         {
+            UdstyrId = udstyr.UdstyrId;
             Installationsdato = udstyr.Installationsdato;
             //NæsteTjekDato = udstyr.NæsteTjekDato;
             //SidsteTjekDato = udstyr.SidsteTjekDato;
             Beskrivelse = udstyr.Beskrivelse;
+            Type = udstyr.Type;
         }
     }
 }
