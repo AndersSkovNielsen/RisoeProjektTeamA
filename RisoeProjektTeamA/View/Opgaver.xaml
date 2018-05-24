@@ -74,7 +74,7 @@
         <TextBox HorizontalAlignment="Left" Margin="320,632,0,0" Text="{Binding NyOpgave.VentetidIDage, Mode=TwoWay}" VerticalAlignment="Top" Height="50" Width="300" FontSize="24" PlaceholderText="Indtast interval"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="630,492,0,0" Text="Udstyr ID:" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="300" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Margin="630,529,0,0" Text="{Binding NyOpgave.UdstyrId, Mode=TwoWay}" VerticalAlignment="Top" Height="50" Width="300" FontSize="24" PlaceholderText="Indtast ID"/>
+        <TextBox HorizontalAlignment="Left" Margin="630,529,0,0" Text="{Binding NyOpgave.Udstyr.UdstyrId, Mode=TwoWay}" VerticalAlignment="Top" Height="50" Width="300" FontSize="24" PlaceholderText="Indtast ID"/>
 
     </Grid>
 </Page>

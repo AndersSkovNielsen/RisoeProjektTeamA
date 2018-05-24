@@ -13,7 +13,7 @@ using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
 { 
-    class UdstyrViewModel:INotifyPropertyChanged
+    class UdstyrViewModel : INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,17 +34,14 @@ namespace RisoeProjektTeamA.ViewModel
         {
             UdstyrHandler = new UdstyrHandler(this);
             Logbog = LogbogSingleton.Instance;
-
-            //Ikke relavant for 1. iteration. Måske senere
+            
             AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
             UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);
             RemoveCommand = new RelayCommand(UdstyrHandler.SletUdstyr);
 
             NytUdstyr = new Udstyr();
 
-            TypeListe = new List<uType>() { uType.type1, uType.type2, uType.type3, uType.type4 };
-
-            
+            TypeListe = new List<uType>() {uType.Filter, uType.Termometer, uType.Lufttrykmåler};
         }
 
         public RelayCommand AddCommand { get; set; }

@@ -8,10 +8,9 @@ namespace ModelLibrary.Model
 {
     public enum uType
     {
-        type1,
-        type2,
-        type3,
-        type4   
+        Filter,
+        Termometer,
+        Lufttrykmåler,
     }
 
     public class Udstyr
@@ -28,10 +27,10 @@ namespace ModelLibrary.Model
 
         public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type)
         {
+            UdstyrId = udstyrId;
             Installationsdato = installationsdato;
             Beskrivelse = beskrivelse;
             Type = type;
-
         }
 
         public Udstyr()
@@ -39,10 +38,13 @@ namespace ModelLibrary.Model
 
         }
 
+        //Copy constructor
         public Udstyr(Udstyr udstyr)
         {
+            UdstyrId = udstyr.UdstyrId;
             Installationsdato = udstyr.Installationsdato;
             Beskrivelse = udstyr.Beskrivelse;
+            Type = udstyr.Type;
         }
     }
 }

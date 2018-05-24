@@ -16,7 +16,7 @@ namespace ModelLibrary.Model
         public StatusType Status { get; set; }
         public int VentetidIDage { get; set; }
         public string Beskrivelse { get; set; }
-        public int UdstyrId { get; set; } //slettes måske, hvis den er overflødig?
+        
         //3. iterations property
         public Udstyr Udstyr { get; set; }
 
@@ -31,12 +31,12 @@ namespace ModelLibrary.Model
         }
 
         //Test constructor af simpel opgave til 1. iteration
-        public Opgave(int id, string beskrivelse, StatusType status, int opgaveId, int ventetid, int udstyrId)
+        public Opgave(int id, string beskrivelse, StatusType status, int opgaveId, int ventetid, Udstyr udstyr)
         {
             ID = id;
             Beskrivelse = beskrivelse;
             Status = status;
-            UdstyrId = udstyrId;
+            Udstyr = udstyr;
             VentetidIDage = ventetid;
         }
         
@@ -53,7 +53,7 @@ namespace ModelLibrary.Model
             Beskrivelse = opgave.Beskrivelse;
             Status = opgave.Status;
             VentetidIDage = opgave.VentetidIDage;
-            UdstyrId = opgave.UdstyrId;
+            Udstyr = opgave.Udstyr;
         }
 
         //Constructor til senere brug med Udstyr udvidelse
