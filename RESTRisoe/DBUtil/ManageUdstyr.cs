@@ -26,10 +26,11 @@ namespace RESTRisoe.DBUtil
                 "insert into RisoeUdstyr Values (@UdstyrID, @StationNr, @Type, @Installationsdato, @Beskrivelse)"
             ;
 
-        private String deleteSql = "delete from RisoeOpgave where UdstyrID = @UdstyrID";
+        private String deleteSql = "delete from RisoeOpgave where UdstyrId = @UdstyrID";
 
         private String updateSql = "update RisoeUdstyr " +
-                                   "set UdstyrID = @UdstyrID, StationNr= @StationNr, Type= @Type, Installationsdato= @Installationsdato, Beskrivelse= @Beskrivelse"
+                                   "set UdstyrId = @UdstyrID, StationNr = @StationNr, Type = @Type, InstallationsDato = @Installationsdato, Beskrivelse = @Beskrivelse " +
+                                    "where UdstyrId = @ID"
             ;
         //slut på Sql Strings
 
@@ -89,42 +90,7 @@ namespace RESTRisoe.DBUtil
             return null; //Kan vi skrive dette?
         }
 
-        private void CheckEnumParseU(uType checkType, int checkId)
-        {
-            if (!(checkType == uType.Filter ||
-                  checkType == uType.Termometer ||
-                  checkType == uType.Lufttrykmåler))
-            {
-                int exId = checkId;
-                throw new ParseToEnumException(exId);
-            }
-        }
-
-        private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
-        {
-            int udstyrId = reader.GetInt32(0);
-            int stationId = reader.GetInt32(1);
-            
-            uType type = uType.Filter;
-            try
-            {
-                string typeStr = reader.GetString(2);
-                type = (uType) Enum.Parse(typeof(uType), typeStr);
-                
-                CheckEnumParseU(type, udstyrId);
-            }
-            catch (ParseToEnumException)
-            {
-                ParseToEnumException parseFailEx = new ParseToEnumException(udstyrId);
-                string log = parseFailEx.ToString();
-
-            }
-
-            DateTime instDato = reader.GetDateTime(3);
-            string beskrivelse = reader.GetString(4);
-            //Sidstetjek og næstetjek skal slettes fra udstyrklassen
-            return new Udstyr(udstyrId,  instDato, /*new DateTime(2018, 2,1), new DateTime(2018, 3, 3),*/ beskrivelse, type);
-        }
+        
 
 
         public bool IndsætUdstyr(Udstyr udstyr)
@@ -147,9 +113,26 @@ namespace RESTRisoe.DBUtil
             }
         }
 
-        public bool OpdaterUdstyr(Udstyr udstyr, int id)
+        public bool OpdaterUdstyr(Udstyr udstyr, int udstyrID)
         {
             throw new NotImplementedException();
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    SqlCommand command = new SqlCommand(updateSql, connection);
+
+            //    TilføjVærdiUdstyr(udstyr, command);
+            //    command.Parameters.AddWithValue("@ID", udstyrID);
+
+            //    command.Connection.Open();
+
+            //    int noOfRows = command.ExecuteNonQuery();
+
+            //    if (noOfRows == 1)
+            //    {
+            //        return true;
+            //    }
+            //    return false;
+            //}
         }
 
         public Udstyr SletUdstyr(int id)
@@ -176,6 +159,45 @@ namespace RESTRisoe.DBUtil
                 return null;
             }
         }
+
+        private void CheckEnumParseU(uType checkType, int checkId)
+        {
+            if (!(checkType == uType.Filter ||
+                  checkType == uType.Termometer ||
+                  checkType == uType.Lufttrykmåler))
+            {
+                int exId = checkId;
+                throw new ParseToEnumException(exId);
+            }
+        }
+
+        //Hjælpemetoder
+        private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
+        {
+            int udstyrId = reader.GetInt32(0);
+            int stationId = reader.GetInt32(1);
+
+            uType type = uType.Filter;
+            try
+            {
+                string typeStr = reader.GetString(2);
+                type = (uType)Enum.Parse(typeof(uType), typeStr);
+
+                CheckEnumParseU(type, udstyrId);
+            }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(udstyrId);
+                string log = parseFailEx.ToString();
+
+            }
+
+            DateTime instDato = reader.GetDateTime(3);
+            string beskrivelse = reader.GetString(4);
+            
+            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+        }
+
         private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
         {
             command.Parameters.AddWithValue("@UdstyrID", udstyr.UdstyrId);
