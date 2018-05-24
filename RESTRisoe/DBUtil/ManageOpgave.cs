@@ -211,10 +211,7 @@ namespace RESTRisoe.DBUtil
                 string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
                 
             }
-
-            //String statusStr = reader.GetString(2);
-            //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-            //checkEnumParse(status, id);
+        
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 

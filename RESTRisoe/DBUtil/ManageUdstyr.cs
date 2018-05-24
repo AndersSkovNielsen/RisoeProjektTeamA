@@ -44,16 +44,6 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //int id = reader.GetInt32(0);
-                    //String beskrivelse = reader.GetString(1);
-                    //String statusStr = reader.GetString(2);
-                    //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    //checkEnumParse(status,id);
-                    //int ventetid = reader.GetInt32(3);
-
-                    //opgaver.Add(new Opgave(id, beskrivelse, status, ventetid));
-
-                    //Brug af ReadOpgave metode (DRY)
                     udstyr.Add(ReadUdstyr(reader));
                 }
             }
@@ -92,34 +82,18 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    //int id = reader.GetInt32(0);
-                    //String beskrivelse = reader.GetString(1);
-                    //String statusStr = reader.GetString(2);
-                    //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                    //checkEnumParse(status,id);
-                    //int ventetid = reader.GetInt32(3);
-
-                    //return new Opgave(id, beskrivelse, status, ventetid);
-
-                    //Brug af ReadOpgave metode:
                     return ReadUdstyr(reader);
                 }
-                return null; //Kan vi skrive dette?
             }
+            return null; //Kan vi skrive dette?
         }
 
-        
-
-        
-
-
-
-        private void CheckEnumParseU(Udstyr.uType checkType, int checkId)
+        private void CheckEnumParseU(uType checkType, int checkId)
         {
-            if (!(checkType == Udstyr.uType.type1 ||
-                  checkType == Udstyr.uType.type2 ||
-                  checkType == Udstyr.uType.type3 ||
-                  checkType == Udstyr.uType.type4))
+            if (!(checkType == uType.type1 ||
+                  checkType == uType.type2 ||
+                  checkType == uType.type3 ||
+                  checkType == uType.type4))
             {
                 int exId = checkId;
                 throw new ParseToEnumException(exId);
@@ -129,14 +103,14 @@ namespace RESTRisoe.DBUtil
         private Udstyr ReadUdstyr(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
         {
             int udstyrId = reader.GetInt32(0);
-            String beskrivelse = reader.GetString(4);
-            Udstyr.uType type = Udstyr.uType.type1;
+            int stationId = reader.GetInt32(1);
+            
+            uType type = uType.type1;
             try
             {
-                String TypeStr = reader.GetString(2);
-                type = (Udstyr.uType) Enum.Parse(typeof(Udstyr.uType), TypeStr);
-
-               
+                string typeStr = reader.GetString(2);
+                type = (uType) Enum.Parse(typeof(uType), typeStr);
+                
                 CheckEnumParseU(type, udstyrId);
             }
             catch (ParseToEnumException)
@@ -146,14 +120,10 @@ namespace RESTRisoe.DBUtil
 
             }
 
-            //String statusStr = reader.GetString(2);
-            //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-            //checkEnumParse(status, id);
-
-            int statId = reader.GetInt32(1);
             DateTime instDato = reader.GetDateTime(3);
+            string beskrivelse = reader.GetString(4);
             //Sidstetjek og næstetjek skal slettes fra udstyrklassen
-            return new Udstyr(udstyrId, instDato, new DateTime(2018, 2,1), new DateTime(2018, 3, 3), beskrivelse, type);
+            return new Udstyr(udstyrId, instDato, /*new DateTime(2018, 2,1), new DateTime(2018, 3, 3),*/ beskrivelse, type);
         }
 
 
@@ -162,12 +132,7 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(insertSql, connection);
-                //command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
-                //command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
-                //command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
-                //command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
-
-                //Brug af TilføjVærdiOpgave metode (DRY)
+                
                 TilføjVærdiUdstyr(udstyr, command);
 
                 command.Connection.Open();
@@ -217,8 +182,8 @@ namespace RESTRisoe.DBUtil
             command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
             command.Parameters.AddWithValue("@Status", udstyr.Type.ToString());
             command.Parameters.AddWithValue("@Installationsdato", udstyr.Installationsdato);
-            command.Parameters.AddWithValue("@SidsteTjekDato", udstyr.SidsteTjekDato);
-            command.Parameters.AddWithValue("@NæsteTjekDato", udstyr.NæsteTjekDato);
+            //command.Parameters.AddWithValue("@SidsteTjekDato", udstyr.SidsteTjekDato);
+            //command.Parameters.AddWithValue("@NæsteTjekDato", udstyr.NæsteTjekDato);
         }
     }
 }
