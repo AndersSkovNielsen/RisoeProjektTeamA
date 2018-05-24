@@ -10,15 +10,26 @@ namespace ModelLibrary.Model
     public class Station
     {
         public string Navn { get; set; }
-        public int Nr { get; set; }
+        public int StationsId { get; set; }
         public ObservableCollection<Udstyr> Udstyrsliste { get; set; }
 
 
-        public Station(string navn, int nr, ObservableCollection<Udstyr> udstyrsliste)
+        public Station(string navn, int nr)
         {
             Navn = navn;
-            Nr = nr;
-            Udstyrsliste = udstyrsliste;
+            StationsId = nr;
+            Udstyrsliste = null;
+        }
+
+        public Station()
+        {
+            
+        }
+        public Station(Station station)
+        {
+            Navn=station.Navn;
+            StationsId=station.StationsId;
+            Udstyrsliste = station.Udstyrsliste;
         }
     }
 }

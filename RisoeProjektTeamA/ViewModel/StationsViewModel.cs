@@ -12,10 +12,9 @@ using RisoeProjektTeamA.Handler;
 using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
-{ 
-    class UdstyrViewModel : INotifyPropertyChanged
+{
+    class StationsViewModel:INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -30,18 +29,18 @@ namespace RisoeProjektTeamA.ViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public UdstyrViewModel()
+        public StationsViewModel()
         {
-            UdstyrHandler = new UdstyrHandler(this);
+            StationsHandler StationsHandler = new StationsHandler(this);
             Logbog = LogbogSingleton.Instance;
-            
-            AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
-            UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);
-            RemoveCommand = new RelayCommand(UdstyrHandler.SletUdstyr);
 
-            NytUdstyr = new Udstyr();
+            //Ikke relavant for 1. iteration. Måske senere
+            AddCommand = new RelayCommand(StationsHandler.IndsætStation);
+            UpdateCommand = new RelayCommand(StationsHandler.OpdaterStation);
+            RemoveCommand = new RelayCommand(StationsHandler.SletStation);
 
-            TypeListe = new List<uType>() {uType.Filter, uType.Termometer, uType.Lufttrykmåler};
+            NyStation = new Station();
+
         }
 
         public RelayCommand AddCommand { get; set; }
@@ -49,59 +48,56 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand RemoveCommand { get; set; }
 
         //Ikke relavant for 1. iteration, måske senere
-        private Udstyr _nytUdstyr;
-        public Udstyr NytUdstyr
+        private Station _nyStation;
+        public Station NyStation
         {
-            get { return _nytUdstyr; }
+            get { return _nyStation; }
             set
             {
                 if (value != null)
                 {
-                    _nytUdstyr = new Udstyr(value);
+                    _nyStation = new Station (value);
                 }
                 else
                 {
-                    _nytUdstyr = null;
+                    _nyStation = null;
                 }
                 OnPropertyChanged();
             }
         }
 
-        private Udstyr _valgtUdstyr;
-        public Udstyr ValgtUdstyr
+        private Station _valgtStation;
+        public Station ValgtStation
         {
-            get { return _valgtUdstyr; }
+            get { return _valgtStation; }
             set
             {
                 if (value != null)
                 {
-                    _valgtUdstyr = new Udstyr(value);
-                    NytUdstyr = value;
-                    UdstyrErValgt = true;
+                    _valgtStation = new Station (value);
+                    NyStation = value;
+                    StationErValgt = true;
                 }
                 else
                 {
-                    _valgtUdstyr = null;
+                    _valgtStation = null;
                 }
                 OnPropertyChanged();
             }
         }
 
-        private bool _udstyrErValgt;
-        public bool UdstyrErValgt
+        private bool _stationErValgt;
+
+        public bool StationErValgt
         {
-            get { return _udstyrErValgt; }
+            get { return _stationErValgt; }
             set
             {
-                _udstyrErValgt = value;
+                _stationErValgt = value;
                 OnPropertyChanged();
             }
         }
 
-        public List<uType> TypeListe { get; set; }
-
-        
-    
         //Ikke brugt i 2. iteration
         public int ValgtIndex { get; set; }
     }

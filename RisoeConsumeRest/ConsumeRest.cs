@@ -47,8 +47,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af indsætning af en opgave (Opgave 10).");
             Console.WriteLine("Her indsættets en ny opgave, opgave 10, som så bliver vist bagefter.");
             Console.WriteLine("");
-            Opgave testOpgave10 = new Opgave(10, "En test Opgave", StatusType.IkkeLøst,1, 2);
-            
+            Opgave testOpgave10 = new Opgave(10,"en testopgave",StatusType.IkkeLøst,2,4,2);
 
             IndsætOpgave(testOpgave10);
 
@@ -62,7 +61,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Test af opdatering af en opgave (Opgave 10).");
             Console.WriteLine("Her ser vi den nuværende opgave 10, som så bliver opdateret og skrevet ud igen.");
             Console.WriteLine("");
-            testOpgave10 = new Opgave(10, "Test af Opdatering", StatusType.Løst, 1,5);
+            testOpgave10 = new Opgave(10,"Test af opdatering",StatusType.IkkeLøst,5,7,3);
 
             Console.WriteLine("Nuværende:\n" + HentEnOpgave(10));
 

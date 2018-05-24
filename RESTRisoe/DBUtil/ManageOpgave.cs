@@ -197,7 +197,8 @@ namespace RESTRisoe.DBUtil
         {
             int id = reader.GetInt32(0);
             String beskrivelse = reader.GetString(1);
-            StatusType status=StatusType.IkkeLøst;
+
+            StatusType status = StatusType.IkkeLøst;
             try
             {
                 String statusStr = reader.GetString(2);
@@ -214,7 +215,9 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyrId); //hvad der der galt med opgave konstructor?
+            Udstyr udstyr = new ManageUdstyr().HentUdstyrFraId(udstyrId);
+
+            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)
@@ -224,7 +227,7 @@ namespace RESTRisoe.DBUtil
             command.Parameters.AddWithValue("@Beskrivelse", opgave.Beskrivelse);
             command.Parameters.AddWithValue("@Status", opgave.Status.ToString());
             command.Parameters.AddWithValue("@Ventetid", opgave.VentetidIDage);
-            command.Parameters.AddWithValue("@UdstyrID", opgave.UdstyrId);
+            command.Parameters.AddWithValue("@UdstyrID", opgave.Udstyr.UdstyrId);
         }
     }
 }
