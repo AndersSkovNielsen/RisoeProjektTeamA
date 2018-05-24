@@ -15,10 +15,13 @@
 
         </Style>
 
+        <Color x:Key="BackGround" >
+            
+        </Color>
 
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFCBF9F5">
         <TextBlock HorizontalAlignment="Left" Margin="470,45,0,0" Text="Stationslog" TextWrapping="Wrap" VerticalAlignment="Top" Height="142" Width="355" FontSize="72"  />
         <Button Content="Login" HorizontalAlignment="Left" Margin="470,560,0,0" VerticalAlignment="Top" Height="123" Width="354" FontSize="72" Click="Button_Click_Hovedmenu"/>
         <TextBox HorizontalAlignment="Left" Margin="432,421,0,0" Text="Indtast kode" VerticalAlignment="Top" Height="134" Width="469" FontSize="72"/>
