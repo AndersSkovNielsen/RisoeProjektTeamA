@@ -44,7 +44,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
 
-            Opgave OP = new Opgave(10, "test", StatusType.IkkeLøst, 1,5);
+            Opgave OP = new Opgave(10,"test",StatusType.IkkeLøst,1,2,3);
 
             IndsætOpgave(OP);
 
@@ -58,7 +58,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
 
-            Opgave NewOP = new Opgave(10, "Test2", StatusType.Løst, 1,5);
+            Opgave NewOP = new Opgave(10,"test2",StatusType.Løst,2,3,1);
 
             OpdaterOpgave(NewOP, 10);
 
@@ -211,7 +211,7 @@ namespace RisoeConsumeDatabase
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, udstyrId,ventetid);
+            return new Opgave(id,beskrivelse,status,id,ventetid,udstyrId);
         }
 
         //Indsæt og Opdater (DRY)
