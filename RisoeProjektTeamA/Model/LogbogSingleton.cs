@@ -57,7 +57,12 @@ namespace RisoeProjektTeamA.Model
         {
             OFacade = new OpgavePersistenceFacade();
             OpgaveListe = new ObservableCollection<Opgave>(OFacade.HentAlleOpgaver());
+            UFacade = new UdstyrPersistanceFacade();
+            UdstyrsListe = new ObservableCollection<Udstyr>(UFacade.HentAltUdstyr());
+            SFacade = new StationsPersitenceFacade();
+            StationsListe = new ObservableCollection<Station>(SFacade.HentAlleStationer());
         }
+    
 
 
         //Ikke relavant for 1. iteration. Måske senere

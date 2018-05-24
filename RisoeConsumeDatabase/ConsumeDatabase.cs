@@ -291,7 +291,7 @@ namespace RisoeConsumeDatabase
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
 
-            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+            return new Udstyr(udstyrId, instDato, beskrivelse, type,/*skraldkode*/ new Station("a",888)/*skraldkode slut */);
         }
 
         private void CheckEnumParseU(uType checkType, int checkId)

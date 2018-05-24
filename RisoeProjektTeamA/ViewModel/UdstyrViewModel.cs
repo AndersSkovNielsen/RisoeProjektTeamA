@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -26,6 +27,7 @@ namespace RisoeProjektTeamA.ViewModel
 
         public LogbogSingleton Logbog { get; set; }
         public UdstyrHandler UdstyrHandler { get; set; }
+        public ObservableCollection<Station> StationsListe { get; set; }
 
         /// <summary>
         /// Constructor
@@ -34,6 +36,7 @@ namespace RisoeProjektTeamA.ViewModel
         {
             UdstyrHandler = new UdstyrHandler(this);
             Logbog = LogbogSingleton.Instance;
+            StationsListe=Logbog.StationsListe;
             
             AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
             UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);

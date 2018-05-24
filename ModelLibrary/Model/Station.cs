@@ -31,5 +31,10 @@ namespace ModelLibrary.Model
             StationsId=station.StationsId;
             Udstyrsliste = station.Udstyrsliste;
         }
+
+        public override string ToString()
+        {
+            return $"Navn: {Navn}, Nr: {StationsId}";
+        }
     }
 }

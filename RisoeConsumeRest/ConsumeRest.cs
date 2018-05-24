@@ -231,7 +231,7 @@ namespace RisoeConsumeRest
 
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
-
+            return HentUdstyrFraId(1);
             //return new Udstyr(udstyrId, instDato, beskrivelse, type, station);
         }
 

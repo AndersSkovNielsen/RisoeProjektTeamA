@@ -13,7 +13,7 @@ namespace RisoeProjektTeamA.Persistency
 {
     public class StationsPersitenceFacade
     {
-        private string Uri = "http://localhost:59327/api/Station/"
+        private string Uri = "http://localhost:59327/api/Stations/"
             ; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
 
         public List<Station> HentAlleStationer()
