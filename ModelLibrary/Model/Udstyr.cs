@@ -8,12 +8,7 @@ namespace ModelLibrary.Model
 {
     public enum uType
     {
-        type1,
-        type2,
-        type3,
-        type4,
-        Filter,//tilføjet til test. skal slettes
-        filter,//tilføjet til test. skal slettes
+        Filter,
         Termometer,
         Lufttrykmåler,
     }
@@ -43,6 +38,7 @@ namespace ModelLibrary.Model
 
         }
 
+        //Copy constructor
         public Udstyr(Udstyr udstyr)
         {
             UdstyrId = udstyr.UdstyrId;

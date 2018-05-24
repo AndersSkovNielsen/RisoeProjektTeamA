@@ -28,7 +28,7 @@ namespace RESTRisoe.Controllers
         }
 
         //Get: api/Udstyr/HentAltUdstyrForStation/1
-        [Route("api/Opgave/HentAltUdstyrForStation/{stationId:int}")]
+        [Route("api/Udstyr/HentAltUdstyrForStation/{stationId:int}")]
         public IEnumerable<Udstyr> GetFromStation(int stationId)
         {
             try

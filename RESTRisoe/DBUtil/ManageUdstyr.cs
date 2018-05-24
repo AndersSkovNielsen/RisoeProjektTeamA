@@ -91,10 +91,9 @@ namespace RESTRisoe.DBUtil
 
         private void CheckEnumParseU(uType checkType, int checkId)
         {
-            if (!(checkType == uType.type1 ||
-                  checkType == uType.type2 ||
-                  checkType == uType.type3 ||
-                  checkType == uType.type4))
+            if (!(checkType == uType.Filter ||
+                  checkType == uType.Termometer ||
+                  checkType == uType.Lufttrykmåler))
             {
                 int exId = checkId;
                 throw new ParseToEnumException(exId);
@@ -106,7 +105,7 @@ namespace RESTRisoe.DBUtil
             int udstyrId = reader.GetInt32(0);
             int stationId = reader.GetInt32(1);
             
-            uType type = uType.type1;
+            uType type = uType.Filter;
             try
             {
                 string typeStr = reader.GetString(2);
@@ -183,8 +182,6 @@ namespace RESTRisoe.DBUtil
             command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
             command.Parameters.AddWithValue("@Status", udstyr.Type.ToString());
             command.Parameters.AddWithValue("@Installationsdato", udstyr.Installationsdato);
-            //command.Parameters.AddWithValue("@SidsteTjekDato", udstyr.SidsteTjekDato);
-            //command.Parameters.AddWithValue("@NæsteTjekDato", udstyr.NæsteTjekDato);
         }
     }
 }
