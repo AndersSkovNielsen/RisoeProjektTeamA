@@ -24,7 +24,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFCBF9F5">
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="200" Orientation="Vertical">
                 <StackPanel Height="175">

@@ -32,7 +32,7 @@
     </Page.Resources>
 
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFCBF9F5">
         <StackPanel Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
