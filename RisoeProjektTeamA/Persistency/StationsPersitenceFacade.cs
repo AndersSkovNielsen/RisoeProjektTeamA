@@ -5,86 +5,62 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using ModelLibrary.Exceptions;
 using ModelLibrary.Model;
 using Newtonsoft.Json;
 using RisoeProjektTeamA.View;
 
 namespace RisoeProjektTeamA.Persistency
 {
-    public class UdstyrPersistanceFacade
+    public class StationsPersitenceFacade
     {
-        private string Uri = "http://localhost:59327/api/Udstyr/"; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
+        private string Uri = "http://localhost:59327/api/Station/"
+            ; // URL til din REST (rest-ande-easj.azurewebsites.net (ikke testet))
 
-        public List<Udstyr> HentAltUdstyr()
+        public List<Station> HentAlleStationer()
         {
 
             using (HttpClient client = new HttpClient())
             {
-                List<Udstyr> UdstyrsListe = new List<Udstyr>();
+                List<Station> StationsListe = new List<Station>();
                 try
                 {
                     string jsonStr = client.GetStringAsync(Uri).Result;
-                        // info fra body
+                    // info fra body
 
-                    UdstyrsListe = JsonConvert.DeserializeObject<List<Udstyr>>(jsonStr);
+                    StationsListe = JsonConvert.DeserializeObject<List<Station>>(jsonStr);
                 }
                 catch (Exception x)
                 {
                     MessageDialogHandler.Show("Fejl i hetning", "Der er sket en fejl under kontakt med Databasen.");
                 }
-                return UdstyrsListe;
+                return StationsListe;
             }
         }
 
-        public List<Udstyr> HentAltUdstyrFraStation(int stationId)
-        {
-            using (HttpClient client=new HttpClient())
-            {
-                List<Udstyr> udstyrsListe = new List<Udstyr>();
-                string jsonStr = client.GetStringAsync(Uri+ "HentAlltUdstyrForStation/" +stationId).Result;
-                try
-                {
-                    udstyrsListe = JsonConvert.DeserializeObject<List<Udstyr>>(jsonStr);
-                }
 
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-                return udstyrsListe;
-            }
-            
-               
-            
-            
-        }
-
-        public Udstyr HentEtUdstyr(int nr)
+        public Station HentEnStation(int nr)
         {
 
             using (HttpClient client = new HttpClient())
             {
                 string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
-                Udstyr udstyr = new Udstyr();
+                Station station = new Station();
                 try
                 {
-                    udstyr = JsonConvert.DeserializeObject<Udstyr>(jsonStr);
+                    station = JsonConvert.DeserializeObject<Station>(jsonStr);
                 }
                 catch (Exception ex)
                 {
-                    MessageDialogHandler.Show( "Fejl i hetning", "Der er sket en fejl under kontakt med Databasen.");
+                    MessageDialogHandler.Show("Fejl i hetning", "Der er sket en fejl under kontakt med Databasen.");
                 }
-                return udstyr;
+                return station;
             }
         }
-        
-        public bool IndsætUdstyr(Udstyr udstyr)
+
+        public bool IndsætStation(Station station)
         {
 
-
-            String json = JsonConvert.SerializeObject(udstyr);
+            String json = JsonConvert.SerializeObject(station);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -103,11 +79,11 @@ namespace RisoeProjektTeamA.Persistency
             return false;
         }
 
-        public bool OpdaterEtUdstyr(int nr, Udstyr udstyr)
+        public bool OpdaterEnStation(int nr, Station station)
         {
-            
 
-            String json = JsonConvert.SerializeObject(udstyr);
+
+            String json = JsonConvert.SerializeObject(station);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -126,7 +102,7 @@ namespace RisoeProjektTeamA.Persistency
             return false;
         }
 
-        public Udstyr SletUdstyr(int nr)
+        public Station SletStation(int nr)
         {
 
             using (HttpClient client = new HttpClient())
@@ -136,8 +112,8 @@ namespace RisoeProjektTeamA.Persistency
                 if (resultMessage.IsSuccessStatusCode)
                 {
                     string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
-                    Udstyr udstyr = JsonConvert.DeserializeObject<Udstyr>(resultStr);
-                    return udstyr;
+                    Station station = JsonConvert.DeserializeObject<Station>(resultStr);
+                    return station;
                 }
             }
 
@@ -145,4 +121,3 @@ namespace RisoeProjektTeamA.Persistency
         }
     }
 }
-

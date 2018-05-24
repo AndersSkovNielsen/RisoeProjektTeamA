@@ -20,5 +20,16 @@ namespace ModelLibrary.Model
             StationsId = nr;
             Udstyrsliste = null;
         }
+
+        public Station()
+        {
+            
+        }
+        public Station(Station station)
+        {
+            Navn=station.Navn;
+            StationsId=station.StationsId;
+            Udstyrsliste = station.Udstyrsliste;
+        }
     }
 }
