@@ -13,7 +13,7 @@ namespace RisoeConsumeRest
     class ConsumeRest
     {
         private string Uri = "http://localhost:59327/api/Opgave/";
-
+        //
         public void Test()
         {
             Console.WriteLine("Test af REST service");
