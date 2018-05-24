@@ -250,6 +250,8 @@ namespace RisoeConsumeDatabase
         //Extra hjælp for at hente udstyr
         private String queryStringFromIDUdstyr = "select * from RisoeUdstyr where UdstyrId = @UdstyrId";
 
+        private String queryStringFromID2 = "select * from RisoeStation where StationNr = @StationNr";
+
         public Udstyr HentUdstyrFraId(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -273,6 +275,8 @@ namespace RisoeConsumeDatabase
             int udstyrId = reader.GetInt32(0);
             int stationId = reader.GetInt32(1);
 
+            Station station = HentStationFraId(stationId);
+
             uType type = uType.Filter;
             try
             {
@@ -291,7 +295,7 @@ namespace RisoeConsumeDatabase
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
 
-            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+            return new Udstyr(udstyrId, instDato, beskrivelse, type, station);
         }
 
         private void CheckEnumParseU(uType checkType, int checkId)
@@ -303,6 +307,32 @@ namespace RisoeConsumeDatabase
                 int exId = checkId;
                 throw new ParseToEnumException(exId);
             }
+        }
+
+        public Station HentStationFraId(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryStringFromID2, connection);
+                command.Parameters.AddWithValue("@StationNr", id);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return ReadStation(reader);
+                }
+            }
+            return null; //Kan vi skrive dette?
+        }
+
+        private Station ReadStation(SqlDataReader reader)
+        {
+            int stationNr = reader.GetInt32(0);
+            String navn = reader.GetString(1);
+
+            return new Station(navn, stationNr);
         }
     }
 }
