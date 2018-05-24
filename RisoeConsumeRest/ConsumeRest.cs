@@ -211,6 +211,9 @@ namespace RisoeConsumeRest
             int udstyrId = reader.GetInt32(0);
             int stationId = reader.GetInt32(1);
 
+            //Mangler metode implementation
+            //Station station = HentStationFraId(stationId);
+
             uType type = uType.Filter;
             try
             {
@@ -229,7 +232,7 @@ namespace RisoeConsumeRest
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
 
-            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+            //return new Udstyr(udstyrId, instDato, beskrivelse, type, station);
         }
 
         private void CheckEnumParseU(uType checkType, int checkId)

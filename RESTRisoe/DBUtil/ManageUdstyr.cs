@@ -166,6 +166,8 @@ namespace RESTRisoe.DBUtil
             int udstyrId = reader.GetInt32(0);
             int stationId = reader.GetInt32(1);
 
+            Station station = new ManageStation().HentStationFraId(stationId);
+
             uType type = uType.Filter;
             try
             {
@@ -184,7 +186,7 @@ namespace RESTRisoe.DBUtil
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
             
-            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+            return new Udstyr(udstyrId, instDato, beskrivelse, type, station);
         }
 
         private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
