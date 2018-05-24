@@ -13,7 +13,7 @@ namespace RisoeConsumeRest
     class ConsumeRest
     {
         private string Uri = "http://localhost:59327/api/Opgave/";
-
+        //
         public void Test()
         {
             Console.WriteLine("Test af REST service");
@@ -48,6 +48,7 @@ namespace RisoeConsumeRest
             Console.WriteLine("Her indsættets en ny opgave, opgave 10, som så bliver vist bagefter.");
             Console.WriteLine("");
             Opgave testOpgave10 = new Opgave(10, "En test Opgave", StatusType.IkkeLøst,1, 2);
+            
 
             IndsætOpgave(testOpgave10);
 

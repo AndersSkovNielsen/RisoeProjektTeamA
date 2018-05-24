@@ -167,5 +167,20 @@ namespace RESTRisoe.DBUtil
                 return new Udstyr(UdstyrId,instDato,næstDato,sidstDato,beskrivelse);
             }
         }
+
+        public bool IndsætUdstyr(Udstyr udstyr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OpdaterUdstyr(Udstyr udstyr, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Udstyr SletOpgave(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
