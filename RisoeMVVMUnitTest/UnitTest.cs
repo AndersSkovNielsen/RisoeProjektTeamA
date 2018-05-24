@@ -65,7 +65,7 @@ namespace RisoeMVVMUnitTest
             int vt = 1;
 
             //act
-            Opgave TestOpgave=new Opgave(id,ts,st,uds,vt);
+            Opgave TestOpgave=new Opgave(id,ts,st,id,vt, uds);
         
             //assert
             Assert.AreEqual(id,TestOpgave.ID);

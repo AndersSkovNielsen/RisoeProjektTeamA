@@ -18,7 +18,7 @@ namespace RESTRisoe.DBUtil
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private String queryString = "select * from RisoeOpgave";
-        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId= @udstyrId";
+        private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId = @UdstyrId";
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
         private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid, @UdstyrID)";
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
@@ -56,7 +56,6 @@ namespace RESTRisoe.DBUtil
         //3. iterationsmetode
         
         public List<Opgave> HentAlleOpgaverForUdstyr(int udstyrId)
-        
         {
             List<Opgave> opgaver = new List<Opgave>();
 
@@ -211,14 +210,11 @@ namespace RESTRisoe.DBUtil
                 string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
                 
             }
-
-            //String statusStr = reader.GetString(2);
-            //StatusType status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-            //checkEnumParse(status, id);
+        
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            return new Opgave(id, beskrivelse, status, udstyrId, ventetid);
+            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyrId); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)

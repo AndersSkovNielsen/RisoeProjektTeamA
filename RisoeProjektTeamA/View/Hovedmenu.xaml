@@ -6,6 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="TextBoxDefault" TargetType="TextBox">
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+        <Style x:Key="TextBlockTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+
+        </Style>
+
+
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
