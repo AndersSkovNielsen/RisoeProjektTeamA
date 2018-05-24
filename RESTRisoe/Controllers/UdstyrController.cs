@@ -55,7 +55,6 @@ namespace RESTRisoe.Controllers
                 Console.WriteLine(ex.ToString());
                 throw;
             }
-
         }
 
         // POST: api/Udstyr/
@@ -73,7 +72,7 @@ namespace RESTRisoe.Controllers
         // DELETE: api/Udstyr/5
         public Udstyr Delete(int id)
         {
-            return null; /*manager.SletUdstyr(id);*/
+            return manager.SletUdstyr(id);
         }
     }
 }

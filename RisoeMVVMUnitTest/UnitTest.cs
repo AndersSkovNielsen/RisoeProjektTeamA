@@ -61,7 +61,7 @@ namespace RisoeMVVMUnitTest
             StatusType st = StatusType.Fejlet;
             int id = 1;
             string ts = "Beksrivese";
-            int uds = 1;
+            Udstyr uds = new Udstyr();
             int vt = 1;
 
             //act
@@ -72,7 +72,7 @@ namespace RisoeMVVMUnitTest
             Assert.AreEqual(vt,TestOpgave.VentetidIDage);
             Assert.AreEqual(ts,TestOpgave.Beskrivelse);
             Assert.AreEqual(st, TestOpgave.Status);
-            Assert.AreEqual(TestOpgave.UdstyrId,uds);
+            Assert.AreEqual(uds,TestOpgave.Udstyr);
         }
         
 

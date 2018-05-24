@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ModelLibrary.Model
 {
      public class Bruger
-    {
+    { //classen skal slettes
         public string FuldNavn { get; set; }
         public string Initialer { get; set; }
         public enum Type {Tekniker, Admin }

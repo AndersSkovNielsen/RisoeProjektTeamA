@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ModelLibrary.Model
 {
     class SærligOpgave : Opgave
-    {
+    { // classen skal slettes
         public SærligOpgave() : base()
         {
 
