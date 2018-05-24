@@ -7,33 +7,53 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Style x:Key="TextBoxDefault" TargetType="TextBox">
-            <Setter Property="FontSize" Value="22"/>
-        </Style>
-        <Style x:Key="TextBlockTitle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="32"/>
-
+        <Style x:Key="TextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="50"/>
         </Style>
 
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="70"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="Width" Value="400"/>
+        </Style>
+
+        <Style x:Key="LargeButton" TargetType="Button">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
 
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
+    <Grid Background="#FFCBF9F5">
+        <StackPanel Orientation="Vertical">
         
-        <TextBlock HorizontalAlignment="Left" Margin="466,10,0,0" Text="Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Height="206" Width="404" FontSize="72"/>
-        <TextBlock HorizontalAlignment="Left" Margin="1046,0,0,0" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Height="124" Width="230" FontSize="48"/>
-        <StackPanel HorizontalAlignment="Left" Height="224" Margin="148,216,0,0" VerticalAlignment="Top" Width="424">
-            <TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Height="77" FontSize="48"/>
+          <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Left" Text="Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource Title}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Left" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock}"/>
+            </StackPanel>
+          </StackPanel>
+        
+          <StackPanel HorizontalAlignment="Left" >
+            <TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Style="{StaticResource TextBlock}"/>
             <ListView Height="141" VerticalAlignment="Stretch"/>
 
+          </StackPanel>
+          <StackPanel Orientation="Horizontal">
+            <Button Content="Opgaver" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Opgaver" Style="{StaticResource LargeButton}"/>
+            <Button Content="Admin" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Oversigt" Style="{StaticResource LargeButton}"/>
+            <Button Content="Nyt udstyr" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Udstyr" Style="{StaticResource LargeButton}"/>
+
+          </StackPanel>
+
         </StackPanel>
-        <Button Content="Opgaver" HorizontalAlignment="Left" Margin="719,260,0,0" VerticalAlignment="Top" Height="190" Width="330" FontSize="72" Click="Button_Click_Opgaver"/>
-        <Button Content="Admin" HorizontalAlignment="Left" Margin="194,469,0,0" VerticalAlignment="Top" Height="241" Width="310" FontSize="72" Click="Button_Click_Oversigt"/>
-        <Button Content="Nyt udstyr" HorizontalAlignment="Left" Margin="682,494,0,0" VerticalAlignment="Top" Height="216" Width="367" FontSize="72" Click="Button_Click_Udstyr"/>
-        
-
-
 
     </Grid>
 </Page>

@@ -11,7 +11,6 @@
         <Style x:Key="TextBoxDefault" TargetType="TextBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Width" Value="150"/>
-        
         </Style>
         
         <Style x:Key="ComboBoxDefault" TargetType="ComboBox">
@@ -20,12 +19,11 @@
         </Style>
         
         <Style x:Key="TextBlockTitle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="32"/>
-
+            <Setter Property="FontSize" Value="32"/>
         </Style>
     </Page.Resources>
-    
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FFCBF9F5">
 
         <StackPanel Orientation="Vertical">
           <StackPanel>

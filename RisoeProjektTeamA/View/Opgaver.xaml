@@ -10,8 +10,10 @@
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="ComboBoxDefault" TargetType="ComboBox">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontSize" Value="24"/>
+            
         </Style>
 
         <Style x:Key="TextBox1" TargetType="TextBox">
@@ -53,7 +55,7 @@
         <local2:OpgaveViewModel/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFCBF9F5">
         <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="479,10,0,0" Text="Opgaver" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlockTitle}"/>
