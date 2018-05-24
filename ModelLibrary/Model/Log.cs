@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ModelLibrary.Model
 {
     public class Log
-    {
+    { //classen skal slettes
       public string Emne { get; set; }
         public DateTime Dato { get; set; }
         public string Tekniker { get; set; }

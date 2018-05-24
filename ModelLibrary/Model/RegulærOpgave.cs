@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ModelLibrary.Model
 {
     public class RegulærOpgave : Opgave
-    {
+    { //classen skal slettes
         public int IntervalIDage { get; set; }
 
         public RegulærOpgave() : base()

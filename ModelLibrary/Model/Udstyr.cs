@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +17,22 @@ namespace ModelLibrary.Model
     public class Udstyr
     {
         public uType Type { get; set; }
-        //Nyt prop til opdatering i dokumentation 22/05
         public int UdstyrId { get; set; }
-        //slut på ny prop
         public DateTime Installationsdato { get; set; }
-        //public DateTime NæsteTjekDato { get; set; }
-        //public DateTime SidsteTjekDato { get; set; }
+        public Station Station { get; set; }
+        public ObservableCollection<Opgave> OpgaveListe { get; set; }
         public string Beskrivelse { get; set; }
+        
 
 
-        public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type)
+        public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type, Station station)
         {
             UdstyrId = udstyrId;
             Installationsdato = installationsdato;
             Beskrivelse = beskrivelse;
             Type = type;
+            OpgaveListe = null;
+            Station = station;
         }
 
         public Udstyr()
@@ -45,6 +47,8 @@ namespace ModelLibrary.Model
             Installationsdato = udstyr.Installationsdato;
             Beskrivelse = udstyr.Beskrivelse;
             Type = udstyr.Type;
+            OpgaveListe = udstyr.OpgaveListe;
+            Station = udstyr.Station;
         }
     }
 }
