@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ModelLibrary.Exceptions;
+using ModelLibrary.Model;
 using RESTRisoe.DBUtil;
 
 namespace RESTRisoe.Controllers
@@ -13,38 +14,35 @@ namespace RESTRisoe.Controllers
     {
         IManageStation manager = new ManageStation();
         // GET: api/Stations
-        public IEnumerable<string> HentAlleStationer()
+        public IEnumerable<Station> HentAlleStationer()
         {
-            try
-            {
-                return manager.HentAlleStationer();
-            }
-            catch (ParseToEnumException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw ex; //ex  håndteres i MVVMRisoe
-            }
+            return manager.HentAlleStationer();   
         }
 
         // GET: api/Stations/5
-        public string HentStationFraId(int id)
+        public Station HentStationFraId(int id)
         {
-            return "value";
+            {
+                return manager.HentStationFraId(id);    
+            }
         }
 
         // POST: api/Stations
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]Station value)
         {
+            return manager.IndsætStation(value);
         }
 
         // PUT: api/Stations/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, [FromBody]Station value)
         {
+            return manager.OpdaterStationr(value, id);
         }
 
         // DELETE: api/Stations/5
-        public void SletStation(int id)
+        public Station SletStation(int id)
         {
+            return manager.SletStation(id);
         }
     }
 }

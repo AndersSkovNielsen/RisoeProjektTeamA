@@ -115,24 +115,24 @@ namespace RESTRisoe.DBUtil
 
         public bool OpdaterUdstyr(Udstyr udstyr, int udstyrID)
         {
-            throw new NotImplementedException();
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    SqlCommand command = new SqlCommand(updateSql, connection);
+           
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(updateSql, connection);
 
-            //    TilføjVærdiUdstyr(udstyr, command);
-            //    command.Parameters.AddWithValue("@ID", udstyrID);
+                TilføjVærdiUdstyr(udstyr, command);
+                command.Parameters.AddWithValue("@ID", udstyrID);
 
-            //    command.Connection.Open();
+                command.Connection.Open();
 
-            //    int noOfRows = command.ExecuteNonQuery();
+                int noOfRows = command.ExecuteNonQuery();
 
-            //    if (noOfRows == 1)
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //}
+                if (noOfRows == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         public Udstyr SletUdstyr(int id)
@@ -195,7 +195,7 @@ namespace RESTRisoe.DBUtil
             DateTime instDato = reader.GetDateTime(3);
             string beskrivelse = reader.GetString(4);
             
-            return new Udstyr(udstyrId, instDato, beskrivelse, type);
+            return new Udstyr(udstyrId, instDato, beskrivelse, type,new Station("unittestStation",99));
         }
 
         private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
