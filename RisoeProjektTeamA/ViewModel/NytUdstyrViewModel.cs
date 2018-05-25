@@ -10,7 +10,7 @@ using RisoeProjektTeamA.Annotations;
 namespace RisoeProjektTeamA.ViewModel
 {
     class NytUdstyrViewModel:INotifyPropertyChanged
-    {
+    {//TOmme klasser skal slettes
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
