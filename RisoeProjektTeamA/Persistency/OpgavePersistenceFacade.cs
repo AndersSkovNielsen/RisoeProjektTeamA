@@ -22,7 +22,6 @@ namespace RisoeProjektTeamA.Persistency
             //Eksempel på brud med DRY
             //String OpgaveUri = "http://localhost:59327/api/Opgave/";
             //slut på eksempel 
-
             using (HttpClient client = new HttpClient())
             {
                 List<Opgave> opgaveListe = new List<Opgave>();
@@ -30,7 +29,6 @@ namespace RisoeProjektTeamA.Persistency
                 {
                     string jsonStr = client.GetStringAsync(Uri).Result;
                     // info fra body
-
                    opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
                 }
                 catch (ParseToEnumException ex)
