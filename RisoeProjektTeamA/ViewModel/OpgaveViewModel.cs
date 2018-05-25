@@ -27,7 +27,7 @@ namespace RisoeProjektTeamA.ViewModel
             OpgaveHandler = new OpgaveHandler(this);
             Logbog = LogbogSingleton.Instance;
             
-            //Ikke relavant for 1. iteration. Måske senere
+            //2. iteration
             AddCommand = new RelayCommand(OpgaveHandler.IndsætOpgave);
             UpdateCommand = new RelayCommand(OpgaveHandler.OpdaterOpgave);
             RemoveCommand = new RelayCommand(OpgaveHandler.SletOpgave);
@@ -36,7 +36,12 @@ namespace RisoeProjektTeamA.ViewModel
 
             StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
 
+            //3. iteration
             UdstyrsListe = Logbog.UdstyrsListe;
+
+            HentCommand = new RelayCommand(OpgaveHandler.HentOpgaver);
+
+
 
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
@@ -46,7 +51,7 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand UpdateCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
 
-        //Ikke relavant for 1. iteration, måske senere
+        //2. iteration, måske senere
         private Opgave _nyOpgave;
         public Opgave NyOpgave
         {
@@ -107,9 +112,42 @@ namespace RisoeProjektTeamA.ViewModel
         }
 
         //3. iteration
-
         public ObservableCollection<Udstyr> UdstyrsListe { get; set; }
 
+        public RelayCommand HentCommand { get; set; }
+
+        private Udstyr _valgtUdstyr;
+        public Udstyr ValgtUdstyr
+        {
+            get { return _valgtUdstyr; }
+            set
+            {
+                if (value != null)
+                {
+                    _valgtUdstyr = new Udstyr(value);
+                    UdstyrErValgt = true;
+                }
+                else
+                {
+                    _valgtUdstyr = null;
+                    UdstyrErValgt = false;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _udstyrErValgt;
+        public bool UdstyrErValgt
+        {
+            get { return _udstyrErValgt; }
+            set
+            {
+                _udstyrErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //Ikke relevant i 3. iteration
         //Pop up test, experiment
         public RelayCommand PopUpTestCommand { get; set; }
 

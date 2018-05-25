@@ -59,10 +59,6 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 return opgaveListe;
             }
-            
-               
-            
-            
         }
 
         public Opgave HentEnOpgave(int nr)

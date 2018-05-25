@@ -65,7 +65,7 @@ namespace RisoeProjektTeamA.Model
     
 
 
-        //Ikke relavant for 1. iteration. Måske senere
+        //Ikke relavant for 3. iteration. Måske senere
         public ObservableCollection<Log> Logliste { get; set; }
         public ObservableCollection<Bruger> Brugerliste { get; set; }
        

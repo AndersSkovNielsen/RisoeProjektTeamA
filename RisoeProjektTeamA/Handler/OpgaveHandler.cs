@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,7 @@ namespace RisoeProjektTeamA.Handler
     public class OpgaveHandler
     {
         public OpgaveViewModel OpgaveViewModel { get; set; }
-
-        //Gem logbog til senere iteration
-        //private LogbogSingleton Logbog;
-
+        
         public OpgaveHandler(OpgaveViewModel opgaveViewModel)
         {
             OpgaveViewModel = opgaveViewModel;
@@ -78,6 +76,23 @@ namespace RisoeProjektTeamA.Handler
             }
 
             OpgaveViewModel.OpgaveErValgt = false;
+        }
+
+        //3. iteration
+        public void HentOpgaver()
+        {
+            if (OpgaveViewModel.ValgtUdstyr != null)
+            {
+                OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+                int udstyrID = OpgaveViewModel.ValgtUdstyr.UdstyrId;
+
+                OpgaveViewModel.Logbog.OpgaveListe = new ObservableCollection<Opgave>(OpgaveViewModel.Logbog.OFacade.HentAlleOpgaverFraUdstyr(udstyrID));
+            }
+            else
+            {
+                MessageDialogHandler.Show("Intet udstyr valgt", "Du skal vælge et udstyr fra menuen");
+            }
         }
 
         //Pop Up Test, experiment
