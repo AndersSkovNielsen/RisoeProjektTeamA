@@ -32,11 +32,28 @@ namespace RESTRisoe.Controllers
 
         //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
         [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
+        [HttpGet]
         public IEnumerable<Opgave> GetFromUdstyr(int udstyrId)
         {
             try
             {
                 return manager.HentAlleOpgaverForUdstyr(udstyrId);
+            }
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex; //ex  håndteres i MVVMRisoe 
+            }
+        }
+
+        //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
+        [Route("api/Opgave/HentOpgaveListe/{udstyrId:int}")]
+        [HttpGet]
+        public IEnumerable<Opgave> GetOpgaveListe(int udstyrId)
+        {
+            try
+            {
+                return manager.HentOpgaveListe(udstyrId);
             }
             catch (ParseToEnumException ex)
             {

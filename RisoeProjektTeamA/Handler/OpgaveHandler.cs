@@ -22,6 +22,7 @@ namespace RisoeProjektTeamA.Handler
         public void IndsætOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
+            opgave.Udstyr.UdstyrId = OpgaveViewModel.AdminUdstyr.UdstyrId;
 
             OpgaveViewModel.Logbog.OFacade.IndsætOpgave(opgave);
 
@@ -42,7 +43,8 @@ namespace RisoeProjektTeamA.Handler
         public void OpdaterOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
-            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
+            opgave.Udstyr.UdstyrId = OpgaveViewModel.AdminUdstyr.UdstyrId;
+            int opgaveID = OpgaveViewModel.AdminUdstyr.UdstyrId;
 
             OpgaveViewModel.Logbog.OFacade.OpdaterEnOpgave(opgaveID, opgave);
 
@@ -61,7 +63,7 @@ namespace RisoeProjektTeamA.Handler
 
         public void SletOpgave()
         {
-            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
+            int opgaveID = OpgaveViewModel.AdminUdstyr.UdstyrId;
 
             OpgaveViewModel.Logbog.OFacade.SletOpgave(opgaveID);
 
@@ -86,8 +88,17 @@ namespace RisoeProjektTeamA.Handler
                 OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
                 int udstyrID = OpgaveViewModel.ValgtUdstyr.UdstyrId;
+                OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
+                OpgaveViewModel.AdminUdstyrErValgt = true;
 
-                OpgaveViewModel.Logbog.OpgaveListe = new ObservableCollection<Opgave>(OpgaveViewModel.Logbog.OFacade.HentAlleOpgaverFraUdstyr(udstyrID));
+                var opgaver = new ObservableCollection<Opgave>(OpgaveViewModel.Logbog.OFacade.HentOpgaveListe(udstyrID));
+
+                foreach (var o in opgaver)
+                {
+                    OpgaveViewModel.Logbog.AddO(o);
+                }
+
+                OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
             }
             else
             {

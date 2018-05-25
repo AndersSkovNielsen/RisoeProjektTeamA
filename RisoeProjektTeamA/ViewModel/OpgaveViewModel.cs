@@ -96,7 +96,14 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _opgaveErValgt; }
             set
             {
-                _opgaveErValgt = value;
+                if (AdminUdstyrErValgt == true)
+                {
+                    _opgaveErValgt = value;
+                }
+                else
+                {
+                    _opgaveErValgt = false;
+                }
                 OnPropertyChanged();
             }
         }
@@ -143,6 +150,35 @@ namespace RisoeProjektTeamA.ViewModel
             set
             {
                 _udstyrErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Udstyr _adminUdstyr;
+        public Udstyr AdminUdstyr
+        {
+            get { return _adminUdstyr; }
+            set
+            {
+                if (value != null)
+                {
+                    _adminUdstyr = new Udstyr(value);
+                }
+                else
+                {
+                    _adminUdstyr = null;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _adminUdstyrErValgt;
+        public bool AdminUdstyrErValgt
+        {
+            get { return _adminUdstyrErValgt; }
+            set
+            {
+                _adminUdstyrErValgt = value;
                 OnPropertyChanged();
             }
         }

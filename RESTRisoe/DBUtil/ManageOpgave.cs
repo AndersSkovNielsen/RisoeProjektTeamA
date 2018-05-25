@@ -74,6 +74,26 @@ namespace RESTRisoe.DBUtil
             }
             return opgaver;
         }
+
+        public List<Opgave> HentOpgaveListe(int udstyrId)
+        {
+            List<Opgave> opgaver = new List<Opgave>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryFromUdstyrString, connection);
+                command.Parameters.AddWithValue("@UdstyrId", udstyrId);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    opgaver.Add(ReadOpgaveUdenUdstyr(reader));
+                }
+            }
+            return opgaver;
+        }
         //slut på 3. iterationsmetode
 
         public Opgave HentOpgaveFraId(int opgaveId)
@@ -216,6 +236,37 @@ namespace RESTRisoe.DBUtil
             int udstyrId = reader.GetInt32(4);
 
             Udstyr udstyr = new ManageUdstyr().HentUdstyrFraId(udstyrId);
+
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+        }
+        /// <summary>
+        /// Denne metode bliver brugt privat til at læse fra databasen, men ignorerer Udstyr
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private Opgave ReadOpgaveUdenUdstyr(SqlDataReader reader)
+        {
+            int id = reader.GetInt32(0);
+            String beskrivelse = reader.GetString(1);
+
+            StatusType status = StatusType.IkkeLøst;
+            try
+            {
+                String statusStr = reader.GetString(2);
+                status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
+                CheckEnumParseO(status, id);
+            }
+            catch (ParseToEnumException)
+            {
+                ParseToEnumException parseFailEx = new ParseToEnumException(id);
+                string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
+
+            }
+
+            int ventetid = reader.GetInt32(3);
+            int udstyrId = reader.GetInt32(4);
+
+            Udstyr udstyr = null;
 
             return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }

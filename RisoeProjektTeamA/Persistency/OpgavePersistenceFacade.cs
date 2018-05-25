@@ -61,6 +61,26 @@ namespace RisoeProjektTeamA.Persistency
             }
         }
 
+        public List<Opgave> HentOpgaveListe(int udstyrId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                List<Opgave> opgaveListe = new List<Opgave>();
+                string jsonStr = client.GetStringAsync(Uri + "HentOpgaveListe/" + udstyrId).Result;
+                try
+                {
+                    opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
+                }
+
+                catch (ParseToEnumException e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                return opgaveListe;
+            }
+        }
+
         public Opgave HentEnOpgave(int nr)
         {
             //Eksempel på brud med DRY

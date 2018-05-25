@@ -27,7 +27,7 @@ namespace ModelLibrary.Model
 
         public Opgave()
         {
-             
+
         }
 
         //Test constructor af simpel opgave til 1. iteration
