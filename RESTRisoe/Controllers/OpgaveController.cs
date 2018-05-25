@@ -74,7 +74,6 @@ namespace RESTRisoe.Controllers
                 Console.WriteLine(ex.ToString());
                 throw;
             }
-           
         }
 
         // POST: api/Opgave/

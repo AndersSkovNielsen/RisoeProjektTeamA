@@ -45,7 +45,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af indsætning af opgave");
             Console.WriteLine("");
 
-            Opgave OP = new Opgave(10,"test",StatusType.IkkeLøst,1,2, HentUdstyrFraId(3));
+            Opgave OP = new Opgave(10,"test",StatusType.IkkeLøst,1, HentUdstyrFraId(3));
 
             IndsætOpgave(OP);
 
@@ -59,7 +59,7 @@ namespace RisoeConsumeDatabase
             Console.WriteLine("Test af opdatering af opgave");
             Console.WriteLine("");
 
-            Opgave NewOP = new Opgave(10,"test2",StatusType.Løst,2,3, HentUdstyrFraId(1));
+            Opgave NewOP = new Opgave(10,"test2",StatusType.Løst,2, HentUdstyrFraId(1));
 
             OpdaterOpgave(NewOP, 10);
 
@@ -234,7 +234,7 @@ namespace RisoeConsumeDatabase
 
             Udstyr udstyr = HentUdstyrFraId(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+            return new Opgave(id, beskrivelse, status, udstyrId, udstyr); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)

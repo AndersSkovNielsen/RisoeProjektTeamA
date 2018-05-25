@@ -182,9 +182,11 @@
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\UdstyrController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DBUtil\IManageBruger.cs" />
     <Compile Include="DBUtil\IManageOpgave.cs" />
     <Compile Include="DBUtil\IManageStation.cs" />
     <Compile Include="DBUtil\IManageUdstyr.cs" />
+    <Compile Include="DBUtil\ManageBruger.cs" />
     <Compile Include="DBUtil\ManageOpgave.cs" />
     <Compile Include="DBUtil\ManageStation.cs" />
     <Compile Include="DBUtil\ManageUdstyr.cs" />

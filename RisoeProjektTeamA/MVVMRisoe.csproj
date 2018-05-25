@@ -96,20 +96,26 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Handler\BrugerHandler.cs" />
     <Compile Include="Handler\OpgaveHandler.cs" />
     <Compile Include="Handler\StationsHandler.cs" />
     <Compile Include="Handler\UdstyrHandler.cs" />
     <Compile Include="Model\LogbogSingleton.cs" />
+    <Compile Include="Persistency\BrugerPersistenceFacade.cs" />
     <Compile Include="Persistency\OpgavePersistenceFacade.cs" />
     <Compile Include="Persistency\StationsPersitenceFacade.cs" />
     <Compile Include="Persistency\UdstyrPersistanceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\BrugerViewModel.cs" />
     <Compile Include="ViewModel\NytUdstyrViewModel.cs" />
     <Compile Include="ViewModel\OpgaveViewModel.cs" />
     <Compile Include="ViewModel\OversigtViewModel.cs" />
     <Compile Include="ViewModel\StationsViewModel.cs" />
     <Compile Include="ViewModel\UdstyrViewModel.cs" />
+    <Compile Include="View\BrugerSide.xaml.cs">
+      <DependentUpon>BrugerSide.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Hovedmenu.xaml.cs">
       <DependentUpon>Hovedmenu.xaml</DependentUpon>
     </Compile>
@@ -152,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\BrugerSide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Forside.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

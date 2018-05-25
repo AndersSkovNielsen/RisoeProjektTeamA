@@ -20,17 +20,11 @@ namespace RisoeProjektTeamA.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Oversigt : Page
+    public sealed partial class BrugerSide : Page
     {
-        public Oversigt()
+        public BrugerSide()
         {
             this.InitializeComponent();
         }
-
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Hovedmenu));
-        }
-
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Model;
+using RisoeProjektTeamA.View;
 using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Handler
@@ -18,6 +20,22 @@ namespace RisoeProjektTeamA.Handler
         public UdstyrHandler(UdstyrViewModel udstyrViewModel)
         {
             UdstyrViewModel = udstyrViewModel;
+        }
+
+        public void HentUdstyr()
+        {
+            if (UdstyrViewModel.ValgtStation != null)
+            {
+                UdstyrViewModel.Logbog.OpgaveListe.Clear();
+
+                int StationID = UdstyrViewModel.ValgtStation.StationsId;
+
+                UdstyrViewModel.Logbog.UdstyrsListe = new ObservableCollection<Udstyr>(UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID));
+            }
+            else
+            {
+                MessageDialogHandler.Show("Intet udstyr valgt", "Du skal vælge et udstyr fra menuen");
+            }
         }
 
         public void IndsætUdstyr()
@@ -78,5 +96,7 @@ namespace RisoeProjektTeamA.Handler
 
             UdstyrViewModel.UdstyrErValgt = false;
         }
+       
+
     }
 }

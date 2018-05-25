@@ -44,6 +44,8 @@ namespace RisoeProjektTeamA.ViewModel
 
             NytUdstyr = new Udstyr();
 
+            HentCommand = new RelayCommand(UdstyrHandler.HentUdstyr);
+
             TypeListe = new List<uType>() {uType.Filter, uType.Termometer, uType.Lufttrykmåler};
         }
 
@@ -103,8 +105,40 @@ namespace RisoeProjektTeamA.ViewModel
 
         public List<uType> TypeListe { get; set; }
 
-        
-    
+        public RelayCommand HentCommand { get; set; }
+
+
+        private Station _valgtStation;
+        public Station ValgtStation
+        {
+            get { return _valgtStation; }
+            set
+            {
+                if (value != null)
+                {
+                    _valgtStation = new Station(value);
+                    StationErValgt = true;
+                }
+                else
+                {
+                    _valgtStation = null;
+                    StationErValgt = false;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _stationErValgt;
+        public bool StationErValgt
+        {
+            get { return _stationErValgt; }
+            set
+            {
+                _stationErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Ikke brugt i 2. iteration
         public int ValgtIndex { get; set; }
     }

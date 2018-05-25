@@ -60,16 +60,15 @@ namespace RisoeMVVMUnitTest
             //arrange
             StatusType st = StatusType.Fejlet;
             int id = 1;
-            string ts = "Beksrivese";
+            string ts = "Beksrivelse";
             Udstyr uds = new Udstyr();
-            int vt = 1;
+          
 
             //act
-            Opgave TestOpgave=new Opgave(id,ts,st,id,vt, uds);
+            Opgave TestOpgave=new Opgave(id,ts,st,id, uds);
         
             //assert
             Assert.AreEqual(id,TestOpgave.ID);
-            Assert.AreEqual(vt,TestOpgave.VentetidIDage);
             Assert.AreEqual(ts,TestOpgave.Beskrivelse);
             Assert.AreEqual(st, TestOpgave.Status);
             Assert.AreEqual(uds,TestOpgave.Udstyr);
