@@ -55,7 +55,7 @@
 
                 <StackPanel>
                     <TextBlock Text="Vælg Station" Style="{StaticResource TextBlockDefault}"/>
-                    <ComboBox Style="{StaticResource ComboBoxDefault}" ItemsSource="{Binding StationsListe, Mode=TwoWay}">
+                    <ComboBox Style="{StaticResource ComboBoxDefault}" ItemsSource="{Binding StationsListe, Mode=TwoWay}" SelectedItem="{Binding ValgtStation, Mode=TwoWay}">
 
                     </ComboBox>
                 </StackPanel>

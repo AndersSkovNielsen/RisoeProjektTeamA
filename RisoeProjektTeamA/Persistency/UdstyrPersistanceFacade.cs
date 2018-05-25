@@ -42,7 +42,7 @@ namespace RisoeProjektTeamA.Persistency
             using (HttpClient client=new HttpClient())
             {
                 List<Udstyr> udstyrsListe = new List<Udstyr>();
-                string jsonStr = client.GetStringAsync(Uri+ "HentAlltUdstyrForStation/" +stationId).Result;
+                string jsonStr = client.GetStringAsync(Uri+ "HentAltUdstyrForStation/" +stationId).Result;
                 try
                 {
                     udstyrsListe = JsonConvert.DeserializeObject<List<Udstyr>>(jsonStr);
