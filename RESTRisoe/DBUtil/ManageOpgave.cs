@@ -76,7 +76,7 @@ namespace RESTRisoe.DBUtil
         }
 
         //3. iterationsmetode, der kun henter UdstyrID til Udstyr
-        public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
+        public List<Opgave> HentOpgaverForUdstyrID(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
 

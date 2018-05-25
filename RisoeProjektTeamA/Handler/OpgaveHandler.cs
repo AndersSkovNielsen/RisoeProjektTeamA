@@ -32,7 +32,7 @@ namespace RisoeProjektTeamA.Handler
             //ListView opdatering
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentOpgaverForUdstyrID(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -54,7 +54,7 @@ namespace RisoeProjektTeamA.Handler
             //ListView opdatering
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentOpgaverForUdstyrID(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -75,7 +75,7 @@ namespace RisoeProjektTeamA.Handler
             //ListView opdatering
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
 
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentOpgaverForUdstyrID(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -96,7 +96,7 @@ namespace RisoeProjektTeamA.Handler
                 OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
                 OpgaveViewModel.AdminUdstyrErValgt = true;
 
-                var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
+                var opgaver = OpgaveViewModel.Logbog.OFacade.HentOpgaverForUdstyrID(udstyrID);
 
                 foreach (var o in opgaver)
                 {

@@ -61,7 +61,7 @@ namespace RisoeProjektTeamA.Persistency
         }
 
         //3. iteration metode. Bruges til at hente opgaver og kun fokusere på UdstyrID.
-        public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
+        public List<Opgave> HentOpgaverForUdstyrID(int udstyrId)
         {
             using (HttpClient client = new HttpClient())
             {

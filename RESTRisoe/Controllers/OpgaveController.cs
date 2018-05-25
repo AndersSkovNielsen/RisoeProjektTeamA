@@ -34,7 +34,7 @@ namespace RESTRisoe.Controllers
         //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
         [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
         [HttpGet]
-        public IEnumerable<Opgave> GetFromUdstyr(int udstyrId)
+        public IEnumerable<Opgave> GetAlleOpgaverForUdstyr(int udstyrId)
         {
             try
             {
@@ -48,14 +48,14 @@ namespace RESTRisoe.Controllers
         }
 
         //3. iteration
-        //Get: api/Opgave/HentUdstyrIDForOpgaver/1
-        [Route("api/Opgave/HentUdstyrIDForOpgaver/{udstyrId:int}")]
+        //Get: api/Opgave/HentOpgaverForUdstyrID/1
+        [Route("api/Opgave/HentOpgaverForUdstyrID/{udstyrId:int}")]
         [HttpGet]
-        public IEnumerable<Opgave> GetOpgaveListe(int udstyrId)
+        public IEnumerable<Opgave> GetOpgaverForID(int udstyrId)
         {
             try
             {
-                return manager.HentUdstyrIDForOpgaver(udstyrId);
+                return manager.HentOpgaverForUdstyrID(udstyrId);
             }
             catch (ParseToEnumException ex)
             {
