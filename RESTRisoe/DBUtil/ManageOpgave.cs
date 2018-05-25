@@ -83,8 +83,8 @@ namespace RESTRisoe.DBUtil
             }
             return opgaver;
         }
-        //3. iterationsmetode
         
+        //Bliver ikke brugt i 3. iteration. Bruges til at hente et helt Udstyr
         public List<Opgave> HentAlleOpgaverForUdstyr(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
@@ -110,6 +110,7 @@ namespace RESTRisoe.DBUtil
         /// </summary>
         /// <param name="udstyrId"></param>
         /// <returns></returns>
+        //3. iterationsmetode, der kun henter UdstyrID til Udstyr
         public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
@@ -309,7 +310,7 @@ namespace RESTRisoe.DBUtil
             return new Opgave(id, beskrivelse, status, ventetid, udstyr); 
         }
         /// <summary>
-        /// Denne metode bliver brugt privat til at læse fra databasen, men ignorerer Udstyr
+        /// Denne metode bliver brugt privat til at læse fra databasen, men ignorerer alt i Udstyr, bortset fra UdstyrID
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
@@ -334,9 +335,9 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            Udstyr udstyr = new ManageUdstyr().HentUdstyrId(udstyrId);
+            Udstyr udstyr = new Udstyr(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, ventetid, udstyr); 
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)
