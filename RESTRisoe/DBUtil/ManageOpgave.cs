@@ -217,7 +217,7 @@ namespace RESTRisoe.DBUtil
 
             Udstyr udstyr = new ManageUdstyr().HentUdstyrFraId(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, udstyrId, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }
 
         //Indsæt og Opdater (DRY)
