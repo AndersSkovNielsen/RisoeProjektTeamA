@@ -51,11 +51,11 @@ namespace RESTRisoe.Controllers
         //Get: api/Opgave/HentOpgaverForUdstyrID/1
         [Route("api/Opgave/HentOpgaverForUdstyrID/{udstyrId:int}")]
         [HttpGet]
-        public IEnumerable<Opgave> GetOpgaverForID(int udstyrId)
+        public IEnumerable<Opgave> GetOpgaverForID(int udstyrID)
         {
             try
             {
-                return manager.HentOpgaverForUdstyrID(udstyrId);
+                return manager.HentOpgaverForUdstyrID(udstyrID);
             }
             catch (ParseToEnumException ex)
             {
