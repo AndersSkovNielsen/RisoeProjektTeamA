@@ -27,7 +27,7 @@ namespace ModelLibrary.Model
 
         public Opgave()
         {
-
+            Udstyr = new Udstyr();
         }
 
         //Test constructor af simpel opgave til 1. iteration
@@ -45,6 +45,7 @@ namespace ModelLibrary.Model
             Beskrivelse = beskrivelse;
             Status = status;
             VentetidIDage = ventetid;
+            Udstyr = new Udstyr();
         }
 
         public Opgave(Opgave opgave)
@@ -53,7 +54,13 @@ namespace ModelLibrary.Model
             Beskrivelse = opgave.Beskrivelse;
             Status = opgave.Status;
             VentetidIDage = opgave.VentetidIDage;
-            Udstyr = opgave.Udstyr;
+
+            if (opgave.Udstyr == null)
+            {
+                Udstyr = new Udstyr();
+            }
+            else
+                Udstyr = opgave.Udstyr;
         }
 
         //Constructor til senere brug med Udstyr udvidelse

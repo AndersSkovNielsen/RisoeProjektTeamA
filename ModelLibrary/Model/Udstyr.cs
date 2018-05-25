@@ -51,6 +51,11 @@ namespace ModelLibrary.Model
             Station = udstyr.Station;
         }
 
+        public Udstyr(int udstyrID)
+        {
+            UdstyrId = udstyrID;
+        }
+
         public override string ToString()
         {
             return $"{UdstyrId}: {Type.ToString()}";

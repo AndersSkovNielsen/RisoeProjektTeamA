@@ -22,15 +22,17 @@ namespace RisoeProjektTeamA.Handler
         public void IndsætOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
-            opgave.Udstyr.UdstyrId = OpgaveViewModel.AdminUdstyr.UdstyrId;
+            int udstyrID = OpgaveViewModel.AdminUdstyr.UdstyrId;
+
+            int opgaveID = OpgaveViewModel.AdminUdstyr.UdstyrId;
+            opgave.Udstyr.UdstyrId = opgaveID;
 
             OpgaveViewModel.Logbog.OFacade.IndsætOpgave(opgave);
 
             //ListView opdatering
-
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
-
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -43,15 +45,16 @@ namespace RisoeProjektTeamA.Handler
         public void OpdaterOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
-            opgave.Udstyr.UdstyrId = OpgaveViewModel.AdminUdstyr.UdstyrId;
-            int opgaveID = OpgaveViewModel.AdminUdstyr.UdstyrId;
+            int udstyrID = OpgaveViewModel.AdminUdstyr.UdstyrId;
+
+            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
 
             OpgaveViewModel.Logbog.OFacade.OpdaterEnOpgave(opgaveID, opgave);
 
             //ListView opdatering
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
-
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -63,14 +66,16 @@ namespace RisoeProjektTeamA.Handler
 
         public void SletOpgave()
         {
-            int opgaveID = OpgaveViewModel.AdminUdstyr.UdstyrId;
+            int opgaveID = OpgaveViewModel.ValgtOpgave.ID;
+
+            int udstyrID = OpgaveViewModel.AdminUdstyr.UdstyrId;
 
             OpgaveViewModel.Logbog.OFacade.SletOpgave(opgaveID);
 
             //ListView opdatering
-            var opgaver = OpgaveViewModel.Logbog.OFacade.HentAlleOpgaver();
-
             OpgaveViewModel.Logbog.OpgaveListe.Clear();
+
+            var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
 
             foreach (var o in opgaver)
             {
@@ -91,14 +96,12 @@ namespace RisoeProjektTeamA.Handler
                 OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
                 OpgaveViewModel.AdminUdstyrErValgt = true;
 
-                var opgaver = new ObservableCollection<Opgave>(OpgaveViewModel.Logbog.OFacade.HentOpgaveListe(udstyrID));
+                var opgaver = OpgaveViewModel.Logbog.OFacade.HentUdstyrIDForOpgaver(udstyrID);
 
                 foreach (var o in opgaver)
                 {
                     OpgaveViewModel.Logbog.AddO(o);
                 }
-
-                OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
             }
             else
             {

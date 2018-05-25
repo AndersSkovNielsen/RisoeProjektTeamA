@@ -75,7 +75,7 @@ namespace RESTRisoe.DBUtil
             return opgaver;
         }
 
-        public List<Opgave> HentOpgaveListe(int udstyrId)
+        public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
 
@@ -89,7 +89,7 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    opgaver.Add(ReadOpgaveUdenUdstyr(reader));
+                    opgaver.Add(ReadOpgaveMedKunUdstyrID(reader));
                 }
             }
             return opgaver;
@@ -244,7 +244,7 @@ namespace RESTRisoe.DBUtil
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private Opgave ReadOpgaveUdenUdstyr(SqlDataReader reader)
+        private Opgave ReadOpgaveMedKunUdstyrID(SqlDataReader reader)
         {
             int id = reader.GetInt32(0);
             String beskrivelse = reader.GetString(1);
@@ -266,7 +266,7 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            Udstyr udstyr = null;
+            Udstyr udstyr = new ManageUdstyr().HentUdstyrId(udstyrId);
 
             return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
         }

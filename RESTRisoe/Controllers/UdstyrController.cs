@@ -57,6 +57,22 @@ namespace RESTRisoe.Controllers
             }
         }
 
+        // GET: api/Udstyr/5
+        [Route("api/Udstyr/GetUdstyrID/{stationId:int}")]
+        [HttpGet]
+        public Udstyr GetUdstyrID(int id)
+        {
+            try
+            {
+                return manager.HentUdstyrId(id);
+            }
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
+
         // POST: api/Udstyr/
         public bool Post([FromBody] Udstyr value)
         {

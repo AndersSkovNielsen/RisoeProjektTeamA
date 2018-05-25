@@ -46,14 +46,14 @@ namespace RESTRisoe.Controllers
             }
         }
 
-        //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
-        [Route("api/Opgave/HentOpgaveListe/{udstyrId:int}")]
+        //Get: api/Opgave/HentUdstyrIDForOpgaver/1
+        [Route("api/Opgave/HentUdstyrIDForOpgaver/{udstyrId:int}")]
         [HttpGet]
         public IEnumerable<Opgave> GetOpgaveListe(int udstyrId)
         {
             try
             {
-                return manager.HentOpgaveListe(udstyrId);
+                return manager.HentUdstyrIDForOpgaver(udstyrId);
             }
             catch (ParseToEnumException ex)
             {
