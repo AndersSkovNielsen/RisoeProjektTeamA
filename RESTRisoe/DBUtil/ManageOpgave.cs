@@ -14,18 +14,46 @@ using static ModelLibrary.Model.Opgave;
 namespace RESTRisoe.DBUtil
 {
     public class ManageOpgave : IManageOpgave
-    {
+    {   /// <summary>
+        /// Streng med link til database når der skal oprettes forbindelse
+        /// </summary>
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
+        
+        /// <summary>
+        /// SQL streng til at hente alle rækker i RisoeOpgave tabellen fra databasen
+        /// </summary>
         private String queryString = "select * from RisoeOpgave";
+
+        /// <summary>
+        /// SQL streng til at hente rækker i RisoeOpgave knyttet til et særligt udstyrs ID
+        /// </summary>
         private string queryFromUdstyrString = "select * from RisoeOpgave where UdstyrId = @UdstyrId";
+
+        /// <summary>
+        /// SQL Streng til at hente et bestemt udstyr ud fra angivet udstyrsID
+        /// </summary>
         private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
+
+        /// <summary>
+        /// SQL til til at indsætte et Opgave Object som række i RisoeOpgave Tabellen i Databasen
+        /// </summary>
         private String insertSql = "insert into RisoeOpgave Values (@OpgaveID, @Beskrivelse, @Status, @Ventetid, @UdstyrID)";
+
+        /// <summary>
+        /// SQL streng til at slette en række fra RisoeOpgave Tabellen i Databasen ud fra angivet OpgaveID
+        /// </summary>
         private String deleteSql = "delete from RisoeOpgave where ID = @ID";
+
+        /// <summary>
+        /// SQL streng til at opdatere værdierne for en række i RisoeOpgave Tabellen i Databasen ud fra angivet Opgave ID, samt værdier der skal opdateres
+        /// </summary>
         private String updateSql = "update RisoeOpgave " +
                                    "set ID = @OpgaveID, Beskrivelse = @Beskrivelse, Status = @Status, VentetidIDage = @Ventetid " +
                                    "where ID = @ID";
-
+        /// <summary>
+        /// Metode til at hente alle Opgaver fra databasen og samle dem i et liste-objekt
+        /// </summary>
+        /// <returns>List<Opgave></Opgave></returns>
         public List<Opgave> HentAlleOpgaver()
         {
             List<Opgave> opgaver = new List<Opgave>();
@@ -38,6 +66,8 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    //OBS! Udkommenteret kode nedenfor står som eksempel på brud med DRY-princippet. Se rapport
+
                     //int id = reader.GetInt32(0);
                     //String beskrivelse = reader.GetString(1);
                     //String statusStr = reader.GetString(2);
@@ -75,6 +105,11 @@ namespace RESTRisoe.DBUtil
             return opgaver;
         }
 
+        /// <summary>
+        /// Metode til at hente en liste af opgaver tilknytet et bestemt udstyrs-objekt
+        /// </summary>
+        /// <param name="udstyrId"></param>
+        /// <returns></returns>
         public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
@@ -96,6 +131,11 @@ namespace RESTRisoe.DBUtil
         }
         //slut på 3. iterationsmetode
 
+        /// <summary>
+        /// Metode til at hente et Opgave-objekt fra Databasen
+        /// </summary>
+        /// <param name="opgaveId"></param>
+        /// <returns></returns>
         public Opgave HentOpgaveFraId(int opgaveId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -124,6 +164,12 @@ namespace RESTRisoe.DBUtil
             return null;
         }
 
+
+        /// <summary>
+        /// Metode til at indsætte et opgave-object som række i RisoeOpgave tabellen i databasen
+        /// </summary>
+        /// <param name="opgave"></param>
+        /// <returns>bool</returns>
         public bool IndsætOpgave(Opgave opgave)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -149,6 +195,12 @@ namespace RESTRisoe.DBUtil
             }
         }
 
+        /// <summary>
+        /// Metode til at opdatere en række i RisoeOpgave Tabellen
+        /// </summary>
+        /// <param name="opgave"></param>
+        /// <param name="opgaveID"></param>
+        /// <returns>bool</returns>
         public bool OpdaterOpgave(Opgave opgave, int opgaveID)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -175,6 +227,11 @@ namespace RESTRisoe.DBUtil
             }
         }
 
+        /// <summary>
+        /// Metode til at slettte en række i RisoeOpgave tabellen
+        /// </summary>
+        /// <param name="opgaveID"></param>
+        /// <returns>Opgave</returns>
         public Opgave SletOpgave(int opgaveID)
         {
             Opgave opgave = HentOpgaveFraId(opgaveID);
@@ -200,7 +257,14 @@ namespace RESTRisoe.DBUtil
             }
         }
 
+        /// <summary>
+        /// Metode til at checke for exceptions i forbindelse med Parsing af OpgaveStatus. 
+        /// Fra streng-felt i database, til StatusType Enumerable i program
+        /// </summary>
+        /// <param name="checkStatus"></param>
+        /// <param name="checkId"></param>
         //ny metode skal opdateret i dokumentation 09/05
+        // er gjort 25/05
         private void CheckEnumParseO(StatusType checkStatus,int checkId)
         {
             if (!(checkStatus == StatusType.Fejlet ||
@@ -213,6 +277,11 @@ namespace RESTRisoe.DBUtil
         }
 
         //HentAlle og HentFraID (DRY)
+        /// <summary>
+        /// Metode til at indlæse et komplet Opgave-objekt fra Databasen
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private Opgave ReadOpgave(SqlDataReader reader)
         {
             int id = reader.GetInt32(0);
@@ -228,7 +297,7 @@ namespace RESTRisoe.DBUtil
             catch (ParseToEnumException)
             {
                ParseToEnumException parseFailEx= new ParseToEnumException(id);
-                string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
+                string log = parseFailEx.ToString(); 
                 
             }
         
@@ -237,7 +306,7 @@ namespace RESTRisoe.DBUtil
 
             Udstyr udstyr = new ManageUdstyr().HentUdstyrFraId(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr); 
         }
         /// <summary>
         /// Denne metode bliver brugt privat til at læse fra databasen, men ignorerer Udstyr
@@ -259,8 +328,7 @@ namespace RESTRisoe.DBUtil
             catch (ParseToEnumException)
             {
                 ParseToEnumException parseFailEx = new ParseToEnumException(id);
-                string log = parseFailEx.ToString(); //string til log for exceptions på REST Siden. ikke lagret endnu. mangler liste til at blive lagret i.
-
+                string log = parseFailEx.ToString(); 
             }
 
             int ventetid = reader.GetInt32(3);
@@ -268,10 +336,16 @@ namespace RESTRisoe.DBUtil
 
             Udstyr udstyr = new ManageUdstyr().HentUdstyrId(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr); 
         }
 
         //Indsæt og Opdater (DRY)
+        /// <summary>
+        /// Metode til at indsætte værdier på de rigtige felter i RisoeOpgave tabellen i databasen. 
+        /// Andvendes både til indsætning og opdatering
+        /// </summary>
+        /// <param name="opgave"></param>
+        /// <param name="command"></param>
         private void TilføjVærdiOpgave(Opgave opgave, SqlCommand command)
         {
             command.Parameters.AddWithValue("@OpgaveID", opgave.ID);
