@@ -7,12 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Style x:Key="TextBoxDefault" TargetType="TextBox">
-            <Setter Property="FontSize" Value="22"/>
+        <Style TargetType="TextBox" x:Key="TextBoxDefault">
+            <Setter Property="FontSize" Value="62"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Width" Value="450"/>
         </Style>
-        <Style x:Key="TextBlockTitle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="32"/>
-
+        <Style TargetType="TextBlock" x:Key="TextBlockTitle">
+            <Setter Property="FontSize" Value="72"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlock1">
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="ComboBox1">
+            <Setter Property="FontSize" Value="62"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Width" Value="450"/>
+        </Style>
+        <Style TargetType="Button" x:Key="TheButton">
+            <Setter Property="FontSize" Value="72"/>
+            <Setter Property="Height" Value="123"/>
+            <Setter Property="Width" Value="354"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
         <Color x:Key="BackGround" >
@@ -22,11 +38,23 @@
     </Page.Resources>
 
     <Grid Background="#FFCBF9F5">
-        <TextBlock HorizontalAlignment="Left" Margin="470,45,0,0" Text="Stationslog" TextWrapping="Wrap" VerticalAlignment="Top" Height="142" Width="355" FontSize="72"  />
-        <Button Content="Login" HorizontalAlignment="Left" Margin="470,560,0,0" VerticalAlignment="Top" Height="123" Width="354" FontSize="72" Click="Button_Click_Hovedmenu"/>
-        <TextBox HorizontalAlignment="Left" Margin="432,421,0,0" Text="Indtast kode" VerticalAlignment="Top" Height="134" Width="469" FontSize="72"/>
-        <ComboBox HorizontalAlignment="Left" Margin="432,300,0,0" VerticalAlignment="Top" Height="116" Width="468" FontSize="72"/>
-        <TextBlock HorizontalAlignment="Left" Margin="432,197,0,0" Text="Tekniker:" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="482" FontSize="48"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Left" Text="Stationslog" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlockTitle}"  />
+
+            <TextBlock Text="Tekniker:" Style="{StaticResource TextBlock1}"/>
+
+            <ComboBox VerticalAlignment="Top" Width="468" Style="{StaticResource ComboBox1}"/>
+
+            <TextBox Text="Indtast kode" Style="{StaticResource TextBoxDefault}"/>
+
+            <Button Content="Login" Click="Button_Click_Hovedmenu" Style="{StaticResource TheButton}"/>
+        </StackPanel>
+        
+        
+        
+                
+                
+        
 
 
     </Grid>
