@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    
+
+
     <Page.Resources>
         <Style x:Key="TextBoxDefault" TargetType="TextBox">
             <Setter Property="FontSize" Value="20"/>
@@ -36,6 +36,7 @@
     <Page.DataContext>
         <local2:UdstyrViewModel/>
     </Page.DataContext>
+    
 
     <Grid Background="#FFCBF9F5">
         <StackPanel Orientation="Vertical">
@@ -53,19 +54,27 @@
                 <StackPanel Width="200"/>
 
                 <StackPanel>
-                    <TextBlock Text="Station" Style="{StaticResource TextBlockDefault}"/>
+                    <TextBlock Text="Vælg Station" Style="{StaticResource TextBlockDefault}"/>
                     <ComboBox Style="{StaticResource ComboBoxDefault}" ItemsSource="{Binding StationsListe, Mode=TwoWay}">
-                        
+
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Width="500" Height="500"/>
+                <StackPanel Width="500" Height="500">
+                    <ListView Height="500" ItemsSource="{Binding Logbog.UdstyrsListe}"  />
+                </StackPanel>
                 <StackPanel Width="300">
-                    <StackPanel Height="400" Width="300"/>
+                    <StackPanel Height="400" Width="300">
+                       <Button Width="300" Height="100" Command="{Binding HentCommand}" IsEnabled="{Binding StationErValgt, Mode=TwoWay}">
+                            <TextBlock Text="Hent Udstyr" Style="{StaticResource TextBlockTitle}"/>
+                        </Button>
+                    </StackPanel>
                     <Button Width="300" Height="100">
                         <TextBlock Text="Opret Udstyr" Style="{StaticResource TextBlockTitle}"/>
                     </Button>
+
+
                 </StackPanel>
             </StackPanel>
         </StackPanel>

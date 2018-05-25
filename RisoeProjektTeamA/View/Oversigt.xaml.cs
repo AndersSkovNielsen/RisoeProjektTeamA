@@ -31,5 +31,6 @@ namespace RisoeProjektTeamA.View
         {
             this.Frame.Navigate(typeof(Hovedmenu));
         }
+
     }
 }
