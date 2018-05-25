@@ -26,11 +26,15 @@ namespace RisoeProjektTeamA.Handler
         {
             if (UdstyrViewModel.ValgtStation != null)
             {
-                UdstyrViewModel.Logbog.OpgaveListe.Clear();
+                UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
                 int StationID = UdstyrViewModel.ValgtStation.StationsId;
 
-                UdstyrViewModel.Logbog.UdstyrsListe = new ObservableCollection<Udstyr>(UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID));
+                var udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID);
+                foreach (var u in udstyr)
+                {
+                    UdstyrViewModel.Logbog.AddU(u);
+                }
             }
             else
             {
