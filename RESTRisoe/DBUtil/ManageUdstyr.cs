@@ -90,28 +90,6 @@ namespace RESTRisoe.DBUtil
             return null; //Kan vi skrive dette?
         }
 
-
-        public Udstyr HentUdstyrId(int id)
-            {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(queryStringFromID, connection);
-                command.Parameters.AddWithValue("@UdstyrId", id);
-
-                command.Connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    return ReadUdstyrID(reader);
-                }
-            }
-            return null; //Kan vi skrive dette?
-        }
-
-        
-
-
         public bool IndsætUdstyr(Udstyr udstyr)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -208,14 +186,6 @@ namespace RESTRisoe.DBUtil
             return new Udstyr(udstyrId, instDato, beskrivelse, type, station);
         }
 
-        private Udstyr ReadUdstyrID(SqlDataReader reader) //denne metode skal justeres så den tager fat de rigtige steder i DB
-        {
-            int udstyrId = reader.GetInt32(0);
-
-            return new Udstyr(udstyrId);
-        }
-        
-
         private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
         {
             command.Parameters.AddWithValue("@UdstyrID", udstyr.UdstyrId);
@@ -228,7 +198,8 @@ namespace RESTRisoe.DBUtil
         {
             if (!(checkType == uType.Filter ||
                   checkType == uType.Termometer ||
-                  checkType == uType.Lufttrykmåler))
+                  checkType == uType.Lufttrykmåler ||
+                  checkType == uType.Computer))
             {
                 int exId = checkId;
                 throw new ParseToEnumException(exId);

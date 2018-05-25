@@ -30,6 +30,7 @@ namespace RESTRisoe.Controllers
             }  
         }
 
+        //Bliver ikke brugt i 3. iteration
         //Get: api/Opgave/HentAlleOpgaverForUdstyr/1
         [Route("api/Opgave/HentAlleOpgaverForUdstyr/{udstyrId:int}")]
         [HttpGet]
@@ -46,6 +47,7 @@ namespace RESTRisoe.Controllers
             }
         }
 
+        //3. iteration
         //Get: api/Opgave/HentUdstyrIDForOpgaver/1
         [Route("api/Opgave/HentUdstyrIDForOpgaver/{udstyrId:int}")]
         [HttpGet]

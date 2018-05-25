@@ -12,6 +12,7 @@ namespace ModelLibrary.Model
         Filter,
         Termometer,
         Lufttrykmåler,
+        Computer,
     }
 
     public class Udstyr
