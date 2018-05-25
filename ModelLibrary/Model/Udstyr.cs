@@ -50,5 +50,10 @@ namespace ModelLibrary.Model
             OpgaveListe = udstyr.OpgaveListe;
             Station = udstyr.Station;
         }
+
+        public override string ToString()
+        {
+            return $"{UdstyrId}: {Beskrivelse}";
+        }
     }
 }

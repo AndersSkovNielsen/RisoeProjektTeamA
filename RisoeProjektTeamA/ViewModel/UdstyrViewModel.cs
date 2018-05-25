@@ -36,7 +36,7 @@ namespace RisoeProjektTeamA.ViewModel
         {
             UdstyrHandler = new UdstyrHandler(this);
             Logbog = LogbogSingleton.Instance;
-            StationsListe=Logbog.StationsListe;
+            StationsListe = Logbog.StationsListe;
             
             AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
             UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);
