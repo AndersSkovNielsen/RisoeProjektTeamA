@@ -54,7 +54,7 @@
 
                 <StackPanel>
                     <TextBlock Text="Station" Style="{StaticResource TextBlockDefault}"/>
-                    <ComboBox Width="150" ItemsSource="{Binding StationsListe }">
+                    <ComboBox Style="{StaticResource ComboBoxDefault}" ItemsSource="{Binding StationsListe, Mode=TwoWay}">
                         
                     </ComboBox>
                 </StackPanel>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -34,6 +35,8 @@ namespace RisoeProjektTeamA.ViewModel
             NyOpgave = new Opgave();
 
             StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
+
+            UdstyrsListe = Logbog.UdstyrsListe;
 
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
@@ -102,6 +105,10 @@ namespace RisoeProjektTeamA.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        //3. iteration
+
+        public ObservableCollection<Udstyr> UdstyrsListe { get; set; }
 
         //Pop up test, experiment
         public RelayCommand PopUpTestCommand { get; set; }

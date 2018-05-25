@@ -34,7 +34,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"Navn: {Navn}, Nr: {StationsId}";
+            return $"{StationsId}: {Navn}";
         }
     }
 }
