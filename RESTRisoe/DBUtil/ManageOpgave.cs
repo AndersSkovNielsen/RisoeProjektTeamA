@@ -111,7 +111,7 @@ namespace RESTRisoe.DBUtil
         /// <param name="udstyrId"></param>
         /// <returns></returns>
         //3. iterationsmetode, der kun henter UdstyrID til Udstyr
-        public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
+        public List<Opgave> HentOpgaverForUdstyrID(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
 
@@ -125,7 +125,7 @@ namespace RESTRisoe.DBUtil
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    opgaver.Add(ReadOpgaveMedKunUdstyrID(reader));
+                    opgaver.Add(ReadOpgave(reader));
                 }
             }
             return opgaver;
@@ -305,36 +305,7 @@ namespace RESTRisoe.DBUtil
             int ventetid = reader.GetInt32(3);
             int udstyrId = reader.GetInt32(4);
 
-            Udstyr udstyr = new ManageUdstyr().HentUdstyrFraId(udstyrId);
-
-            return new Opgave(id, beskrivelse, status, ventetid, udstyr); 
-        }
-        /// <summary>
-        /// Denne metode bliver brugt privat til at læse fra databasen, men ignorerer alt i Udstyr, bortset fra UdstyrID
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        private Opgave ReadOpgaveMedKunUdstyrID(SqlDataReader reader)
-        {
-            int id = reader.GetInt32(0);
-            String beskrivelse = reader.GetString(1);
-
-            StatusType status = StatusType.IkkeLøst;
-            try
-            {
-                String statusStr = reader.GetString(2);
-                status = (StatusType)Enum.Parse(typeof(StatusType), statusStr);
-                CheckEnumParseO(status, id);
-            }
-            catch (ParseToEnumException)
-            {
-                ParseToEnumException parseFailEx = new ParseToEnumException(id);
-                string log = parseFailEx.ToString(); 
-            }
-
-            int ventetid = reader.GetInt32(3);
-            int udstyrId = reader.GetInt32(4);
-
+            //Skal kalde ManageUdstyr hvis vi vil have et komplet Udstyr objekt til Opgave objektet. Ikke nødvendigt i 3. iteration.
             Udstyr udstyr = new Udstyr(udstyrId);
 
             return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?

@@ -61,12 +61,12 @@ namespace RisoeProjektTeamA.Persistency
         }
 
         //3. iteration metode. Bruges til at hente opgaver og kun fokusere på UdstyrID.
-        public List<Opgave> HentUdstyrIDForOpgaver(int udstyrId)
+        public List<Opgave> HentOpgaverForUdstyrID(int udstyrID)
         {
             using (HttpClient client = new HttpClient())
             {
                 List<Opgave> opgaveListe = new List<Opgave>();
-                string jsonStr = client.GetStringAsync(Uri + "HentUdstyrIDForOpgaver/" + udstyrId).Result;
+                string jsonStr = client.GetStringAsync(Uri + "HentUdstyrIDForOpgaver/" + udstyrID).Result;
                 try
                 {
                     opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
