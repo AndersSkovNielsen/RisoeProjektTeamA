@@ -60,7 +60,7 @@ namespace RisoeMVVMUnitTest
             //arrange
             StatusType st = StatusType.Fejlet;
             int id = 1;
-            string ts = "Beksrivelse";
+            string ts = "Beskrivelse";
             Udstyr uds = new Udstyr();
           
 
