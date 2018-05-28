@@ -308,7 +308,7 @@ namespace RESTRisoe.DBUtil
             //Skal kalde ManageUdstyr hvis vi vil have et komplet Udstyr objekt til Opgave objektet. Ikke nødvendigt i 3. iteration.
             Udstyr udstyr = new Udstyr(udstyrId);
 
-            return new Opgave(id, beskrivelse, status, ventetid, udstyr); //hvad der der galt med opgave konstructor?
+            return new Opgave(id, beskrivelse, status, ventetid, udstyr);
         }
 
         //Indsæt og Opdater (DRY)
