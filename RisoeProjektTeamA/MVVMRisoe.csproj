@@ -108,9 +108,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BrugerViewModel.cs" />
-    <Compile Include="ViewModel\NytUdstyrViewModel.cs" />
     <Compile Include="ViewModel\OpgaveViewModel.cs" />
-    <Compile Include="ViewModel\OversigtViewModel.cs" />
     <Compile Include="ViewModel\StationsViewModel.cs" />
     <Compile Include="ViewModel\UdstyrViewModel.cs" />
     <Compile Include="View\BrugerSide.xaml.cs">

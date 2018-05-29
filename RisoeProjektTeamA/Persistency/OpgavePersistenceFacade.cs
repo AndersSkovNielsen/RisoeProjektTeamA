@@ -39,7 +39,7 @@ namespace RisoeProjektTeamA.Persistency
             }
         }
 
-        //Bliver ikke brugt i 3. iteration. Denne henter hele vejen igennem databasen.
+        //Bliver ikke brugt. Denne henter hele vejen igennem databasen.
         public List<Opgave> HentAlleOpgaverForUdstyr(int udstyrId)
         {
             using (HttpClient client=new HttpClient())
