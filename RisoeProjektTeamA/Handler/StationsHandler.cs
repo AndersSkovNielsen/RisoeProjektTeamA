@@ -12,9 +12,6 @@ namespace RisoeProjektTeamA.Handler
     {
         public StationsViewModel StationsViewModel { get; set; }
 
-        //Gem logbog til senere iteration
-        //private LogbogSingleton Logbog;
-
         public StationsHandler(StationsViewModel stationsViewModel)
         {
             StationsViewModel = stationsViewModel;
@@ -27,7 +24,6 @@ namespace RisoeProjektTeamA.Handler
             StationsViewModel.Logbog.SFacade.IndsætStation(station);
 
             //ListView opdatering
-
             var Stationer = StationsViewModel.Logbog.SFacade.HentAlleStationer();
 
             StationsViewModel.Logbog.StationsListe.Clear();

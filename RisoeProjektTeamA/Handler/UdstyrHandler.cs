@@ -14,32 +14,9 @@ namespace RisoeProjektTeamA.Handler
     {
         public UdstyrViewModel UdstyrViewModel { get; set; }
 
-        //Gem logbog til senere iteration
-        //private LogbogSingleton Logbog;
-
         public UdstyrHandler(UdstyrViewModel udstyrViewModel)
         {
             UdstyrViewModel = udstyrViewModel;
-        }
-
-        public void HentUdstyr()
-        {
-            if (UdstyrViewModel.ValgtStation != null)
-            {
-                UdstyrViewModel.Logbog.UdstyrsListe.Clear();
-
-                int StationID = UdstyrViewModel.ValgtStation.StationsId;
-
-                var udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID);
-                foreach (var u in udstyr)
-                {
-                    UdstyrViewModel.Logbog.AddU(u);
-                }
-            }
-            else
-            {
-                MessageDialogHandler.Show("Intet udstyr valgt", "Du skal vælge et udstyr fra menuen");
-            }
         }
 
         public void IndsætUdstyr()
@@ -49,7 +26,6 @@ namespace RisoeProjektTeamA.Handler
             UdstyrViewModel.Logbog.UFacade.IndsætUdstyr(udstyr);
 
             //ListView opdatering
-
             var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
 
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
@@ -100,7 +76,25 @@ namespace RisoeProjektTeamA.Handler
 
             UdstyrViewModel.UdstyrErValgt = false;
         }
-       
 
+        public void HentUdstyr()
+        {
+            if (UdstyrViewModel.ValgtStation != null)
+            {
+                UdstyrViewModel.Logbog.UdstyrsListe.Clear();
+
+                int StationID = UdstyrViewModel.ValgtStation.StationsId;
+
+                var udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID);
+                foreach (var u in udstyr)
+                {
+                    UdstyrViewModel.Logbog.AddU(u);
+                }
+            }
+            else
+            {
+                MessageDialogHandler.Show("Intet udstyr valgt", "Du skal vælge et udstyr fra menuen");
+            }
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace RisoeProjektTeamA.Handler
             OpgaveViewModel.OpgaveErValgt = false;
         }
 
+        //2. iteration, men skrevet i 1. iteration
         public void OpdaterOpgave()
         {
             Opgave opgave = OpgaveViewModel.NyOpgave;
@@ -109,7 +110,7 @@ namespace RisoeProjektTeamA.Handler
             }
         }
 
-        //Pop Up Test, experiment
+        //Experiment af pop up
         public void TestPopUp()
         {
             MessageDialogHandler.Show("Test", "Dette er en test!");
