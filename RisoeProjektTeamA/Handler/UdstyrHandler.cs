@@ -34,8 +34,7 @@ namespace RisoeProjektTeamA.Handler
 
             //ListView opdatering
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
-
-            //Lav nu Get metode HentUdstyrForStationID
+            
             var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
 
             foreach (var u in udstyrliste)
