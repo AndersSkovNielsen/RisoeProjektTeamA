@@ -40,9 +40,7 @@ namespace RisoeProjektTeamA.ViewModel
             UdstyrsListe = Logbog.UdstyrsListe;
 
             HentCommand = new RelayCommand(OpgaveHandler.HentOpgaver);
-
-
-
+            
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }

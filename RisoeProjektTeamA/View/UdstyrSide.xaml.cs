@@ -1,5 +1,4 @@
-﻿using RisoeProjektTeamA.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,36 +20,11 @@ namespace RisoeProjektTeamA.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Hovedmenu : Page
+    public sealed partial class UdstyrSide : Page
     {
-        public Hovedmenu()
+        public UdstyrSide()
         {
             this.InitializeComponent();
-        }
-
-        private void Button_Click_Hovedmenu(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Hovedmenu));
-        }
-
-        private void Button_Click_Oversigt(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Oversigt));
-        }
-
-        private void Button_Click_UdstyrSide(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(UdstyrSide));
-        }
-
-        private void Button_Click_Opgaver(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Opgaver));
-        }
-
-        private void Button_Click_Udstyr(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NytUdstyr));
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)

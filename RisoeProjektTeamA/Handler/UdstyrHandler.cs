@@ -22,15 +22,20 @@ namespace RisoeProjektTeamA.Handler
         public void IndsætUdstyr()
         {
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
+            int stationID = UdstyrViewModel.AdminStation.StationsId;
+
+            int udstyrID = UdstyrViewModel.AdminStation.StationsId;
+            udstyr.Station.StationsId = udstyrID;
 
             UdstyrViewModel.Logbog.UFacade.IndsætUdstyr(udstyr);
 
             //ListView opdatering
-            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
-
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
-            foreach (var u in Udstyr)
+            //Lav nu Get metode HentUdstyrForStationID
+            var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
+
+            foreach (var u in udstyrliste)
             {
                 UdstyrViewModel.Logbog.AddU(u);
             }
@@ -41,16 +46,18 @@ namespace RisoeProjektTeamA.Handler
         public void OpdaterUdstyr()
         {
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
-            int UdstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
+            int stationID = UdstyrViewModel.AdminStation.StationsId;
 
-            UdstyrViewModel.Logbog.UFacade.OpdaterEtUdstyr(UdstyrID, udstyr);
+            int udstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
+
+            UdstyrViewModel.Logbog.UFacade.OpdaterEtUdstyr(udstyrID, udstyr);
 
             //ListView opdatering
-            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
+            UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
-            UdstyrViewModel.Logbog.OpgaveListe.Clear();
+            var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
 
-            foreach (var u in Udstyr)
+            foreach (var u in udstyrliste)
             {
                 UdstyrViewModel.Logbog.AddU(u);
             }
@@ -60,16 +67,18 @@ namespace RisoeProjektTeamA.Handler
 
         public void SletUdstyr()
         {
-            int UdstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
+            int udstyrID = UdstyrViewModel.ValgtUdstyr.UdstyrId;
 
-            UdstyrViewModel.Logbog.UFacade.SletUdstyr(UdstyrID);
+            int stationID = UdstyrViewModel.AdminStation.StationsId;
+
+            UdstyrViewModel.Logbog.UFacade.SletUdstyr(udstyrID);
 
             //ListView opdatering
-            var Udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyr();
-
             UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
-            foreach (var u in Udstyr)
+            var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
+
+            foreach (var u in udstyrliste)
             {
                 UdstyrViewModel.Logbog.AddU(u);
             }
@@ -83,10 +92,13 @@ namespace RisoeProjektTeamA.Handler
             {
                 UdstyrViewModel.Logbog.UdstyrsListe.Clear();
 
-                int StationID = UdstyrViewModel.ValgtStation.StationsId;
+                int stationID = UdstyrViewModel.ValgtStation.StationsId;
+                UdstyrViewModel.AdminStation = UdstyrViewModel.ValgtStation;
+                UdstyrViewModel.AdminStationErValgt = true;
 
-                var udstyr = UdstyrViewModel.Logbog.UFacade.HentAltUdstyrFraStation(StationID);
-                foreach (var u in udstyr)
+                var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
+
+                foreach (var u in udstyrliste)
                 {
                     UdstyrViewModel.Logbog.AddU(u);
                 }

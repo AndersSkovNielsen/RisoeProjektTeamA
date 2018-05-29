@@ -43,6 +43,23 @@ namespace RESTRisoe.Controllers
             return null;
         }
 
+        //3. iteration
+        //Get: api/Udstyr/HentUdstyrForStationID/1
+        [Route("api/Udstyr/HentUdstyrForStationID/{stationId:int}")]
+        [HttpGet]
+        public IEnumerable<Udstyr> GetUdstyrForID(int stationID)
+        {
+            try
+            {
+                return manager.HentUdstyrForStationID(stationID);
+            }
+            catch (ParseToEnumException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex; //ex  håndteres i MVVMRisoe 
+            }
+        }
+
         // GET: api/Udstyr/5
         public Udstyr Get(int id)
         {

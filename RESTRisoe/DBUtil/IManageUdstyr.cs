@@ -11,6 +11,7 @@ namespace RESTRisoe.DBUtil
     {
         List<Udstyr> HentAltUdstyr();
         List<Udstyr> HentAltUdstyrForStation(int stationId);
+        List<Udstyr> HentUdstyrForStationID(int stationId);
         Udstyr HentUdstyrFraId(int id);
         bool IndsætUdstyr(Udstyr udstyr);
         bool OpdaterUdstyr(Udstyr udstyr, int id);

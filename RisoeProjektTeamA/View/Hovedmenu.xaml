@@ -48,7 +48,7 @@
           </StackPanel>
           <StackPanel Orientation="Horizontal">
             <Button Content="Opgaver" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Opgaver" Style="{StaticResource LargeButton}"/>
-            <Button Content="Admin" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Oversigt" Style="{StaticResource LargeButton}"/>
+            <Button Content="Udstyr V2" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_UdstyrSide" Style="{StaticResource LargeButton}"/>
             <Button Content="Nyt udstyr" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Udstyr" Style="{StaticResource LargeButton}"/>
 
           </StackPanel>

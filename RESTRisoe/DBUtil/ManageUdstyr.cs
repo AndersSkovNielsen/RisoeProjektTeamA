@@ -26,7 +26,7 @@ namespace RESTRisoe.DBUtil
                 "insert into RisoeUdstyr Values (@UdstyrID, @StationNr, @Type, @Installationsdato, @Beskrivelse)"
             ;
 
-        private String deleteSql = "delete from RisoeOpgave where UdstyrId = @UdstyrID";
+        private String deleteSql = "delete from RisoeUdstyr where UdstyrId = @UdstyrID";
 
         private String updateSql = "update RisoeUdstyr " +
                                    "set UdstyrId = @UdstyrID, StationNr = @StationNr, Type = @Type, InstallationsDato = @Installationsdato, Beskrivelse = @Beskrivelse " +
@@ -71,6 +71,28 @@ namespace RESTRisoe.DBUtil
             }
             return udstyr;
         }
+
+        //3. iterationsmetode, der kun henter UdstyrID til Udstyr
+        public List<Udstyr> HentUdstyrForStationID(int stationId)
+        {
+            List<Udstyr> udstyr = new List<Udstyr>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryFromStationString, connection);
+                command.Parameters.AddWithValue("@StationNr", stationId);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    udstyr.Add(ReadUdstyr(reader));
+                }
+            }
+            return udstyr;
+        }
+        //slut på 3. iterationsmetode
 
         public Udstyr HentUdstyrFraId(int id)
         {
@@ -143,7 +165,7 @@ namespace RESTRisoe.DBUtil
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(deleteSql, connection);
-                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@UdstyrID", id);
 
                 command.Connection.Open();
 
@@ -163,7 +185,7 @@ namespace RESTRisoe.DBUtil
             int udstyrId = reader.GetInt32(0);
             int stationId = reader.GetInt32(1);
 
-            Station station = new ManageStation().HentStationFraId(stationId);
+            Station station = new Station(stationId);
 
             uType type = uType.Filter;
             try
@@ -189,9 +211,10 @@ namespace RESTRisoe.DBUtil
         private void TilføjVærdiUdstyr(Udstyr udstyr, SqlCommand command)
         {
             command.Parameters.AddWithValue("@UdstyrID", udstyr.UdstyrId);
-            command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
-            command.Parameters.AddWithValue("@Status", udstyr.Type.ToString());
+            command.Parameters.AddWithValue("@StationNr", udstyr.Station.StationsId);
+            command.Parameters.AddWithValue("@Type", udstyr.Type.ToString());
             command.Parameters.AddWithValue("@Installationsdato", udstyr.Installationsdato);
+            command.Parameters.AddWithValue("@Beskrivelse", udstyr.Beskrivelse);
         }
 
         private void CheckEnumParseU(uType checkType, int checkId)

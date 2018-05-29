@@ -11,7 +11,7 @@ namespace RisoeProjektTeamA.Model
 {
     public class LogbogSingleton
     {
-        private static LogbogSingleton _instance = null; //Eager initialization: _instance = new LogbogSingleton();
+        private static LogbogSingleton _instance = new LogbogSingleton(); //Lazy initialization: _instance = null;
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         
         public OpgavePersistenceFacade OFacade { get; set; }
@@ -21,18 +21,28 @@ namespace RisoeProjektTeamA.Model
             OpgaveListe.Add(opgave);
         }
 
-        //Anders' Instance
         public static LogbogSingleton Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = new LogbogSingleton();
-                }
                 return _instance;
             }
         }
+
+        //Lazy initialization properties
+
+        //Anders' Instance
+        //public static LogbogSingleton Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //        {
+        //            _instance = new LogbogSingleton();
+        //        }
+        //        return _instance;
+        //    }
+        //}
 
         //Frederik's Instance
         //public static LogbogSingleton Instance()

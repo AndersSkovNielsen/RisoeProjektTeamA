@@ -55,10 +55,27 @@ namespace RisoeProjektTeamA.Persistency
                 }
                 return udstyrsListe;
             }
-            
-               
-            
-            
+        }
+
+        //3. iteration metode. Bruges til at hente opgaver og kun fokusere på UdstyrID.
+        public List<Udstyr> HentUdstyrForStationID(int stationID)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                List<Udstyr> udstyrListe = new List<Udstyr>();
+                string jsonStr = client.GetStringAsync(Uri + "HentUdstyrForStationID/" + stationID).Result;
+                try
+                {
+                    udstyrListe = JsonConvert.DeserializeObject<List<Udstyr>>(jsonStr);
+                }
+
+                catch (ParseToEnumException e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                return udstyrListe;
+            }
         }
 
         public Udstyr HentEtUdstyr(int nr)

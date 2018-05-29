@@ -33,6 +33,7 @@
 
         </Style>
     </Page.Resources>
+    
     <Page.DataContext>
         <local2:UdstyrViewModel/>
     </Page.DataContext>

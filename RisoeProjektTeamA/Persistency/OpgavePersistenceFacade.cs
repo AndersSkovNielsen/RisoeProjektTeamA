@@ -66,7 +66,7 @@ namespace RisoeProjektTeamA.Persistency
             using (HttpClient client = new HttpClient())
             {
                 List<Opgave> opgaveListe = new List<Opgave>();
-                string jsonStr = client.GetStringAsync(Uri + "HentUdstyrIDForOpgaver/" + udstyrID).Result;
+                string jsonStr = client.GetStringAsync(Uri + "HentOpgaverForUdstyrID/" + udstyrID).Result;
                 try
                 {
                     opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
