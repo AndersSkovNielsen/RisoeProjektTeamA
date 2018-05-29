@@ -27,6 +27,9 @@ namespace RisoeProjektTeamA.Handler
             int udstyrID = UdstyrViewModel.AdminStation.StationsId;
             udstyr.Station.StationsId = udstyrID;
 
+            //Hvis man ikke skal indtaste dato
+            //udstyr.Installationsdato = DateTime.Now;
+
             UdstyrViewModel.Logbog.UFacade.IndsætUdstyr(udstyr);
 
             //ListView opdatering

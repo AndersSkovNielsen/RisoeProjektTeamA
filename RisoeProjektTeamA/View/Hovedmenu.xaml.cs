@@ -33,11 +33,6 @@ namespace RisoeProjektTeamA.View
             this.Frame.Navigate(typeof(Hovedmenu));
         }
 
-        private void Button_Click_Oversigt(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Oversigt));
-        }
-
         private void Button_Click_UdstyrSide(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(UdstyrSide));
@@ -47,12 +42,7 @@ namespace RisoeProjektTeamA.View
         {
             this.Frame.Navigate(typeof(Opgaver));
         }
-
-        private void Button_Click_Udstyr(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NytUdstyr));
-        }
-
+        
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Hovedmenu));
