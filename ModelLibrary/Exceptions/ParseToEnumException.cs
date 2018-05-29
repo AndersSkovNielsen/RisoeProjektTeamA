@@ -12,7 +12,6 @@ namespace ModelLibrary.Exceptions
         public string MessageParse =
             $"Fejl under ved Opgavestatus eller Udstyr-type ved hentning fra database for opgave/Udstyr nr {_exId}";
 
-
         public override string ToString()
         {
             return MessageParse;

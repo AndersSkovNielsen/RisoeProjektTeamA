@@ -13,6 +13,10 @@ namespace ModelLibrary.Model
         public int StationsId { get; set; }
         public ObservableCollection<Udstyr> Udstyrsliste { get; set; }
 
+        public Station()
+        {
+
+        }
 
         public Station(string navn, int nr)
         {
@@ -20,11 +24,7 @@ namespace ModelLibrary.Model
             StationsId = nr;
             Udstyrsliste = null;
         }
-
-        public Station()
-        {
-            
-        }
+        
         public Station(Station station)
         {
             Navn=station.Navn;

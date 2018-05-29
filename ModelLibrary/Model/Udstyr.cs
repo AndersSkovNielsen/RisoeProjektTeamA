@@ -23,8 +23,11 @@ namespace ModelLibrary.Model
         public Station Station { get; set; }
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         public string Beskrivelse { get; set; }
-        
 
+        public Udstyr()
+        {
+
+        }
 
         public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type, Station station)
         {
@@ -34,11 +37,6 @@ namespace ModelLibrary.Model
             Type = type;
             OpgaveListe = null;
             Station = station;
-        }
-
-        public Udstyr()
-        {
-
         }
 
         //Copy constructor
