@@ -26,7 +26,7 @@ namespace ModelLibrary.Model
 
         public Udstyr()
         {
-
+            Station=new Station();
         }
 
         public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type, Station station)

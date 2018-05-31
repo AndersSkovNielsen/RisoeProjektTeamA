@@ -24,8 +24,9 @@ namespace RisoeProjektTeamA.Handler
             Udstyr udstyr = UdstyrViewModel.NytUdstyr;
             int stationID = UdstyrViewModel.AdminStation.StationsId;
 
-            int udstyrID = UdstyrViewModel.AdminStation.StationsId;
-            udstyr.Station.StationsId = udstyrID;
+            //int udstyrID = UdstyrViewModel.AdminStation.StationsId;
+            
+            udstyr.Station.StationsId = stationID;
 
             //Hvis man ikke skal indtaste dato
             //udstyr.Installationsdato = DateTime.Now;
