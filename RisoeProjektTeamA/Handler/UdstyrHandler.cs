@@ -97,6 +97,7 @@ namespace RisoeProjektTeamA.Handler
                 int stationID = UdstyrViewModel.ValgtStation.StationsId;
                 UdstyrViewModel.AdminStation = UdstyrViewModel.ValgtStation;
                 UdstyrViewModel.AdminStationErValgt = true;
+                UdstyrViewModel.StationErValgt = false;
 
                 var udstyrliste = UdstyrViewModel.Logbog.UFacade.HentUdstyrForStationID(stationID);
 

@@ -57,7 +57,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"Udstyr #{UdstyrId}: {Type.ToString()}\n{Beskrivelse}\n";
+            return $"Udstyr #{UdstyrId}: {Type.ToString()}";
         }
     }
 }

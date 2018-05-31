@@ -28,7 +28,7 @@ namespace RisoeProjektTeamA.ViewModel
             UdstyrHandler = new UdstyrHandler(this);
             Logbog = LogbogSingleton.Instance;
 
-            StationsListe = Logbog.StationsListe;
+            StationsListe = new ObservableCollection<Station>(Logbog.SFacade.HentAlleStationer());
             
             AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
             UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);

@@ -37,7 +37,7 @@ namespace RisoeProjektTeamA.ViewModel
             StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
 
             //3. iteration
-            UdstyrsListe = Logbog.UdstyrsListe;
+            UdstyrsListe = new ObservableCollection<Udstyr>(Logbog.UFacade.HentAltUdstyr());
 
             HentCommand = new RelayCommand(OpgaveHandler.HentOpgaver);
             
