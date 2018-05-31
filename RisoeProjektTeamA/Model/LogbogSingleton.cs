@@ -53,13 +53,13 @@ namespace RisoeProjektTeamA.Model
         private LogbogSingleton()
         {
             OFacade = new OpgavePersistenceFacade();
-            OpgaveListe = new ObservableCollection<Opgave>(OFacade.HentAlleOpgaver());
+            OpgaveListe = new ObservableCollection<Opgave>();
 
             //3. iteration
             UFacade = new UdstyrPersistanceFacade();
-            UdstyrsListe = new ObservableCollection<Udstyr>(UFacade.HentAltUdstyr());
+            UdstyrsListe = new ObservableCollection<Udstyr>();
             SFacade = new StationsPersitenceFacade();
-            StationsListe = new ObservableCollection<Station>(SFacade.HentAlleStationer());
+            StationsListe = new ObservableCollection<Station>();
         }
 
         //3. iteration

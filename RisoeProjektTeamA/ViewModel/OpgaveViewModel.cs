@@ -94,7 +94,11 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _opgaveErValgt; }
             set
             {
-                if (AdminUdstyrErValgt == true)
+                if (value == false)
+                {
+                    _opgaveErValgt = value;
+                }
+                else if (AdminUdstyrErValgt == true)
                 {
                     _opgaveErValgt = value;
                 }

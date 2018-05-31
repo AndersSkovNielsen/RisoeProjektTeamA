@@ -89,7 +89,11 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _udstyrErValgt; }
             set
             {
-                if (AdminStationErValgt == true)
+                if (value == false)
+                {
+                    _udstyrErValgt = value;
+                }
+                else if (AdminStationErValgt == true)
                 {
                     _udstyrErValgt = value;
                 }
