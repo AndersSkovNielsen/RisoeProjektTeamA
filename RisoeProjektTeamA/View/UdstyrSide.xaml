@@ -66,7 +66,23 @@
         <Button HorizontalAlignment="Left" Margin="320,106,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonDefault}" Content="Hent station" Command="{Binding HentCommand}" IsEnabled="{Binding StationErValgt, Mode=TwoWay}"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,174,0,0" Text="Udstyrsliste" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Style="{StaticResource TextBlock2}"/>
-        <ListView Name="OpgaveListView" HorizontalAlignment="Left" SelectedItem="{Binding ValgtUdstyr, Mode=TwoWay}" Height="260" Margin="10,227,0,0" VerticalAlignment="Top" Width="537" ItemsSource="{Binding Logbog.UdstyrsListe}" FontFamily="Segoe UI"/>
+        <ListView Name="OpgaveListView" HorizontalAlignment="Left" SelectedItem="{Binding ValgtUdstyr, Mode=TwoWay}" Height="260" Margin="10,227,0,0" VerticalAlignment="Top" Width="537" ItemsSource="{Binding Logbog.UdstyrsListe}" FontFamily="Segoe UI">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Udstyr #"/>
+                            <TextBlock Text="{Binding UdstyrId}"/>
+                            <TextBlock Text=":" Margin="0, 0, 3, 0"/>
+                            <TextBlock Text="{Binding Type}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Beskrivelse}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,492,0,0" Text="ID:" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="300" Style="{StaticResource TextBlock1}"/>
         <TextBox HorizontalAlignment="Left" Margin="10,529,0,0" Text="{Binding NytUdstyr.UdstyrId, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Indtast ID" Style="{StaticResource TextBox1}"/>
