@@ -29,7 +29,7 @@ namespace RisoeProjektTeamA.Handler
             udstyr.Station.StationsId = stationID;
 
             //Hvis man ikke skal indtaste dato
-            //udstyr.Installationsdato = DateTime.Now;
+            udstyr.Installationsdato = DateTime.Now;
 
             UdstyrViewModel.Logbog.UFacade.IndsætUdstyr(udstyr);
 
