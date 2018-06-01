@@ -37,13 +37,13 @@
                 <TextBlock HorizontalAlignment="Left" Text="Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource Title}"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock HorizontalAlignment="Left" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock}"/>
+                <!--<TextBlock HorizontalAlignment="Left" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock}"/>-->
             </StackPanel>
           </StackPanel>
         
           <StackPanel HorizontalAlignment="Left" >
-            <TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Style="{StaticResource TextBlock}"/>
-            <ListView Height="141" VerticalAlignment="Stretch"/>
+            <!--<TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Style="{StaticResource TextBlock}"/>-->
+            <!--<ListView Height="141" VerticalAlignment="Stretch"/>-->
 
           </StackPanel>
           <StackPanel Orientation="Horizontal">

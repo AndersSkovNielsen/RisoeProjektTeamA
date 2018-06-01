@@ -45,7 +45,7 @@ namespace RisoeProjektTeamA.View
         
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Hovedmenu));
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

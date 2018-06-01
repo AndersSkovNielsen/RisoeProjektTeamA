@@ -90,7 +90,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="320,492,0,0" Text="Type:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}"/>
         <ComboBox HorizontalAlignment="Left" Margin="320,528,0,0" SelectedItem="{Binding NytUdstyr.Type, Mode=TwoWay}" ItemsSource="{Binding TypeListe}" VerticalAlignment="Top" FontSize="24" Height="50" Width="300" PlaceholderText="Vælg type"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="10,587,0,0" Text="Installationsdato:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}"/>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="10,587,0,0" Text="Installationsdato:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}"/>-->
         <!--<TextBox HorizontalAlignment="Left" Margin="10,632,0,0" Text="{Binding NytUdstyr.Installationsdato, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Indtast installationsdato" Style="{StaticResource TextBox1}" />-->
 
         <TextBlock HorizontalAlignment="Left" Margin="320,583,0,0" Text="Beskrivelse:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}" />
