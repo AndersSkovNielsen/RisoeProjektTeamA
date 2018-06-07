@@ -26,7 +26,7 @@ namespace ModelLibrary.Model
 
         public Udstyr()
         {
-
+            Station=new Station();
         }
 
         public Udstyr(int udstyrId, DateTime installationsdato, string beskrivelse, uType type, Station station)
@@ -35,8 +35,8 @@ namespace ModelLibrary.Model
             Installationsdato = installationsdato;
             Beskrivelse = beskrivelse;
             Type = type;
-            OpgaveListe = null;
             Station = station;
+            OpgaveListe = null;
         }
 
         //Copy constructor
@@ -46,8 +46,8 @@ namespace ModelLibrary.Model
             Installationsdato = udstyr.Installationsdato;
             Beskrivelse = udstyr.Beskrivelse;
             Type = udstyr.Type;
-            OpgaveListe = udstyr.OpgaveListe;
             Station = udstyr.Station;
+            OpgaveListe = udstyr.OpgaveListe;
         }
 
         public Udstyr(int udstyrID)
@@ -57,7 +57,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"{UdstyrId}: {Type.ToString()}";
+            return $"Udstyr #{UdstyrId}: {Type.ToString()}";
         }
     }
 }

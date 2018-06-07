@@ -96,6 +96,7 @@ namespace RisoeProjektTeamA.Handler
                 int udstyrID = OpgaveViewModel.ValgtUdstyr.UdstyrId;
                 OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
                 OpgaveViewModel.AdminUdstyrErValgt = true;
+                OpgaveViewModel.OpgaveErValgt = false;
 
                 var opgaver = OpgaveViewModel.Logbog.OFacade.HentOpgaverForUdstyrID(udstyrID);
 

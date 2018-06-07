@@ -37,21 +37,20 @@
                 <TextBlock HorizontalAlignment="Left" Text="Hovedmenu" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource Title}"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock HorizontalAlignment="Left" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock}"/>
+                <!--<TextBlock HorizontalAlignment="Left" Text="BrugerInfo" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock}"/>-->
             </StackPanel>
           </StackPanel>
         
           <StackPanel HorizontalAlignment="Left" >
-            <TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Style="{StaticResource TextBlock}"/>
-            <ListView Height="141" VerticalAlignment="Stretch"/>
+            <!--<TextBlock Text="Pressende opgaver:" TextWrapping="Wrap" Style="{StaticResource TextBlock}"/>-->
+            <!--<ListView Height="141" VerticalAlignment="Stretch"/>-->
 
           </StackPanel>
           <StackPanel Orientation="Horizontal">
             <Button Content="Opgaver" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Opgaver" Style="{StaticResource LargeButton}"/>
-            <Button Content="Admin" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Oversigt" Style="{StaticResource LargeButton}"/>
-            <Button Content="Nyt udstyr" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Udstyr" Style="{StaticResource LargeButton}"/>
+            <Button Content="Udstyr" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_UdstyrSide" Style="{StaticResource LargeButton}"/>
 
-          </StackPanel>
+            </StackPanel>
 
         </StackPanel>
 

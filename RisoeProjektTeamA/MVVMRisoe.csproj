@@ -121,17 +121,11 @@
       <DependentUpon>Forside.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageDialogHandler.cs" />
-    <Compile Include="View\NySærligOpgave.xaml.cs">
-      <DependentUpon>NySærligOpgave.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\NytUdstyr.xaml.cs">
-      <DependentUpon>NytUdstyr.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Opgaver.xaml.cs">
       <DependentUpon>Opgaver.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Oversigt.xaml.cs">
-      <DependentUpon>Oversigt.xaml</DependentUpon>
+    <Compile Include="View\UdstyrSide.xaml.cs">
+      <DependentUpon>UdstyrSide.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -168,19 +162,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NySærligOpgave.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NytUdstyr.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Opgaver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Oversigt.xaml">
+    <Page Include="View\UdstyrSide.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

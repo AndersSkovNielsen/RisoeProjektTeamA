@@ -11,7 +11,7 @@ namespace RisoeProjektTeamA.Model
 {
     public class LogbogSingleton
     {
-        private static LogbogSingleton _instance = null; //Eager initialization: _instance = new LogbogSingleton();
+        private static LogbogSingleton _instance = new LogbogSingleton(); //Lazy initialization: _instance = null;
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         
         public OpgavePersistenceFacade OFacade { get; set; }
@@ -21,18 +21,28 @@ namespace RisoeProjektTeamA.Model
             OpgaveListe.Add(opgave);
         }
 
-        //Anders' Instance
         public static LogbogSingleton Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = new LogbogSingleton();
-                }
                 return _instance;
             }
         }
+
+        //Lazy initialization properties
+
+        //Anders' Instance
+        //public static LogbogSingleton Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //        {
+        //            _instance = new LogbogSingleton();
+        //        }
+        //        return _instance;
+        //    }
+        //}
 
         //Frederik's Instance
         //public static LogbogSingleton Instance()
@@ -43,13 +53,13 @@ namespace RisoeProjektTeamA.Model
         private LogbogSingleton()
         {
             OFacade = new OpgavePersistenceFacade();
-            OpgaveListe = new ObservableCollection<Opgave>(OFacade.HentAlleOpgaver());
+            OpgaveListe = new ObservableCollection<Opgave>();
 
             //3. iteration
             UFacade = new UdstyrPersistanceFacade();
-            UdstyrsListe = new ObservableCollection<Udstyr>(UFacade.HentAltUdstyr());
+            UdstyrsListe = new ObservableCollection<Udstyr>();
             SFacade = new StationsPersitenceFacade();
-            StationsListe = new ObservableCollection<Station>(SFacade.HentAlleStationer());
+            StationsListe = new ObservableCollection<Station>();
         }
 
         //3. iteration

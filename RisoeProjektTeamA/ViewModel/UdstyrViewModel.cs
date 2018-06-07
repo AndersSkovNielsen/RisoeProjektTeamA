@@ -16,15 +16,6 @@ namespace RisoeProjektTeamA.ViewModel
 { 
     class UdstyrViewModel : INotifyPropertyChanged
     {
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public LogbogSingleton Logbog { get; set; }
         public UdstyrHandler UdstyrHandler { get; set; }
         public ObservableCollection<Station> StationsListe { get; set; }
@@ -36,7 +27,8 @@ namespace RisoeProjektTeamA.ViewModel
         {
             UdstyrHandler = new UdstyrHandler(this);
             Logbog = LogbogSingleton.Instance;
-            StationsListe = Logbog.StationsListe;
+
+            StationsListe = new ObservableCollection<Station>(Logbog.SFacade.HentAlleStationer());
             
             AddCommand = new RelayCommand(UdstyrHandler.IndsætUdstyr);
             UpdateCommand = new RelayCommand(UdstyrHandler.OpdaterUdstyr);
@@ -46,14 +38,13 @@ namespace RisoeProjektTeamA.ViewModel
 
             HentCommand = new RelayCommand(UdstyrHandler.HentUdstyr);
 
-            TypeListe = new List<uType>() {uType.Filter, uType.Termometer, uType.Lufttrykmåler};
+            TypeListe = new List<uType>() {uType.Filter, uType.Termometer, uType.Lufttrykmåler, uType.Computer};
         }
 
         public RelayCommand AddCommand { get; set; }
         public RelayCommand UpdateCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
-
-        //Ikke relavant for 1. iteration, måske senere
+        
         private Udstyr _nytUdstyr;
         public Udstyr NytUdstyr
         {
@@ -98,7 +89,18 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _udstyrErValgt; }
             set
             {
-                _udstyrErValgt = value;
+                if (value == false)
+                {
+                    _udstyrErValgt = value;
+                }
+                else if (AdminStationErValgt == true)
+                {
+                    _udstyrErValgt = value;
+                }
+                else
+                {
+                    _udstyrErValgt = false;
+                }
                 OnPropertyChanged();
             }
         }
@@ -139,7 +141,41 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
-        //Ikke brugt i 2. iteration
-        public int ValgtIndex { get; set; }
+        private Station _adminStation;
+        public Station AdminStation
+        {
+            get { return _adminStation; }
+            set
+            {
+                if (value != null)
+                {
+                    _adminStation = new Station(value);
+                }
+                else
+                {
+                    _adminStation = null;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _adminStationErValgt;
+        public bool AdminStationErValgt
+        {
+            get { return _adminStationErValgt; }
+            set
+            {
+                _adminStationErValgt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

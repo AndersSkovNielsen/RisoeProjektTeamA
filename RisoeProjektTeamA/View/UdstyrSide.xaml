@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="RisoeProjektTeamA.View.UdstyrSide"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RisoeProjektTeamA.View"
+    xmlns:local2="using:RisoeProjektTeamA.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+
+        <Style x:Key="ComboBoxDefault" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <Style x:Key="TextBox1" TargetType="TextBox">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+
+        <Style x:Key="TextBlock1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+
+        <Style x:Key="TextBlock2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="34"/>
+            <Setter Property="Height" Value="60"/>
+        </Style>
+
+        <Style x:Key="TextBlockTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="72"/>
+            <Setter Property="Height" Value="99"/>
+            <Setter Property="Width" Value="404"/>
+        </Style>
+
+        <Style x:Key="TextBlockTitle2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="Height" Value="99"/>
+            <Setter Property="Width" Value="404"/>
+        </Style>
+
+        <Style x:Key="ButtonDefault" TargetType="Button">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <local2:UdstyrViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="#FFCBF9F5">
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/a-team_logo.png" Tapped="Image_Tapped"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="479,10,0,0" Text="Udstyr" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlockTitle}"/>
+
+        <ComboBox HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Style="{StaticResource ComboBoxDefault}" PlaceholderText="Vælg station" ItemsSource="{Binding StationsListe, Mode=TwoWay}" SelectedItem="{Binding ValgtStation, Mode=TwoWay}"/>
+        <Button HorizontalAlignment="Left" Margin="320,106,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonDefault}" Content="Hent station" Command="{Binding HentCommand}" IsEnabled="{Binding StationErValgt, Mode=TwoWay}"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,174,0,0" Text="Udstyrsliste" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Style="{StaticResource TextBlock2}"/>
+        <ListView Name="OpgaveListView" HorizontalAlignment="Left" SelectedItem="{Binding ValgtUdstyr, Mode=TwoWay}" Height="260" Margin="10,227,0,0" VerticalAlignment="Top" Width="537" ItemsSource="{Binding Logbog.UdstyrsListe}" FontFamily="Segoe UI">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Udstyr #"/>
+                            <TextBlock Text="{Binding UdstyrId}"/>
+                            <TextBlock Text=":" Margin="0, 0, 3, 0"/>
+                            <TextBlock Text="{Binding Type}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Beskrivelse}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,492,0,0" Text="ID:" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="300" Style="{StaticResource TextBlock1}"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,529,0,0" Text="{Binding NytUdstyr.UdstyrId, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Indtast ID" Style="{StaticResource TextBox1}"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="320,492,0,0" Text="Type:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="320,528,0,0" SelectedItem="{Binding NytUdstyr.Type, Mode=TwoWay}" ItemsSource="{Binding TypeListe}" VerticalAlignment="Top" FontSize="24" Height="50" Width="300" PlaceholderText="Vælg type"/>
+
+        <!--<TextBlock HorizontalAlignment="Left" Margin="10,587,0,0" Text="Installationsdato:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}"/>-->
+        <!--<TextBox HorizontalAlignment="Left" Margin="10,632,0,0" Text="{Binding NytUdstyr.Installationsdato, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Indtast installationsdato" Style="{StaticResource TextBox1}" />-->
+
+        <TextBlock HorizontalAlignment="Left" Margin="320,583,0,0" Text="Beskrivelse:" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlock1}" />
+        <TextBox HorizontalAlignment="Left" Margin="320,632,0,0" Text="{Binding NytUdstyr.Beskrivelse, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Indtast beskrivelse" Style="{StaticResource TextBox1}"/>
+
+        <Button Content="Indsæt" Command="{Binding AddCommand}" IsEnabled="{Binding AdminStationErValgt}" HorizontalAlignment="Left" Margin="654,613,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonDefault}"/>
+        <Button Content="Opdater" Command="{Binding UpdateCommand}" IsEnabled="{Binding UdstyrErValgt}" HorizontalAlignment="Left" Margin="854,613,0,0" VerticalAlignment="Top"  Style="{StaticResource ButtonDefault}"/>
+        <Button Content="Slet" Command="{Binding RemoveCommand}" IsEnabled="{Binding UdstyrErValgt}" HorizontalAlignment="Left" Margin="1054,613,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonDefault}"/>
+
+    </Grid>
+</Page>

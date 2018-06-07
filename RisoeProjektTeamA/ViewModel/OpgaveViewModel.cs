@@ -37,12 +37,10 @@ namespace RisoeProjektTeamA.ViewModel
             StatusListe = new List<StatusType>() { StatusType.Løst, StatusType.Fejlet, StatusType.IkkeLøst };
 
             //3. iteration
-            UdstyrsListe = Logbog.UdstyrsListe;
+            UdstyrsListe = new ObservableCollection<Udstyr>(Logbog.UFacade.HentAltUdstyr());
 
             HentCommand = new RelayCommand(OpgaveHandler.HentOpgaver);
-
-
-
+            
             //Pop up test, experiment
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }
@@ -96,7 +94,11 @@ namespace RisoeProjektTeamA.ViewModel
             get { return _opgaveErValgt; }
             set
             {
-                if (AdminUdstyrErValgt == true)
+                if (value == false)
+                {
+                    _opgaveErValgt = value;
+                }
+                else if (AdminUdstyrErValgt == true)
                 {
                     _opgaveErValgt = value;
                 }
