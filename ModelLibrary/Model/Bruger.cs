@@ -19,5 +19,11 @@ namespace ModelLibrary.Model
             Initialer = initialer;
             KodeOrd = kodeOrd;
         }
+
+        public Bruger()
+        {
+            
+        }
+
     }
 }
