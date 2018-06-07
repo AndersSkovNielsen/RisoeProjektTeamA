@@ -15,7 +15,7 @@ namespace RisoeProjektTeamA.Persistency
     class BrugerPersistenceFacade
     {
         //The URI for connecting to the database
-        private String Uri = "http://localhost:59327/api/Opgave/";
+        private String Uri = "http://localhost:59327/api/Bruger/";
 
         //The HTTP client for making a connection
         private HttpClient client = new HttpClient();
