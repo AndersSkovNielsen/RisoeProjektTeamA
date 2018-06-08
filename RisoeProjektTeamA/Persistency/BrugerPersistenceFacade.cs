@@ -12,7 +12,7 @@ using RisoeProjektTeamA.View;
 
 namespace RisoeProjektTeamA.Persistency
 {
-    class BrugerPersistenceFacade
+    public class BrugerPersistenceFacade
     {
         //The URI for connecting to the database
         private String Uri = "http://localhost:59327/api/Bruger/";

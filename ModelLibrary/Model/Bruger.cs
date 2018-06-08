@@ -8,14 +8,19 @@ namespace ModelLibrary.Model
 {
      public class Bruger
     { //classen skal slettes
-        public string FuldNavn { get; set; }
+
+
+        //Navn og Type er ikke til denne iteration
+        //public string FuldNavn { get; set; }
+        //public enum Type {Tekniker, Admin }
+
         public string Initialer { get; set; }
         public string KodeOrd { get; set; }
-        public enum Type {Tekniker, Admin }
+        
 
         public Bruger(string fuldNavn, string initialer, string kodeOrd)
         {
-            FuldNavn = fuldNavn;
+            //FuldNavn = fuldNavn;
             Initialer = initialer;
             KodeOrd = kodeOrd;
         }

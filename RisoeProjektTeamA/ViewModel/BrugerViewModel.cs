@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ModelLibrary.Model;
 using RisoeProjektTeamA.Annotations;
 using RisoeProjektTeamA.Common;
+using RisoeProjektTeamA.Handler;
 using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
@@ -21,12 +22,15 @@ namespace RisoeProjektTeamA.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+        
         public LogbogSingleton Logbog { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
 
         private string _initialer;
-
+        public BrugerHandler BrugerHandler { get; set; }
         private string Initialer
         {
             get { return _initialer; }
@@ -40,13 +44,35 @@ namespace RisoeProjektTeamA.ViewModel
             set { _kodeOrd = value; OnPropertyChanged();}
         }
 
+        private Bruger _nyBruger;
+        public Bruger NyBruger
+        {
+          get { return _nyBruger; }
+
+          set { _nyBruger = value; }
+            
+        }
+
+
         private List<string> KodeOrdsListe { get; set; }
         private List<string> Initialerliste { get; set; }
 
         public BrugerViewModel()
         {
-            
+            BrugerHandler = new BrugerHandler(this);
+
+
+            NyBruger = new Bruger();
+            AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
+            UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
+            RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
+
+
         }
+
+
+
+
 
     }
 }
