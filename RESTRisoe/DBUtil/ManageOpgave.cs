@@ -110,7 +110,8 @@ namespace RESTRisoe.DBUtil
         /// </summary>
         /// <param name="udstyrId"></param>
         /// <returns></returns>
-        //3. iterationsmetode, der kun henter UdstyrID til Udstyr
+        
+            //3. iterationsmetode, der kun henter UdstyrID til Udstyr
         public List<Opgave> HentOpgaverForUdstyrID(int udstyrId)
         {
             List<Opgave> opgaver = new List<Opgave>();
