@@ -41,7 +41,7 @@ namespace RisoeProjektTeamA.ViewModel
 
             HentCommand = new RelayCommand(OpgaveHandler.HentOpgaver);
             
-            //Pop up test, experiment
+            //Pop up test
             PopUpTestCommand = new RelayCommand(OpgaveHandler.TestPopUp);
         }
         

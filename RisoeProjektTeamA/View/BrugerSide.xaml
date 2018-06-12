@@ -5,7 +5,11 @@
     xmlns:local="using:RisoeProjektTeamA.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RisoeProjektTeamA.ViewModel"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModel:BrugerViewModel/>
+    </Page.DataContext>
 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="TextBlock1">
@@ -37,15 +41,15 @@
          <StackPanel Orientation="Horizontal">
              <StackPanel Orientation="Vertical" Margin="10,10,10,10">
                  <TextBlock Text="Bruger Navn" Style="{StaticResource TextBlock1}" />
-                 <TextBox Style="{StaticResource TextBox1}"/>
+                 <TextBox Style="{StaticResource TextBox1}" Text="{Binding NyBruger.Initialer, Mode=TwoWay}" />
 
                  <TextBlock Text="Kodeord" Style="{StaticResource TextBlock1}"/>
-                 <TextBox Style="{StaticResource TextBox1}"/>
+                    <TextBox Style="{StaticResource TextBox1}" Text="{Binding NyBruger.KodeOrd, Mode=TwoWay}"/>
 
                  <TextBlock Text="Bekræft Kodeord" Style="{StaticResource TextBlock1}"/>
-                 <TextBox Style="{StaticResource TextBox1}"/>
+                    <TextBox Style="{StaticResource TextBox1}" Text="{Binding BKodeOrd, Mode=TwoWay}"/>
                  
-                 <Button Content="Create User" Style="{StaticResource TheButton}"/>
+                 <Button Content="Create User" Style="{StaticResource TheButton}" Command="{Binding AddCommand}"/>
                 </StackPanel>
              <StackPanel></StackPanel>
          </StackPanel>

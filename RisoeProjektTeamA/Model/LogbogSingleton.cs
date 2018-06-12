@@ -15,6 +15,9 @@ namespace RisoeProjektTeamA.Model
         public ObservableCollection<Opgave> OpgaveListe { get; set; }
         
         public OpgavePersistenceFacade OFacade { get; set; }
+        
+        
+
 
         public void AddO(Opgave opgave)
         {
@@ -60,6 +63,9 @@ namespace RisoeProjektTeamA.Model
             UdstyrsListe = new ObservableCollection<Udstyr>();
             SFacade = new StationsPersitenceFacade();
             StationsListe = new ObservableCollection<Station>();
+
+            BFacade = new BrugerPersistenceFacade();
+            Brugerliste = new ObservableCollection<Bruger>();
         }
 
         //3. iteration
@@ -80,6 +86,12 @@ namespace RisoeProjektTeamA.Model
         }
 
         //Kode skrevet efter rapportaflevering
+        public BrugerPersistenceFacade BFacade { get; set; }
         public ObservableCollection<Bruger> Brugerliste { get; set; }
+
+        public void AddB(Bruger bruger)
+        {
+            Brugerliste.Add(bruger);
+        }
     }
 }
