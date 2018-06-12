@@ -99,8 +99,6 @@ namespace RisoeProjektTeamA.Persistency
         
         public bool IndsætUdstyr(Udstyr udstyr)
         {
-
-
             String json = JsonConvert.SerializeObject(udstyr);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
