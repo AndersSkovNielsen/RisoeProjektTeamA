@@ -31,8 +31,9 @@ namespace RESTRisoe.DBUtil.Tests
         {//arrange
             int listelængde1;
             int listelængde2;
-         //act
-            Opgave testOpgave = new Opgave(999,"testopgave", StatusType.IkkeLøst,2, new Udstyr());
+            Opgave testOpgave = new Opgave(999, "testopgave", StatusType.IkkeLøst, 2, new Udstyr());
+
+            //act
             testListe = opgaveTester.HentAlleOpgaver();
             listelængde1 = testListe.Count;
             opgaveTester.IndsætOpgave(testOpgave);
