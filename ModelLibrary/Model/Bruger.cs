@@ -30,5 +30,11 @@ namespace ModelLibrary.Model
             
         }
 
-    }
+        public Bruger(Bruger bruger)
+        {
+            Initialer = bruger.Initialer;
+            KodeOrd = bruger.KodeOrd;
+        }
+
+     }
 }

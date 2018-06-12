@@ -79,25 +79,25 @@ namespace RisoeProjektTeamA.Persistency
             return false;
         }
 
-        public bool OpdaterEnBruger(int nr, Bruger bruger)
-        {
-            String json = JsonConvert.SerializeObject(bruger);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //public bool OpdaterEnBruger(int nr, Bruger bruger)
+        //{
+        //    String json = JsonConvert.SerializeObject(bruger);
+        //    StringContent content = new StringContent(json);
+        //    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            using (client)
-            {
-                HttpResponseMessage resultMessage = client.PutAsync(Uri + nr, content).Result;
+        //    using (client)
+        //    {
+        //        HttpResponseMessage resultMessage = client.PutAsync(Uri + nr, content).Result;
 
-                if (resultMessage.IsSuccessStatusCode)
-                {
-                    string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
-                    bool res = JsonConvert.DeserializeObject<bool>(resultStr);
-                    return res;
-                }
-            }
-            return false;
-        }
+        //        if (resultMessage.IsSuccessStatusCode)
+        //        {
+        //            string resultStr = resultMessage.Content.ReadAsStringAsync().Result;
+        //            bool res = JsonConvert.DeserializeObject<bool>(resultStr);
+        //            return res;
+        //        }
+        //    }
+        //    return false;
+        //}
 
 
         public Bruger SletBruger(int nr)

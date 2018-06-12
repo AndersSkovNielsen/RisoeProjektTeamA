@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using ModelLibrary.Model;
+using RisoeProjektTeamA.View;
 using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Handler
@@ -21,23 +23,28 @@ namespace RisoeProjektTeamA.Handler
         {
             Bruger bruger = BrugerViewModel.NyBruger;
             string BrugerInitialer = BrugerViewModel.NyBruger.Initialer;
+            string BrugerKodeOrd = BrugerViewModel.NyBruger.KodeOrd;
+
+            string BKodeord = BrugerViewModel.BKodeOrd;
 
 
-            bruger.Initialer = BrugerInitialer;
-
-            
-
-            //ListView opdatering
-            BrugerViewModel.Logbog.Brugerliste.Clear();
-
-            var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
-
-            foreach (var b in brugere)
+            if (BKodeord == BrugerKodeOrd)
             {
-                BrugerViewModel.Logbog.AddB(b);
+                BrugerViewModel.Logbog.BFacade.IndsætBruger(bruger);
+            }
+            else
+            {
+                MessageDialogHandler.Show("Kig igen", "Kodeord ikke ens");
             }
 
-            //BrugerViewModel.BrugerErValgt = false;
+
+            //sammenlign de 2 kodeord. f.eks. execption
+            //kan hente den enkelte bruger.
+            //bruger.Initialer = BrugerInitialer;
+
+            
+            //var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
+            
         }
 
 

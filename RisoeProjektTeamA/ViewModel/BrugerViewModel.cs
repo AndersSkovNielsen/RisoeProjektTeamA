@@ -28,28 +28,42 @@ namespace RisoeProjektTeamA.ViewModel
         public LogbogSingleton Logbog { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
-
-        private string _initialer;
         public BrugerHandler BrugerHandler { get; set; }
-        private string Initialer
-        {
-            get { return _initialer; }
-            set { _initialer = value; OnPropertyChanged();}
+
+        //private string _initialer;
+        
+        //private string Initialer
+        //{
+        //    get { return _initialer; }
+        //    set { _initialer = value; OnPropertyChanged();}
             
-        }
-        private string _kodeOrd;
-        private string KodeOrd
-        {
-            get { return _kodeOrd; }
-            set { _kodeOrd = value; OnPropertyChanged();}
-        }
+        //}
+        //private string _kodeOrd;
+        //private string KodeOrd
+        //{
+        //    get { return _kodeOrd; }
+        //    set { _kodeOrd = value; OnPropertyChanged();}
+        //}
+        public string BKodeOrd { get; set; }
 
         private Bruger _nyBruger;
         public Bruger NyBruger
         {
           get { return _nyBruger; }
 
-          set { _nyBruger = value; }
+            set
+            {
+                if (value != null)
+                {
+                    _nyBruger = new Bruger(value);
+                }
+                else
+                {
+                    _nyBruger = null;
+                }
+                OnPropertyChanged();
+
+            }
             
         }
 
@@ -60,12 +74,12 @@ namespace RisoeProjektTeamA.ViewModel
         public BrugerViewModel()
         {
             BrugerHandler = new BrugerHandler(this);
-
+            Logbog = LogbogSingleton.Instance;
 
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
-            UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
-            RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
+            //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
+            //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
 
 
         }

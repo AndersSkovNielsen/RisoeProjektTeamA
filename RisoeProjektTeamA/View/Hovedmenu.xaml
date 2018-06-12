@@ -50,6 +50,7 @@
             <Button Content="Opgaver" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Opgaver" Style="{StaticResource LargeButton}"/>
             <Button Content="Udstyr" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_UdstyrSide" Style="{StaticResource LargeButton}"/>
 
+                <Button Style="{StaticResource LargeButton}" Content="Ny Bruger" Click="Button_Click" />
             </StackPanel>
 
         </StackPanel>
