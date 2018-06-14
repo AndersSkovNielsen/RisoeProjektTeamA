@@ -17,9 +17,6 @@ namespace RisoeProjektTeamA.Model
         
         public OpgavePersistenceFacade OFacade { get; set; }
         
-        
-
-
         public void AddO(Opgave opgave)
         {
             OpgaveListe.Add(opgave);
@@ -66,6 +63,7 @@ namespace RisoeProjektTeamA.Model
             StationsListe = new ObservableCollection<Station>();
 
             BFacade = new BrugerPersistenceFacade();
+            Brugerliste = new ObservableCollection<Bruger>(BFacade.HentAlleBrugere());
             Brugerliste = new ObservableCollection<Bruger>();
 
             var brugere = BFacade.HentAlleBrugere();
