@@ -11,10 +11,11 @@ using RisoeProjektTeamA.Annotations;
 using RisoeProjektTeamA.Common;
 using RisoeProjektTeamA.Handler;
 using RisoeProjektTeamA.Model;
+using RisoeProjektTeamA.View;
 
 namespace RisoeProjektTeamA.ViewModel
 {
-    class BrugerViewModel:INotifyPropertyChanged
+    class BrugerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,14 +31,21 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
-        public ObservableCollection<Bruger> BrugerListe { get; set; }
-        
-        public string BKodeOrd { get; set; }
+
+
+        private string _bKodeOrd;
+
+        public string BKodeOrd
+        {
+            get { return _bKodeOrd; }
+            set { _bKodeOrd = value; BekræftKode(); }
+        }
+
 
         private Bruger _nyBruger;
         public Bruger NyBruger
         {
-          get { return _nyBruger; }
+            get { return _nyBruger; }
 
             set
             {
@@ -74,6 +82,8 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
+        public ObservableCollection<Bruger> Brugerliste { get; set; }
+
         private List<string> KodeOrdsListe { get; set; }
         private List<string> Initialerliste { get; set; }
 
@@ -83,17 +93,44 @@ namespace RisoeProjektTeamA.ViewModel
             Logbog = LogbogSingleton.Instance;
             BrugerListe = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
 
+            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
+
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
             //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
-
-
         }
 
+        private bool _kodeErRigtig = false;
+        public bool KodeErRigtig
+        {
+            get { return _kodeErRigtig; }
+            set
+            {
+                if (value == true)
+                {
+                    _kodeErRigtig = true;
+                }
+                else
+                {
+                    _kodeErRigtig = false;
+                }
+                OnPropertyChanged();
+            }
+        }
 
+        private void BekræftKode()
+        {
+            Logbog.BFacade.HentEnBruger(ValgtBruger.Initialer);
 
-
-
+            if (ValgtBruger.KodeOrd == BKodeOrd)
+            {
+                KodeErRigtig = true;
+            }
+            else
+            {
+                MessageDialogHandler.Show("Du har skrevet en forkert kode", "Forkert kode");
+            }
+        }
     }
 }

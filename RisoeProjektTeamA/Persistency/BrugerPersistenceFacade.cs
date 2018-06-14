@@ -18,33 +18,24 @@ namespace RisoeProjektTeamA.Persistency
         private String Uri = "http://localhost:59327/api/Bruger/";
 
         //The HTTP client for making a connection
-        private HttpClient client = new HttpClient();
+        private readonly HttpClient client = new HttpClient();
+        //Using i metoder må ikke bruges da client objekt bliver fjernet
 
         public List<Bruger> HentAlleBrugere()
         {
-            using (client)
-            {
                 List<Bruger> brugerListe = new List<Bruger>();
-                try
-                {
+                
                     string jsonStr = client.GetStringAsync(Uri).Result;
                     // info fra body
                     brugerListe = JsonConvert.DeserializeObject<List<Bruger>>(jsonStr);
-                }
-                catch (ParseToEnumException ex)
-                {
-                    MessageDialogHandler.Show(ex.ToString(), "Status kan ikke hentes fra database.");
-                }
+                
                 return brugerListe;
-            }
         }
 
-        public Bruger HentEnBruger(string initialer)
+        public Bruger HentEnBruger(string initial)
         {
-            using (client)
-            {
-                string jsonStr = client.GetStringAsync(Uri + "?initialer=" + initialer ).Result; // info fra body
                 Bruger bruger = new Bruger();
+                string jsonStr = client.GetStringAsync(Uri + initial).Result; // info fra body
                 try
                 {
                     bruger = JsonConvert.DeserializeObject<Bruger>(jsonStr);
@@ -54,7 +45,6 @@ namespace RisoeProjektTeamA.Persistency
                     MessageDialogHandler.Show(ex.ToString(), "Status kan ikke hentes fra database.");
                 }
                 return bruger;
-            }
         }
 
         public bool IndsætBruger(Bruger bruger)
@@ -62,9 +52,7 @@ namespace RisoeProjektTeamA.Persistency
             String json = JsonConvert.SerializeObject(bruger);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            using (client)
-            {
+            
                 HttpResponseMessage resultMessage = client.PostAsync(Uri, content).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
@@ -73,7 +61,6 @@ namespace RisoeProjektTeamA.Persistency
                     bool res = JsonConvert.DeserializeObject<bool>(resultStr);
                     return res;
                 }
-            }
             return false;
         }
 
@@ -82,9 +69,7 @@ namespace RisoeProjektTeamA.Persistency
         //    String json = JsonConvert.SerializeObject(bruger);
         //    StringContent content = new StringContent(json);
         //    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-        //    using (client)
-        //    {
+        
         //        HttpResponseMessage resultMessage = client.PutAsync(Uri + nr, content).Result;
 
         //        if (resultMessage.IsSuccessStatusCode)
@@ -93,16 +78,13 @@ namespace RisoeProjektTeamA.Persistency
         //            bool res = JsonConvert.DeserializeObject<bool>(resultStr);
         //            return res;
         //        }
-        //    }
         //    return false;
         //}
 
 
         public Bruger SletBruger(string Initialer)
         {
-            using (client)
-            {
-                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + "?initialer=" + Initialer).Result;
+                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + Initialer).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {
@@ -110,7 +92,6 @@ namespace RisoeProjektTeamA.Persistency
                     Bruger bruger = JsonConvert.DeserializeObject<Bruger>(resultStr);
                     return bruger;
                 }
-            }
             return null;
         }
 

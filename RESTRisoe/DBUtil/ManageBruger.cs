@@ -15,11 +15,10 @@ namespace RESTRisoe.DBUtil
 
         private String insertSql = "insert into RisoeBruger Values (@Initialer, @Kodeord)";
 
+        private String queryStringFromID = "select * from RisoeBruger where Initialer = @Initialer";
         private String deleteSql = "delete from RisoeBruger where Initialer = @Initialer";
 
         private String queryString = "select * from RisoeBruger";
-
-        private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
 
         public List<Bruger> HentAlleBruger()
         {
@@ -114,7 +113,6 @@ namespace RESTRisoe.DBUtil
         {
             command.Parameters.AddWithValue("@Initialer", bruger.Initialer);
             command.Parameters.AddWithValue("@Kodeord", bruger.KodeOrd);
-           
         }
 
         private Bruger LæsBruger(SqlDataReader reader)
