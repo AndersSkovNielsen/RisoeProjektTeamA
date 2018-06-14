@@ -57,6 +57,9 @@
                     </ListView>
                  <Button Content="Delete User" Style="{StaticResource TheButton}" Command="{Binding RemoveCommand}"/>
              </StackPanel>
+             <StackPanel>
+                 <Button Content="Back" Style="{StaticResource TheButton}" Click="Button_Click"/>
+             </StackPanel>
          </StackPanel>
         </StackPanel>
     </Grid>

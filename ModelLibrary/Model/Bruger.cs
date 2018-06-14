@@ -36,7 +36,7 @@ namespace ModelLibrary.Model
 
         public override string ToString()
         {
-            return $"Bruger: {Initialer}.";
+            return $"{Initialer}.";
         }
     }
 }
