@@ -38,8 +38,10 @@ namespace RESTRisoe.Controllers
         }
 
         // DELETE: api/Bruger/5
-        public void Delete(int id)
+        public Bruger Delete(string initialer)
         {
+
+            return manager.SletBruger(initialer);
         }
     }
 }

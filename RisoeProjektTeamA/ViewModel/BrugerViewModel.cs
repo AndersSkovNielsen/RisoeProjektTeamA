@@ -73,7 +73,6 @@ namespace RisoeProjektTeamA.ViewModel
                 if (_ValgtBruger == null)
                 {
                     _ValgtBruger = new Bruger(value);
-                    NyBruger = value;
                 }
                 else
                 {
@@ -92,6 +91,7 @@ namespace RisoeProjektTeamA.ViewModel
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
+            BrugerListe = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
 
             Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
 
