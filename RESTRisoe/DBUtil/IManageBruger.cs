@@ -8,7 +8,10 @@ namespace RESTRisoe.DBUtil
 {
     public interface IManageBruger
     {
+        List<Bruger> HentAlleBruger();
         bool indsætBruger(Bruger bruger);
+        Bruger HentBrugerFraInitialer(string initialer);
 
+        Bruger SletBruger(string initialer);
     }
 }

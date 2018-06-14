@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using ModelLibrary.Exceptions;
 using ModelLibrary.Model;
 
 namespace RESTRisoe.DBUtil
@@ -14,7 +15,52 @@ namespace RESTRisoe.DBUtil
 
         private String insertSql = "insert into RisoeBruger Values (@Initialer, @Kodeord)";
 
+        private String deleteSql = "delete from RisoeBruger where Initialer = @Initialer";
+
+        private String queryString = "select * from RisoeBruger";
+
+        private String queryStringFromID = "select * from RisoeOpgave where ID = @ID";
+
+        public List<Bruger> HentAlleBruger()
+        {
+            List<Bruger> brugere = new List<Bruger>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    brugere.Add(ReadBruger(reader));
+                }
+            }
+            return brugere;
+        }
+
+        public Bruger HentBrugerFraInitialer(string brugerInitialer)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryStringFromID, connection);
+                command.Parameters.AddWithValue("@Initialer", brugerInitialer);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    
+                    return ReadBruger(reader);
+                }
+            }
+            return null;
+        }
+
         public bool indsætBruger(Bruger bruger)
+
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -37,11 +83,50 @@ namespace RESTRisoe.DBUtil
         }
 
 
+        public Bruger SletBruger(string brugerInitialer)
+        {
+            Bruger bruger = HentBrugerFraInitialer(brugerInitialer);
+            if (bruger == null)
+            {
+                return null;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(deleteSql, connection);
+                command.Parameters.AddWithValue("@Initialer", brugerInitialer);
+
+                command.Connection.Open();
+
+                int noOfRows = command.ExecuteNonQuery();
+
+                if (noOfRows == 1)
+                {
+                    return bruger;
+                }
+                return null;
+            }
+        }
+
+
+
         private void TilføjVærdiBruger(Bruger bruger, SqlCommand command)
         {
             command.Parameters.AddWithValue("@Initialer", bruger.Initialer);
             command.Parameters.AddWithValue("@Kodeord", bruger.KodeOrd);
            
         }
-    }
+
+        private Bruger ReadBruger(SqlDataReader reader)
+        {
+            string initialer = reader.GetString(0);
+            String kodeOrd = reader.GetString(1);
+            
+            
+
+            return new Bruger(initialer, kodeOrd);
+        }
+
+
+    }//---
 }

@@ -18,7 +18,7 @@ namespace ModelLibrary.Model
         public string KodeOrd { get; set; }
         
 
-        public Bruger(string fuldNavn, string initialer, string kodeOrd)
+        public Bruger(string initialer, string kodeOrd)
         {
             //FuldNavn = fuldNavn;
             Initialer = initialer;
@@ -36,5 +36,6 @@ namespace ModelLibrary.Model
             KodeOrd = bruger.KodeOrd;
         }
 
+       
      }
 }

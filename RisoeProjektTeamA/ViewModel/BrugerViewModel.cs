@@ -67,6 +67,25 @@ namespace RisoeProjektTeamA.ViewModel
             
         }
 
+        private Bruger _ValgtBruger;
+
+        public Bruger ValgtBruger
+        {
+            get { return _ValgtBruger; }
+            set
+            {
+                if (_ValgtBruger == null)
+                {
+                    _ValgtBruger = new Bruger(value);
+                    NyBruger = value;
+                }
+                else
+                {
+                    _ValgtBruger = null;
+                }
+                OnPropertyChanged();
+            }
+        }
 
         private List<string> KodeOrdsListe { get; set; }
         private List<string> Initialerliste { get; set; }
