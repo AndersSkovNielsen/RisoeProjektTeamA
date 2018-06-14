@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,27 +24,11 @@ namespace RisoeProjektTeamA.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-        
         public LogbogSingleton Logbog { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
-
-        //private string _initialer;
         
-        //private string Initialer
-        //{
-        //    get { return _initialer; }
-        //    set { _initialer = value; OnPropertyChanged();}
-            
-        //}
-        //private string _kodeOrd;
-        //private string KodeOrd
-        //{
-        //    get { return _kodeOrd; }
-        //    set { _kodeOrd = value; OnPropertyChanged();}
-        //}
         public string BKodeOrd { get; set; }
 
         private Bruger _nyBruger;
@@ -62,31 +47,42 @@ namespace RisoeProjektTeamA.ViewModel
                     _nyBruger = null;
                 }
                 OnPropertyChanged();
-
             }
-            
         }
 
-
-        private List<string> KodeOrdsListe { get; set; }
-        private List<string> Initialerliste { get; set; }
+        public ObservableCollection<Bruger> Brugerliste { get; set; }
 
         public BrugerViewModel()
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
 
+            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
+
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
             //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
-
-
         }
 
+        private Bruger _valgtBruger;
 
-
-
+        public Bruger ValgtBruger
+        {
+            get { return _valgtBruger; }
+            set
+            {
+                if (value != null)
+                {
+                    _valgtBruger = new Bruger(value);
+                }
+                else
+                {
+                    _valgtBruger = null;
+                }
+                OnPropertyChanged();
+            }
+        }
 
     }
 }

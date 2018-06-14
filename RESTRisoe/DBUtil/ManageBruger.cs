@@ -12,14 +12,54 @@ namespace RESTRisoe.DBUtil
 
         private String connectionString = @"Data Source=ande651p-easj-dbserver.database.windows.net;Initial Catalog=ande651p-easj-DB;Integrated Security=False;User ID=asn230791;Password=Risoe2018;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+        private String queryString = "select * from RisoeBruger";
+
+        private String queryStringFromID = "select * from RisoeBruger where ID = @ID";
+
         private String insertSql = "insert into RisoeBruger Values (@Initialer, @Kodeord)";
+
+        public List<Bruger> HentAlleBrugere()
+        {
+            List<Bruger> brugere = new List<Bruger>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    brugere.Add(LæsBruger(reader));
+                }
+            }
+            return brugere;
+        }
+
+        public Bruger HentBrugerFraID(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryStringFromID, connection);
+                command.Parameters.AddWithValue("@ID", id);
+
+                command.Connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return LæsBruger(reader);
+                }
+            }
+            return null;
+        }
 
         public bool indsætBruger(Bruger bruger)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(insertSql, connection);
-                
+
 
                 //Brug af TilføjVærdiOpgave metode (DRY)
                 TilføjVærdiBruger(bruger, command);
@@ -41,7 +81,15 @@ namespace RESTRisoe.DBUtil
         {
             command.Parameters.AddWithValue("@Initialer", bruger.Initialer);
             command.Parameters.AddWithValue("@Kodeord", bruger.KodeOrd);
-           
+
+        }
+
+        private Bruger LæsBruger(SqlDataReader reader)
+        {
+            string initial = reader.GetString(0);
+            string kode = reader.GetString(1);
+
+            return new Bruger(initial, kode);
         }
     }
 }

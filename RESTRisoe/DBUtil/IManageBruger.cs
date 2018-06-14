@@ -8,7 +8,8 @@ namespace RESTRisoe.DBUtil
 {
     public interface IManageBruger
     {
+        List<Bruger> HentAlleBrugere();
+        Bruger HentBrugerFraID(int id);
         bool indsætBruger(Bruger bruger);
-
     }
 }
