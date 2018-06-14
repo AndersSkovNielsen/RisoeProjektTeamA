@@ -15,7 +15,7 @@ namespace RESTRisoe.Controllers
         // GET: api/Bruger
         public IEnumerable<Bruger> Get()
         {
-            return manager.HentAlleBrugere();
+            return manager.HentAlleBruger();
         }
 
         // GET: api/Bruger/5
@@ -23,7 +23,7 @@ namespace RESTRisoe.Controllers
         [HttpGet]
         public Bruger Get(string initial)
         {
-            return manager.HentBrugerFraID(initial);
+            return manager.HentBrugerFraInitialer(initial);
         }
 
         // POST: api/Bruger

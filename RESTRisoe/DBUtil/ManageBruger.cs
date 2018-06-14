@@ -15,12 +15,12 @@ namespace RESTRisoe.DBUtil
 
         private String insertSql = "insert into RisoeBruger Values (@Initialer, @Kodeord)";
 
-        private String queryStringFromID = "select * from RisoeBruger where Initialer = @Ini";
+        private String queryStringFromID = "select * from RisoeBruger where Initialer = @Initialer";
         private String deleteSql = "delete from RisoeBruger where Initialer = @Initialer";
 
         private String queryString = "select * from RisoeBruger";
 
-        public List<Bruger> HentAlleBrugere()
+        public List<Bruger> HentAlleBruger()
         {
             List<Bruger> brugere = new List<Bruger>();
 

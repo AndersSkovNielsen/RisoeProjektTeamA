@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,6 +11,7 @@ using RisoeProjektTeamA.Annotations;
 using RisoeProjektTeamA.Common;
 using RisoeProjektTeamA.Handler;
 using RisoeProjektTeamA.Model;
+using RisoeProjektTeamA.View;
 
 namespace RisoeProjektTeamA.ViewModel
 {
@@ -81,6 +83,8 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
+        public ObservableCollection<Bruger> Brugerliste { get; set; }
+
         private List<string> KodeOrdsListe { get; set; }
         private List<string> Initialerliste { get; set; }
 
@@ -89,12 +93,12 @@ namespace RisoeProjektTeamA.ViewModel
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
 
+            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
+
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
             //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
-
-
         }
 
         private bool _kodeErRigtig = false;
@@ -115,15 +119,18 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
-        private bool BekræftKode()
+        private void BekræftKode()
         {
             Logbog.BFacade.HentEnBruger(ValgtBruger.Initialer);
 
             if (ValgtBruger.KodeOrd == BKodeOrd)
             {
-                return KodeErRigtig = true;
+                KodeErRigtig = true;
             }
-            else return false;
+            else
+            {
+                MessageDialogHandler.Show("Du har skrevet en forkert kode", "Forkert kode");
+            }
         }
     }
 }
