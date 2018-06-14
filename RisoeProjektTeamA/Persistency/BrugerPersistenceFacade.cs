@@ -93,11 +93,11 @@ namespace RisoeProjektTeamA.Persistency
         //}
 
 
-        public Bruger SletBruger(int nr)
+        public Bruger SletBruger(string Initialer)
         {
             using (client)
             {
-                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + nr).Result;
+                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + Initialer).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {

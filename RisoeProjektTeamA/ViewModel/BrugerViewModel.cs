@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -24,6 +23,8 @@ namespace RisoeProjektTeamA.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        
         public LogbogSingleton Logbog { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
@@ -55,41 +56,45 @@ namespace RisoeProjektTeamA.ViewModel
                     _nyBruger = null;
                 }
                 OnPropertyChanged();
+
+            }
+            
+        }
+
+        private Bruger _ValgtBruger;
+
+        public Bruger ValgtBruger
+        {
+            get { return _ValgtBruger; }
+            set
+            {
+                if (_ValgtBruger == null)
+                {
+                    _ValgtBruger = new Bruger(value);
+                    NyBruger = value;
+                }
+                else
+                {
+                    _ValgtBruger = null;
+                }
+                OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<Bruger> Brugerliste { get; set; }
+        private List<string> KodeOrdsListe { get; set; }
+        private List<string> Initialerliste { get; set; }
 
         public BrugerViewModel()
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
 
-            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
-
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
             //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
-        }
 
-        private Bruger _valgtBruger;
 
-        public Bruger ValgtBruger
-        {
-            get { return _valgtBruger; }
-            set
-            {
-                if (value != null)
-                {
-                    _valgtBruger = new Bruger(value);
-                }
-                else
-                {
-                    _valgtBruger = null;
-                }
-                OnPropertyChanged();
-            }
         }
 
         private bool _kodeErRigtig = false;

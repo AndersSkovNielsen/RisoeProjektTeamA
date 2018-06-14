@@ -42,13 +42,28 @@ namespace RisoeProjektTeamA.Handler
             //kan hente den enkelte bruger.
             //bruger.Initialer = BrugerInitialer;
 
-            
-            //var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
-            
+
+            BrugerViewModel.Logbog.Brugerliste.Clear();
+
+            var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
+
+            foreach (var b in brugere)
+            {
+                BrugerViewModel.Logbog.AddB(b);
+            }
+
+            //BrugerViewModel.OpgaveErValgt = false;
+
         }
 
 
+        public void SletBruger()
+        {
+            Bruger bruger = BrugerViewModel.ValgtBruger;
 
+            BrugerViewModel.Logbog.BFacade.SletBruger(bruger.Initialer);
+            
+        }
 
 
 
