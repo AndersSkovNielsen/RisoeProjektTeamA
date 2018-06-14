@@ -14,7 +14,7 @@ namespace RESTRisoe.DBUtil
 
         private String queryString = "select * from RisoeBruger";
 
-        private String queryStringFromID = "select * from RisoeBruger where ID = @ID";
+        private String queryStringFromID = "select * from RisoeBruger where Initialer = @Ini";
 
         private String insertSql = "insert into RisoeBruger Values (@Initialer, @Kodeord)";
 
@@ -36,12 +36,12 @@ namespace RESTRisoe.DBUtil
             return brugere;
         }
 
-        public Bruger HentBrugerFraID(int id)
+        public Bruger HentBrugerFraID(string initial)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryStringFromID, connection);
-                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@Ini", initial);
 
                 command.Connection.Open();
 
@@ -81,7 +81,6 @@ namespace RESTRisoe.DBUtil
         {
             command.Parameters.AddWithValue("@Initialer", bruger.Initialer);
             command.Parameters.AddWithValue("@Kodeord", bruger.KodeOrd);
-
         }
 
         private Bruger LæsBruger(SqlDataReader reader)

@@ -25,26 +25,21 @@ namespace RisoeProjektTeamA.Persistency
             using (client)
             {
                 List<Bruger> brugerListe = new List<Bruger>();
-                try
-                {
+                
                     string jsonStr = client.GetStringAsync(Uri).Result;
                     // info fra body
                     brugerListe = JsonConvert.DeserializeObject<List<Bruger>>(jsonStr);
-                }
-                catch (ParseToEnumException ex)
-                {
-                    MessageDialogHandler.Show(ex.ToString(), "Status kan ikke hentes fra database.");
-                }
+                
                 return brugerListe;
             }
         }
 
-        public Bruger HentEnBruger(int nr)
+        public Bruger HentEnBruger(string initial)
         {
             using (client)
             {
-                string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
                 Bruger bruger = new Bruger();
+                string jsonStr = client.GetStringAsync(Uri + initial).Result; // info fra body
                 try
                 {
                     bruger = JsonConvert.DeserializeObject<Bruger>(jsonStr);

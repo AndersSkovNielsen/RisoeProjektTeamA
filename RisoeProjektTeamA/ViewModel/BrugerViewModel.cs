@@ -14,7 +14,7 @@ using RisoeProjektTeamA.Model;
 
 namespace RisoeProjektTeamA.ViewModel
 {
-    class BrugerViewModel:INotifyPropertyChanged
+    class BrugerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,13 +28,21 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
-        
-        public string BKodeOrd { get; set; }
+
+
+        private string _bKodeOrd;
+
+        public string BKodeOrd
+        {
+            get { return _bKodeOrd; }
+            set { _bKodeOrd = value; BekræftKode(); }
+        }
+
 
         private Bruger _nyBruger;
         public Bruger NyBruger
         {
-          get { return _nyBruger; }
+            get { return _nyBruger; }
 
             set
             {
@@ -84,5 +92,33 @@ namespace RisoeProjektTeamA.ViewModel
             }
         }
 
+        private bool _kodeErRigtig = false;
+        public bool KodeErRigtig
+        {
+            get { return _kodeErRigtig; }
+            set
+            {
+                if (value == true)
+                {
+                    _kodeErRigtig = true;
+                }
+                else
+                {
+                    _kodeErRigtig = false;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private bool BekræftKode()
+        {
+            Logbog.BFacade.HentEnBruger(ValgtBruger.Initialer);
+
+            if (ValgtBruger.KodeOrd == BKodeOrd)
+            {
+                return KodeErRigtig = true;
+            }
+            else return false;
+        }
     }
 }

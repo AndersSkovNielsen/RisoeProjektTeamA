@@ -52,7 +52,7 @@
 
             <TextBox Style="{StaticResource TextBoxDefault}" Text="{Binding BKodeOrd, Mode=TwoWay}" PlaceholderText="Indtast kode"/>
 
-            <Button Content="Login" Click="Button_Click_Hovedmenu" Style="{StaticResource TheButton}"/>
+            <Button Content="Login" Click="Button_Click_Hovedmenu" Style="{StaticResource TheButton}" IsEnabled="{Binding KodeErRigtig, Mode=TwoWay}"/>
         </StackPanel>
         
         

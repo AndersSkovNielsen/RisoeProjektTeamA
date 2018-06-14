@@ -19,9 +19,11 @@ namespace RESTRisoe.Controllers
         }
 
         // GET: api/Bruger/5
-        public Bruger Get(int id)
+        [Route("api/Bruger/{initial}")]
+        [HttpGet]
+        public Bruger Get(string initial)
         {
-            return manager.HentBrugerFraID(id);
+            return manager.HentBrugerFraID(initial);
         }
 
         // POST: api/Bruger
