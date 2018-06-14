@@ -86,7 +86,16 @@ namespace RisoeProjektTeamA.Handler
             Bruger bruger = BrugerViewModel.ValgtBruger;
 
             BrugerViewModel.Logbog.BFacade.SletBruger(bruger.Initialer);
-            
+
+            BrugerViewModel.Logbog.Brugerliste.Clear();
+
+            var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
+
+            foreach (var b in brugere)
+            {
+                BrugerViewModel.Logbog.AddB(b);
+            }
+
         }
 
 
