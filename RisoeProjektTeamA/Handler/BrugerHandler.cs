@@ -49,7 +49,7 @@ namespace RisoeProjektTeamA.Handler
             string BrugerInitialer = BrugerViewModel.NyBruger.Initialer;
             string BrugerKodeOrd = BrugerViewModel.NyBruger.KodeOrd;
 
-            string BKodeord = BrugerViewModel.BKodeOrd;
+            string BKodeord = BrugerViewModel.BKodeord;
 
 
             if (BKodeord == BrugerKodeOrd)

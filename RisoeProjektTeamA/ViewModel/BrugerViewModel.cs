@@ -32,13 +32,21 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
 
+        private string _bKodeord;
 
-        private string _bKodeOrd;
-
-        public string BKodeOrd
+        public string BKodeord
         {
-            get { return _bKodeOrd; }
-            set { _bKodeOrd = value; BekræftKode(); }
+            get { return _bKodeord; }
+            set { _bKodeord = value; }
+        }
+
+
+        private string _tjekKodeOrd;
+
+        public string TjekKodeOrd
+        {
+            get { return _tjekKodeOrd; }
+            set { _tjekKodeOrd = value; BekræftKode(); }
         }
 
 
@@ -122,7 +130,7 @@ namespace RisoeProjektTeamA.ViewModel
         {
             Logbog.BFacade.HentEnBruger(ValgtBruger.Initialer);
 
-            if (ValgtBruger.KodeOrd == BKodeOrd)
+            if (ValgtBruger.KodeOrd == TjekKodeOrd)
             {
                 KodeErRigtig = true;
             }

@@ -50,7 +50,7 @@
 
             <ComboBox VerticalAlignment="Top" Width="468" Style="{StaticResource ComboBox1}" ItemsSource="{Binding Brugerliste, Mode=TwoWay}" SelectedItem="{Binding ValgtBruger, Mode=TwoWay}"/>
 
-            <TextBox Style="{StaticResource TextBoxDefault}" Text="{Binding BKodeOrd, Mode=TwoWay}" PlaceholderText="Indtast kode"/>
+            <TextBox Style="{StaticResource TextBoxDefault}" Text="{Binding TjekKodeOrd, Mode=TwoWay}" PlaceholderText="Indtast kode"/>
 
             <Button Content="Login" Click="Button_Click_Hovedmenu" Style="{StaticResource TheButton}" IsEnabled="{Binding KodeErRigtig, Mode=TwoWay}"/>
         </StackPanel>
