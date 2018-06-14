@@ -30,7 +30,7 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand AddCommand { get; set; }
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
-
+        public ObservableCollection<Bruger> BrugerListe { get; set; }
         
         public string BKodeOrd { get; set; }
 
@@ -81,7 +81,8 @@ namespace RisoeProjektTeamA.ViewModel
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
-            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
+            BrugerListe = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
+
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
