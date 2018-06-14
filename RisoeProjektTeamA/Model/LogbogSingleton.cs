@@ -67,9 +67,12 @@ namespace RisoeProjektTeamA.Model
 
             BFacade = new BrugerPersistenceFacade();
             Brugerliste = new ObservableCollection<Bruger>();
-            foreach (var b in Brugerliste)
+
+            var brugere = BFacade.HentAlleBrugere();
+
+            foreach (var b in brugere)
             {
-                Brugerliste.Add(b);
+                AddB(b);
             }
         }
 
