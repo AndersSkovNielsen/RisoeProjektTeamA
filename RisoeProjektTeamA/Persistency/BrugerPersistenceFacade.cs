@@ -39,11 +39,11 @@ namespace RisoeProjektTeamA.Persistency
             }
         }
 
-        public Bruger HentEnBruger(int nr)
+        public Bruger HentEnBruger(string initialer)
         {
             using (client)
             {
-                string jsonStr = client.GetStringAsync(Uri + nr).Result; // info fra body
+                string jsonStr = client.GetStringAsync(Uri + "?initialer=" + initialer ).Result; // info fra body
                 Bruger bruger = new Bruger();
                 try
                 {
@@ -102,7 +102,7 @@ namespace RisoeProjektTeamA.Persistency
         {
             using (client)
             {
-                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + Initialer).Result;
+                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + "?initialer=" + Initialer).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {
