@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Model
 {
@@ -66,6 +67,10 @@ namespace RisoeProjektTeamA.Model
 
             BFacade = new BrugerPersistenceFacade();
             Brugerliste = new ObservableCollection<Bruger>();
+            foreach (var b in Brugerliste)
+            {
+                Brugerliste.Add(b);
+            }
         }
 
         //3. iteration
