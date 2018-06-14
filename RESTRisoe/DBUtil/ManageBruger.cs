@@ -34,7 +34,7 @@ namespace RESTRisoe.DBUtil
                 while (reader.Read())
                 {
                     
-                    brugere.Add(ReadBruger(reader));
+                    brugere.Add(LæsBruger(reader));
                 }
             }
             return brugere;
@@ -53,7 +53,7 @@ namespace RESTRisoe.DBUtil
                 if (reader.Read())
                 {
                     
-                    return ReadBruger(reader);
+                    return LæsBruger(reader);
                 }
             }
             return null;
@@ -117,7 +117,7 @@ namespace RESTRisoe.DBUtil
            
         }
 
-        private Bruger ReadBruger(SqlDataReader reader)
+        private Bruger LæsBruger(SqlDataReader reader)
         {
             string initialer = reader.GetString(0);
             String kodeOrd = reader.GetString(1);

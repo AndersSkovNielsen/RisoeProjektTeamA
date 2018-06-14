@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -30,20 +31,7 @@ namespace RisoeProjektTeamA.ViewModel
         public RelayCommand RemoveCommand { get; set; }
         public BrugerHandler BrugerHandler { get; set; }
 
-        //private string _initialer;
         
-        //private string Initialer
-        //{
-        //    get { return _initialer; }
-        //    set { _initialer = value; OnPropertyChanged();}
-            
-        //}
-        //private string _kodeOrd;
-        //private string KodeOrd
-        //{
-        //    get { return _kodeOrd; }
-        //    set { _kodeOrd = value; OnPropertyChanged();}
-        //}
         public string BKodeOrd { get; set; }
 
         private Bruger _nyBruger;
@@ -77,7 +65,6 @@ namespace RisoeProjektTeamA.ViewModel
                 if (_ValgtBruger == null)
                 {
                     _ValgtBruger = new Bruger(value);
-                    NyBruger = value;
                 }
                 else
                 {
@@ -94,7 +81,7 @@ namespace RisoeProjektTeamA.ViewModel
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
-
+            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);

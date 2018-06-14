@@ -15,13 +15,13 @@ namespace RESTRisoe.Controllers
         // GET: api/Bruger
         public IEnumerable<Bruger> Get()
         {
-            return manager.HentAlleBrugere();
+            return manager.HentAlleBruger();
         }
 
         // GET: api/Bruger/5
-        public Bruger Get(int id)
+        public Bruger Get(string initialer)
         {
-            return manager.HentBrugerFraID(id);
+            return manager.HentBrugerFraInitialer(initialer);
         }
 
         // POST: api/Bruger
@@ -36,8 +36,10 @@ namespace RESTRisoe.Controllers
         }
 
         // DELETE: api/Bruger/5
-        public void Delete(int id)
+        public Bruger Delete(string initialer)
         {
+
+            return manager.SletBruger(initialer);
         }
     }
 }
