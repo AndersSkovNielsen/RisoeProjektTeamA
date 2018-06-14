@@ -64,14 +64,16 @@ namespace RisoeProjektTeamA.Model
 
             BFacade = new BrugerPersistenceFacade();
             Brugerliste = new ObservableCollection<Bruger>(BFacade.HentAlleBrugere());
-            Brugerliste = new ObservableCollection<Bruger>();
 
-            var brugere = BFacade.HentAlleBrugere();
+            //Lange måde at få Listview til at virke fra starten:
+            //Brugerliste = new ObservableCollection<Bruger>();
 
-            foreach (var b in brugere)
-            {
-                AddB(b);
-            }
+            //var brugere = BFacade.HentAlleBrugere();
+
+            //foreach (var b in brugere)
+            //{
+            //    AddB(b);
+            //}
         }
 
         //3. iteration
