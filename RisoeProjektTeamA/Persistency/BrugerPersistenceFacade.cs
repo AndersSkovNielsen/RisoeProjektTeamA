@@ -90,7 +90,7 @@ namespace RisoeProjektTeamA.Persistency
 
         public Bruger SletBruger(string Initialer)
         {
-                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + Initialer).Result;
+                HttpResponseMessage resultMessage = client.DeleteAsync(Uri + "?initialer="+ Initialer).Result;
 
                 if (resultMessage.IsSuccessStatusCode)
                 {
