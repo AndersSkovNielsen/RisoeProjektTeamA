@@ -47,7 +47,7 @@
                     <TextBox Style="{StaticResource TextBox1}" Text="{Binding NyBruger.KodeOrd, Mode=TwoWay}"/>
 
                  <TextBlock Text="Bekræft Kodeord" Style="{StaticResource TextBlock1}"/>
-                    <TextBox Style="{StaticResource TextBox1}" Text="{Binding BKodeOrd, Mode=TwoWay}"/>
+                    <TextBox Style="{StaticResource TextBox1}" Text="{Binding BKodeord, Mode=TwoWay}"/>
                  
                  <Button Content="Create User" Style="{StaticResource TheButton}" Command="{Binding AddCommand}"/>
                 </StackPanel>
