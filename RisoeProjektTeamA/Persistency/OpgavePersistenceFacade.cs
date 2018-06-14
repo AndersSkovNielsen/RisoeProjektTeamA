@@ -29,7 +29,7 @@ namespace RisoeProjektTeamA.Persistency
                 {
                     string jsonStr = client.GetStringAsync(Uri).Result;
                     // info fra body
-                   opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
+                    opgaveListe = JsonConvert.DeserializeObject<List<Opgave>>(jsonStr);
                 }
                 catch (ParseToEnumException ex)
                 {

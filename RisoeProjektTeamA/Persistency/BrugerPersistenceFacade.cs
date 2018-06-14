@@ -20,8 +20,6 @@ namespace RisoeProjektTeamA.Persistency
         //The HTTP client for making a connection
         private HttpClient client = new HttpClient();
 
-
-
         public List<Bruger> HentAlleBrugere()
         {
             using (client)

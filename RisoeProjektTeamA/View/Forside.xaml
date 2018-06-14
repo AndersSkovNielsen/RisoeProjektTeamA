@@ -5,6 +5,7 @@
     xmlns:local="using:RisoeProjektTeamA"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RisoeProjektTeamA.ViewModel"
     mc:Ignorable="d">
     <Page.Resources>
         <Style TargetType="TextBox" x:Key="TextBoxDefault">
@@ -37,15 +38,19 @@
 
     </Page.Resources>
 
+    <Page.DataContext>
+        <viewModel:BrugerViewModel/>
+    </Page.DataContext>
+
     <Grid Background="#FFCBF9F5">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Left" Text="Stationslog" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TextBlockTitle}"  />
 
             <TextBlock Text="Tekniker:" Style="{StaticResource TextBlock1}"/>
 
-            <ComboBox VerticalAlignment="Top" Width="468" Style="{StaticResource ComboBox1}"/>
+            <ComboBox VerticalAlignment="Top" Width="468" Style="{StaticResource ComboBox1}" ItemsSource="{Binding Brugerliste, Mode=TwoWay}" SelectedItem="{Binding ValgtBruger, Mode=TwoWay}"/>
 
-            <TextBox Text="Indtast kode" Style="{StaticResource TextBoxDefault}"/>
+            <TextBox Style="{StaticResource TextBoxDefault}" Text="{Binding BKodeOrd, Mode=TwoWay}" PlaceholderText="Indtast kode"/>
 
             <Button Content="Login" Click="Button_Click_Hovedmenu" Style="{StaticResource TheButton}"/>
         </StackPanel>

@@ -13,15 +13,15 @@ namespace RESTRisoe.Controllers
     {
         IManageBruger manager = new ManageBruger();
         // GET: api/Bruger
-        public IEnumerable<string> Get()
+        public IEnumerable<Bruger> Get()
         {
-            return manager.HentAlleBruger();
+            return manager.HentAlleBrugere();
         }
 
         // GET: api/Bruger/5
-        public string Get(int id)
+        public Bruger Get(int id)
         {
-            return "value";
+            return manager.HentBrugerFraID(id);
         }
 
         // POST: api/Bruger

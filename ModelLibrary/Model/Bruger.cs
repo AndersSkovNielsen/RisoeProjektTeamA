@@ -16,18 +16,16 @@ namespace ModelLibrary.Model
 
         public string Initialer { get; set; }
         public string KodeOrd { get; set; }
-        
-
-        public Bruger(string initialer, string kodeOrd)
-        {
-            //FuldNavn = fuldNavn;
-            Initialer = initialer;
-            KodeOrd = kodeOrd;
-        }
 
         public Bruger()
         {
-            
+
+        }
+
+        public Bruger(string initialer, string kodeOrd)
+        {
+            Initialer = initialer;
+            KodeOrd = kodeOrd;
         }
 
         public Bruger(Bruger bruger)
@@ -36,6 +34,9 @@ namespace ModelLibrary.Model
             KodeOrd = bruger.KodeOrd;
         }
 
-       
-     }
+        public override string ToString()
+        {
+            return $"{Initialer}";
+        }
+    }
 }
