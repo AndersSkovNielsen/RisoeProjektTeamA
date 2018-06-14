@@ -19,6 +19,30 @@ namespace RisoeProjektTeamA.Handler
             BrugerViewModel = brugerViewModel;
         }
 
+        public void HentOpgaver()
+        {
+            if (BrugerViewModel.ValgtBruger != null)
+            {
+                BrugerViewModel.Logbog.Brugerliste.Clear();
+
+                //int udstyrID = OpgaveViewModel.ValgtUdstyr.UdstyrId;
+                //OpgaveViewModel.AdminUdstyr = OpgaveViewModel.ValgtUdstyr;
+                //OpgaveViewModel.AdminUdstyrErValgt = true;
+                //OpgaveViewModel.OpgaveErValgt = false;
+
+                var brugere = BrugerViewModel.Logbog.BFacade.HentAlleBrugere();
+
+                foreach (var b in brugere)
+                {
+                    BrugerViewModel.Logbog.AddB(b);
+                }
+            }
+            else
+            {
+                MessageDialogHandler.Show("Intet udstyr valgt", "Du skal vælge et udstyr fra menuen");
+            }
+        }
+
         public void IndsætBruger()
         {
             Bruger bruger = BrugerViewModel.NyBruger;

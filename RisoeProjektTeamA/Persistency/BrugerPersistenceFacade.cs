@@ -9,6 +9,7 @@ using ModelLibrary.Exceptions;
 using ModelLibrary.Model;
 using Newtonsoft.Json;
 using RisoeProjektTeamA.View;
+using RisoeProjektTeamA.ViewModel;
 
 namespace RisoeProjektTeamA.Persistency
 {
@@ -28,6 +29,11 @@ namespace RisoeProjektTeamA.Persistency
                     string jsonStr = client.GetStringAsync(Uri).Result;
                     // info fra body
                     brugerListe = JsonConvert.DeserializeObject<List<Bruger>>(jsonStr);
+
+            //foreach (var b in brugerListe)
+            //{
+                
+            //}
                 
                 return brugerListe;
         }

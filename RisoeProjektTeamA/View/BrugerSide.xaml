@@ -52,7 +52,7 @@
                  <Button Content="Create User" Style="{StaticResource TheButton}" Command="{Binding AddCommand}"/>
                 </StackPanel>
              <StackPanel>
-                    <ListView Height="365" ItemsSource="{Binding Logbog.Brugerliste}" SelectedItem="{Binding ValgtBruger, Mode=TwoWay}">
+                    <ListView Height="365" ItemsSource="{Binding Logbog.Brugerliste, Mode=TwoWay}" SelectedItem="{Binding ValgtBruger, Mode=TwoWay}">
                      
                     </ListView>
                  <Button Content="Delete User" Style="{StaticResource TheButton}" Command="{Binding RemoveCommand}"/>
