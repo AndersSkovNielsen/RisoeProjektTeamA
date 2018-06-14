@@ -91,7 +91,6 @@ namespace RisoeProjektTeamA.ViewModel
         {
             BrugerHandler = new BrugerHandler(this);
             Logbog = LogbogSingleton.Instance;
-            Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
 
             Brugerliste = new ObservableCollection<Bruger>(Logbog.BFacade.HentAlleBrugere());
 
