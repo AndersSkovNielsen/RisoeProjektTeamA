@@ -105,7 +105,7 @@ namespace RisoeProjektTeamA.ViewModel
             NyBruger = new Bruger();
             AddCommand = new RelayCommand(BrugerHandler.IndsætBruger);
             //UpdateCommand = new RelayCommand(BrugerHandler.OpdaterBruger);
-            //RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
+            RemoveCommand = new RelayCommand(BrugerHandler.SletBruger);
         }
 
         private bool _kodeErRigtig = false;
