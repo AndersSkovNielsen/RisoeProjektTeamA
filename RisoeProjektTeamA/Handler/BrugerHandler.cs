@@ -77,7 +77,6 @@ namespace RisoeProjektTeamA.Handler
             }
 
             //BrugerViewModel.OpgaveErValgt = false;
-
         }
 
 
