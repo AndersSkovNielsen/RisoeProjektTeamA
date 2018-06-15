@@ -14,17 +14,6 @@ namespace RESTRisoe.DBUtil.Tests
     {
         ManageOpgave opgaveTester = new ManageOpgave();
         List<ModelLibrary.Model.Opgave> testListe = new List<Opgave>();
-       
-
-        [TestMethod()]
-        public void HentOpgaveFraIdTest()
-        {
-            //arrange
-            //det eneste arrangement denne test kræver er er "opgaveTester" der allerede er lavet. og
-            
-            //act/Assert
-            Assert.IsNotNull(opgaveTester.HentOpgaveFraId(1));
-        }
 
         [TestMethod()]
         public void IndsætOgHentOpgaverTest()
@@ -33,7 +22,7 @@ namespace RESTRisoe.DBUtil.Tests
             int listelængde2;
             Opgave testOpgave = new Opgave(999, "testopgave", StatusType.IkkeLøst, 2, new Udstyr(2));
 
-                //act
+            //act
             testListe = opgaveTester.HentAlleOpgaver();
             listelængde1 = testListe.Count;
             opgaveTester.IndsætOpgave(testOpgave);
@@ -43,6 +32,16 @@ namespace RESTRisoe.DBUtil.Tests
 
             //assert
             Assert.AreEqual(listelængde1 + 1, listelængde2);
+        }
+
+        [TestMethod()]
+        public void HentOpgaveFraIdTest()
+        {
+            //arrange
+            //det eneste arrangement denne test kræver er er "opgaveTester" der allerede er lavet. og
+            
+            //act/Assert
+            Assert.IsNotNull(opgaveTester.HentOpgaveFraId(1));
         }
 
         [TestMethod()]

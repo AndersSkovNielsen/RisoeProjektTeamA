@@ -114,7 +114,6 @@ namespace RisoeProjektTeamA.Persistency
                     return res;
                 }
             }
-
             return false;
         }
 
