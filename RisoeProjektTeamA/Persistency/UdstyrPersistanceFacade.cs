@@ -119,8 +119,6 @@ namespace RisoeProjektTeamA.Persistency
 
         public bool OpdaterEtUdstyr(int nr, Udstyr udstyr)
         {
-            
-
             String json = JsonConvert.SerializeObject(udstyr);
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
